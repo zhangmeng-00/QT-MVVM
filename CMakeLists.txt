@@ -1,0 +1,52 @@
+cmake_minimum_required(VERSION 3.16)
+project(MediatorMVAQt LANGUAGES CXX)
+
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
+
+add_executable(${PROJECT_NAME}
+    main.cpp
+    MainWindow.h
+    MainWindow.cpp
+    MainWindow.ui
+
+    core/actor/Actor.h
+    core/actor/Actor.cpp
+
+    core/transport/ITransport.h
+
+    core/policy/ISubscriptionPolicy.h
+    core/policy/AlwaysPolicy.h
+    core/policy/ValueChangedPolicy.h
+
+    core/mediator/Observe.h
+    core/mediator/Observe.cpp
+    core/mediator/Topic.h
+    core/mediator/Topic.cpp
+    core/mediator/Mediator.h
+    core/mediator/Mediator.cpp
+
+    core/actor/ActorObserve.h
+    core/actor/ActorObserve.cpp
+
+    model/SensorModel.h
+    model/SensorModel.cpp
+    model/UserModel.h
+    model/UserModel.cpp
+
+    view/LabelViewObserve.h
+    view/LabelViewObserve.cpp
+)
+
+target_include_directories(${PROJECT_NAME} PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}
+)
+
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
