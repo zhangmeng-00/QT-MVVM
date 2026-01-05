@@ -1,24 +1,35 @@
-// UserModel.h
 #pragma once
 
-#include "core/actor/ActorObserve.h"
+#include "actor/ActorObserve.h"
 
 /*
- * UserModel（Actor）
+ * UserModel
  * ============================================================
- * 订阅 user:score
- * - 计算 level = score/100
- * - level 变化时发布 user:level
+ * - 订阅 score
+ * - 根据 score 计算 level
+ * - 发布 level
  */
 class UserModel : public ActorObserve {
     Q_OBJECT
 public:
-    explicit UserModel(QObject* parent = nullptr);
+    explicit UserModel(QObject* parent = nullptr)
+        : ActorObserve(parent)
+    {}
 
 protected:
-    void ObserveData(const QString& dataType,
-                     const QString& tag,
-                     const QVariant& data) override;
+    void ObserveData(const QString& tag,
+                     const QVariant& value) override
+    {
+        if (tag == "score") {
+            int score = value.toInt();
+            int newLevel = score / 100;
+
+            if (newLevel != m_level) {
+                m_level = newLevel;
+                Publish("level", m_level);
+            }
+        }
+    }
 
 private:
     int m_level = 0;

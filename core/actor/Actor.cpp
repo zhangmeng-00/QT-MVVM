@@ -1,4 +1,3 @@
-// Actor.cpp
 #include "Actor.h"
 #include <QMetaObject>
 
@@ -7,10 +6,7 @@ Actor::Actor(QObject* owner)
 {
 }
 
-Actor::~Actor()
-{
-    // 析构不做跨线程动作
-}
+Actor::~Actor() = default;
 
 void Actor::Post(std::function<void()> fn)
 {
@@ -21,23 +17,24 @@ void Actor::Post(std::function<void()> fn)
         m_queue.enqueue(std::move(fn));
     }
 
-    // 让 owner 在自己的线程执行 ProcessMailbox（queued，跨线程安全）
-    QMetaObject::invokeMethod(m_owner, [this]() {
-        this->ProcessMailbox();
-    }, Qt::QueuedConnection);
+    // 确保在 owner 所在线程执行
+    QMetaObject::invokeMethod(
+        m_owner,
+        [this]() { ProcessMailbox(); },
+        Qt::QueuedConnection
+        );
 }
 
 void Actor::ProcessMailbox()
 {
     {
         QMutexLocker locker(&m_mutex);
-        if (m_processing) return;   // 防止重复进入
+        if (m_processing) return;
         m_processing = true;
     }
 
     while (true) {
         std::function<void()> job;
-
         {
             QMutexLocker locker(&m_mutex);
             if (m_queue.isEmpty()) {
@@ -46,7 +43,6 @@ void Actor::ProcessMailbox()
             }
             job = m_queue.dequeue();
         }
-
-        if (job) job(); // 串行执行
+        if (job) job();
     }
 }

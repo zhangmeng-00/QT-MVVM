@@ -1,29 +1,34 @@
-// ActorObserve.h
 #pragma once
 
-#include "../mediator/Observe.h"
-#include "Actor.h"
+#include "mediator/Observe.h"
+#include "actor/Actor.h"
 
 /*
  * ActorObserve
  * ============================================================
- * Qt版 Actor（对标 LabVIEW AF Actor）
+ * Observe + Actor（Mailbox）组合
  *
- * 核心保证：
- * - Topic 推送到 OnDataReceived（可能来自 Mediator 线程）
- * - 不直接进入业务逻辑
- * - 投递到 Mailbox（Actor::Post）
- * - 最终在 ActorObserve 自己线程串行执行 ObserveData
+ * 职责：
+ * ------------------------------------------------------------
+ * - 保证 ObserveData 在对象所属线程串行执行
+ * - 屏蔽多线程并发
+ * - 不向业务层暴露 typeKey
  */
 class ActorObserve : public Observe {
     Q_OBJECT
 public:
     explicit ActorObserve(QObject* parent = nullptr);
-    ~ActorObserve() override;
 
-    void OnDataReceived(const QString& dataType,
+protected:
+    /*
+     * Topic → ActorObserve 入口
+     * --------------------------------------------------------
+     * 该函数可能在 Mediator 线程被调用
+     * 所以这里只负责投递到 Mailbox
+     */
+    void OnDataReceived(const QString& typeKey,
                         const QString& tag,
-                        const QVariant& data) override;
+                        const QVariant& value) override;
 
 private:
     Actor m_actor;

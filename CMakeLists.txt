@@ -36,17 +36,33 @@ add_executable(${PROJECT_NAME}
     core/actor/ActorObserve.h
     core/actor/ActorObserve.cpp
 
+    common/TypeKey.h
+
+
+
+
+
+
+
+
+    model/BaseModel.h
+    model/BaseModel.cpp
+    view/BaseView.h
+    view/BaseView.cpp
+    view/LabelViewObserve.h
+    view/LabelViewObserve.cpp
     model/SensorModel.h
     model/SensorModel.cpp
     model/UserModel.h
     model/UserModel.cpp
-
-    view/LabelViewObserve.h
-    view/LabelViewObserve.cpp
 )
 
-target_include_directories(${PROJECT_NAME} PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}
+target_include_directories(MediatorMVAQt
+    PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}
+        ${CMAKE_CURRENT_SOURCE_DIR}/core
 )
+
+
 
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)

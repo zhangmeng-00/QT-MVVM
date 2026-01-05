@@ -137,12 +137,12 @@ void MainWindow::SetupSubscriptions()
     auto always = std::make_shared<AlwaysPolicy>();
 
     // Model：UserModel 订阅 user:score，内部算 level 再发布 user:level
-    m_userModel->SubscribeRequest("user", "score", always);
+    m_userModel->Subscribe("score", always);
 
     // View：显示温度/积分/等级
-    m_tempView->SubscribeRequest("sensor", "temperature", always);
-    m_scoreView->SubscribeRequest("user", "score", always);
-    m_levelView->SubscribeRequest("user", "level", always);
+    m_tempView->Subscribe("temperature", always);
+    m_scoreView->Subscribe("score", always);
+    m_levelView->Subscribe("level", always);
 }
 
 /*
@@ -154,8 +154,8 @@ void MainWindow::on_btnPublish_clicked()
     int score       = QRandomGenerator::global()->bounded(0, 500);
 
     // 发布温度（通过 SensorModel 发布，实际谁发布都行）
-    m_sensorModel->PublishRequest("sensor", "temperature", temperature);
+    m_sensorModel->Publish("temperature", temperature);
 
     // 发布积分（UserModel 订阅后会计算 level 并再次发布）
-    m_sensorModel->PublishRequest("user", "score", score);
+    m_sensorModel->Publish("score", score);
 }

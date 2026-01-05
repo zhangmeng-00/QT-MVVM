@@ -1,29 +1,25 @@
-// Actor.h
 #pragma once
-
 #include <QObject>
 #include <QMutex>
 #include <QQueue>
 #include <functional>
 
 /*
- * Actor（Mailbox Helper）
+ * Actor
  * ============================================================
- * 注意：Actor 本身不继承 QObject（避免 QObject 多继承）
+ * Mailbox 工具类（不继承 QObject）
  *
- * 使用方式：
- * - Actor 绑定一个 owner(QObject*)
- * - Post(fn) 会把任务放入线程安全队列
- * - 使用 invokeMethod 让 owner 在其线程中处理队列
- *
- * 保证：
- * - 任务串行执行（同一时刻只有一个处理循环）
+ * 职责：
+ * ------------------------------------------------------------
+ * - 提供线程安全的任务队列
+ * - 确保任务在 owner(QObject) 所在线程串行执行
  */
 class Actor {
 public:
     explicit Actor(QObject* owner);
     ~Actor();
 
+    // 投递任务到 Mailbox
     void Post(std::function<void()> fn);
 
 private:

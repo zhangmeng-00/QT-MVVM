@@ -1,21 +1,25 @@
-// SensorModel.h
 #pragma once
 
-#include "core/actor/ActorObserve.h"
+#include "actor/ActorObserve.h"
 
 /*
- * SensorModel（Actor）
+ * SensorModel
  * ============================================================
- * 演示：作为 Actor 运行在独立线程
- * - 可以订阅/发布 sensor:* 数据
+ * 示例传感器模型
  */
 class SensorModel : public ActorObserve {
     Q_OBJECT
 public:
-    explicit SensorModel(QObject* parent = nullptr);
+    explicit SensorModel(QObject* parent = nullptr)
+        : ActorObserve(parent)
+    {}
 
 protected:
-    void ObserveData(const QString& dataType,
-                     const QString& tag,
-                     const QVariant& data) override;
+    void ObserveData(const QString& tag,
+                     const QVariant& value) override
+    {
+        if (tag == "temperature") {
+            // 处理温度
+        }
+    }
 };

@@ -1,4 +1,3 @@
-// Mediator.cpp
 #include "Mediator.h"
 
 Mediator::Mediator(QObject* parent)
@@ -8,8 +7,6 @@ Mediator::Mediator(QObject* parent)
 
 void Mediator::ConnectObserve(Observe* obs)
 {
-    if (!obs) return;
-
     connect(obs, &Observe::RequestSubscribe,
             this, &Mediator::OnSubscribeRequest,
             Qt::QueuedConnection);
@@ -18,7 +15,6 @@ void Mediator::ConnectObserve(Observe* obs)
             this, &Mediator::OnPublishRequest,
             Qt::QueuedConnection);
 
-    // Observe 析构时，自动清理订阅（避免析构 emit queued）
     connect(obs, &QObject::destroyed,
             this, &Mediator::OnObserveDestroyed,
             Qt::QueuedConnection);
@@ -26,7 +22,6 @@ void Mediator::ConnectObserve(Observe* obs)
 
 void Mediator::OnSubscribeRequest(QObject* owner,
                                   ITransport* transport,
-                                  const QString& dataType,
                                   const QString& tag)
 {
     auto* obs = qobject_cast<Observe*>(owner);
@@ -35,23 +30,23 @@ void Mediator::OnSubscribeRequest(QObject* owner,
     auto policy = obs->TakePendingPolicy();
     if (!policy) return;
 
-    auto topic = GetOrCreateTopic(dataType, tag);
-    topic->AddSubscription(owner, transport, policy);
+    GetOrCreateTopic("any", tag)
+        ->AddSubscription(owner, transport, policy);
 }
 
-void Mediator::OnPublishRequest(const QString& dataType,
-                                const QString& tag,
-                                const QVariant& data)
+void Mediator::OnPublishRequest(const QString& tag,
+                                const QVariant& value)
 {
-    auto topic = GetOrCreateTopic(dataType, tag);
-    topic->Notify(data);
+    QString typeKey = TypeKey::FromVariant(value);
+
+    GetOrCreateTopic(typeKey, tag)->Notify(value);
+    GetOrCreateTopic("any", tag)->Notify(value);
 }
 
 void Mediator::OnObserveDestroyed(QObject* obj)
 {
     for (auto it = m_topics.begin(); it != m_topics.end(); ) {
         it->second->RemoveAllByOwner(obj);
-
         if (it->second->IsEmpty())
             it = m_topics.erase(it);
         else
@@ -60,15 +55,16 @@ void Mediator::OnObserveDestroyed(QObject* obj)
 }
 
 std::shared_ptr<Topic>
-Mediator::GetOrCreateTopic(const QString& dataType, const QString& tag)
+Mediator::GetOrCreateTopic(const QString& typeKey,
+                           const QString& tag)
 {
-    const QString key = dataType + ":" + tag;
-
+    QString key = typeKey + ":" + tag;
     auto it = m_topics.find(key);
     if (it == m_topics.end()) {
-        auto topic = std::make_shared<Topic>(dataType, tag);
-        m_topics[key] = topic;
-        return topic;
+        it = m_topics.emplace(
+                         key,
+                         std::make_shared<Topic>(typeKey, tag)
+                         ).first;
     }
     return it->second;
 }

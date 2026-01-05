@@ -1,4 +1,3 @@
-// Observe.cpp
 #include "Observe.h"
 
 Observe::Observe(QObject* parent)
@@ -8,19 +7,17 @@ Observe::Observe(QObject* parent)
 
 Observe::~Observe() = default;
 
-void Observe::SubscribeRequest(const QString& dataType,
-                               const QString& tag,
-                               std::shared_ptr<ISubscriptionPolicy> policy)
+void Observe::Subscribe(const QString& tag,
+                        std::shared_ptr<ISubscriptionPolicy> policy)
 {
     m_pendingPolicy = std::move(policy);
-    emit RequestSubscribe(this, this, dataType, tag);
+    emit RequestSubscribe(this, this, tag);
 }
 
-void Observe::PublishRequest(const QString& dataType,
-                             const QString& tag,
-                             const QVariant& data)
+void Observe::Publish(const QString& tag,
+                      const QVariant& value)
 {
-    emit RequestPublish(dataType, tag, data);
+    emit RequestPublish(tag, value);
 }
 
 std::shared_ptr<ISubscriptionPolicy> Observe::TakePendingPolicy()
@@ -30,9 +27,9 @@ std::shared_ptr<ISubscriptionPolicy> Observe::TakePendingPolicy()
     return p;
 }
 
-void Observe::OnDataReceived(const QString& dataType,
+void Observe::OnDataReceived(const QString&,
                              const QString& tag,
-                             const QVariant& data)
+                             const QVariant& value)
 {
-    ObserveData(dataType, tag, data);
+    ObserveData(tag, value);
 }

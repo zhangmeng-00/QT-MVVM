@@ -1,6 +1,4 @@
-// Observe.h
 #pragma once
-
 #include <QObject>
 #include <QVariant>
 #include <memory>
@@ -11,12 +9,12 @@
 /*
  * Observe
  * ============================================================
- * 抽象观察者：提供订阅/发布接口
+ * 所有 Model / View 的基类
  *
- * 关键点：
- * 1) policy 不通过 queued signal 传 shared_ptr（避免 Qt 元类型注册问题）
- * 2) policy 暂存在 Observe 中，由 Mediator 取走
- * 3) Observe 析构不 emit，避免退出阶段崩溃
+ * 对外 API：
+ * ------------------------------------------------------------
+ * - Subscribe(tag, policy)
+ * - Publish(tag, QVariant)
  */
 class Observe : public QObject, public ITransport {
     Q_OBJECT
@@ -24,36 +22,34 @@ public:
     explicit Observe(QObject* parent = nullptr);
     virtual ~Observe();
 
-    void SubscribeRequest(const QString& dataType,
-                          const QString& tag,
-                          std::shared_ptr<ISubscriptionPolicy> policy);
+    // 订阅 tag（不关心类型）
+    void Subscribe(const QString& tag,
+                   std::shared_ptr<ISubscriptionPolicy> policy);
 
-    void PublishRequest(const QString& dataType,
-                        const QString& tag,
-                        const QVariant& data);
+    // 发布 tag + value
+    void Publish(const QString& tag,
+                 const QVariant& value);
 
+    // Mediator 在订阅时取走策略
     std::shared_ptr<ISubscriptionPolicy> TakePendingPolicy();
 
-    // 可覆盖：ActorObserve 会覆盖该函数，把数据投递到 Mailbox
-    void OnDataReceived(const QString& dataType,
+    // Topic → Observe 入口
+    void OnDataReceived(const QString& typeKey,
                         const QString& tag,
-                        const QVariant& data) override;
+                        const QVariant& value) override;
 
 signals:
     void RequestSubscribe(QObject* owner,
                           ITransport* transport,
-                          const QString& dataType,
                           const QString& tag);
 
-    void RequestPublish(const QString& dataType,
-                        const QString& tag,
-                        const QVariant& data);
+    void RequestPublish(const QString& tag,
+                        const QVariant& value);
 
 protected:
-    // 子类实现真正处理逻辑
-    virtual void ObserveData(const QString& dataType,
-                             const QString& tag,
-                             const QVariant& data) = 0;
+    // 业务真正实现的处理函数
+    virtual void ObserveData(const QString& tag,
+                             const QVariant& value) = 0;
 
 private:
     std::shared_ptr<ISubscriptionPolicy> m_pendingPolicy;

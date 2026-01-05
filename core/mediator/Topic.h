@@ -1,6 +1,4 @@
-// Topic.h
 #pragma once
-
 #include <QString>
 #include <QVariant>
 #include <QPointer>
@@ -13,15 +11,12 @@
 /*
  * Topic
  * ============================================================
- * 管理 (dataType, tag) 下的订阅集合
- *
- * 设计点：
- * - owner 用 QPointer 跟踪 Observe 生命周期
- * - Notify 用 index 遍历，允许订阅者在回调中销毁自己
+ * 管理某一个 typeKey:tag 下的所有订阅者
  */
 class Topic {
 public:
-    Topic(const QString& dataType, const QString& tag);
+    Topic(const QString& typeKey,
+          const QString& tag);
 
     void AddSubscription(QObject* owner,
                          ITransport* transport,
@@ -40,8 +35,7 @@ private:
         std::shared_ptr<ISubscriptionPolicy> policy;
     };
 
-private:
-    QString m_dataType;
+    QString m_typeKey;
     QString m_tag;
     QVariant m_lastValue;
     std::vector<Item> m_items;
