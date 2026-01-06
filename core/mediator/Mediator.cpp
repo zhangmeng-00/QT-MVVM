@@ -1,70 +1,75 @@
 #include "Mediator.h"
+#include <QDebug>
+#include <QMetaType>
 
+/*
+ * 构造函数
+ */
 Mediator::Mediator(QObject* parent)
     : QObject(parent)
 {
+    /*
+     * Qt5 queued connection 传递 PolicyPtr（std::shared_ptr）必须注册元类型
+     * 放在这里注册，确保 Mediator 初始化后一定可用
+     */
+    qRegisterMetaType<PolicyPtr>("PolicyPtr");
 }
 
+/*
+ * ConnectObserve
+ */
 void Mediator::ConnectObserve(Observe* obs)
 {
+    if (!obs) return;
+
+    qDebug() << "[Mediator] ConnectObserve:" << obs;
+
+    /*
+     * ✅ 统一用 QueuedConnection：
+     * - Observe 可能在 UI 线程
+     * - Mediator 可能在独立线程
+     */
     connect(obs, &Observe::RequestSubscribe,
-            this, &Mediator::OnSubscribeRequest,
+            this, &Mediator::OnSubscribe,
             Qt::QueuedConnection);
 
     connect(obs, &Observe::RequestPublish,
-            this, &Mediator::OnPublishRequest,
-            Qt::QueuedConnection);
-
-    connect(obs, &QObject::destroyed,
-            this, &Mediator::OnObserveDestroyed,
+            this, &Mediator::OnPublish,
             Qt::QueuedConnection);
 }
 
-void Mediator::OnSubscribeRequest(QObject* owner,
-                                  ITransport* transport,
-                                  const QString& tag)
+/*
+ * OnSubscribe
+ */
+void Mediator::OnSubscribe(Observe* observer,
+                           const QString& tag,
+                           PolicyPtr policy)
 {
-    auto* obs = qobject_cast<Observe*>(owner);
-    if (!obs) return;
+    qDebug() << "[Mediator] OnSubscribe:" << observer << tag;
 
-    auto policy = obs->TakePendingPolicy();
-    if (!policy) return;
-
-    GetOrCreateTopic("any", tag)
-        ->AddSubscription(owner, transport, policy);
+    auto topic = getOrCreateTopic(tag);
+    topic->AddSubscriber(observer, policy);
 }
 
-void Mediator::OnPublishRequest(const QString& tag,
-                                const QVariant& value)
+/*
+ * OnPublish
+ */
+void Mediator::OnPublish(const QString& tag,
+                         const QVariant& value)
 {
-    QString typeKey = TypeKey::FromVariant(value);
-
-    GetOrCreateTopic(typeKey, tag)->Notify(value);
-    GetOrCreateTopic("any", tag)->Notify(value);
+    auto topic = getOrCreateTopic(tag);
+    topic->Notify(tag, value);
 }
 
-void Mediator::OnObserveDestroyed(QObject* obj)
+/*
+ * getOrCreateTopic
+ */
+std::shared_ptr<Topic> Mediator::getOrCreateTopic(const QString& tag)
 {
-    for (auto it = m_topics.begin(); it != m_topics.end(); ) {
-        it->second->RemoveAllByOwner(obj);
-        if (it->second->IsEmpty())
-            it = m_topics.erase(it);
-        else
-            ++it;
+    QMutexLocker locker(&m_mutex);
+
+    if (!m_topics.contains(tag)) {
+        m_topics[tag] = std::make_shared<Topic>(tag);
     }
-}
-
-std::shared_ptr<Topic>
-Mediator::GetOrCreateTopic(const QString& typeKey,
-                           const QString& tag)
-{
-    QString key = typeKey + ":" + tag;
-    auto it = m_topics.find(key);
-    if (it == m_topics.end()) {
-        it = m_topics.emplace(
-                         key,
-                         std::make_shared<Topic>(typeKey, tag)
-                         ).first;
-    }
-    return it->second;
+    return m_topics[tag];
 }

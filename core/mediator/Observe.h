@@ -1,56 +1,81 @@
 #pragma once
+
 #include <QObject>
 #include <QVariant>
 #include <memory>
+#include <QString>
 
-#include "../transport/ITransport.h"
 #include "../policy/ISubscriptionPolicy.h"
 
 /*
  * Observe
  * ============================================================
- * 所有 Model / View 的基类
+ * 所有 Model / ViewModel 的基类
  *
- * 对外 API：
- * ------------------------------------------------------------
- * - Subscribe(tag, policy)
- * - Publish(tag, QVariant)
+ * 职责：
+ * - 向 Mediator 订阅 Topic（tag + policy）
+ * - 向 Mediator 发布数据（tag + value）
+ * - 接收 Mediator 分发的数据（tag + value）
  */
-class Observe : public QObject, public ITransport {
+class Observe : public QObject {
     Q_OBJECT
 public:
     explicit Observe(QObject* parent = nullptr);
     virtual ~Observe();
 
-    // 订阅 tag（不关心类型）
-    void Subscribe(const QString& tag,
-                   std::shared_ptr<ISubscriptionPolicy> policy);
+    /*
+     * Subscribe
+     * --------------------------------------------------------
+     * 向 Mediator 请求订阅：
+     * - tag：例如 "user/score"
+     * - policy：订阅策略（Always / ValueChanged 等）
+     *
+     * ✅ 关键点：policy 直接作为信号参数发送，避免异步串台
+     */
+    void Subscribe(const QString& tag, PolicyPtr policy);
 
-    // 发布 tag + value
-    void Publish(const QString& tag,
-                 const QVariant& value);
-
-    // Mediator 在订阅时取走策略
-    std::shared_ptr<ISubscriptionPolicy> TakePendingPolicy();
-
-    // Topic → Observe 入口
-    void OnDataReceived(const QString& typeKey,
-                        const QString& tag,
-                        const QVariant& value) override;
+    /*
+     * Publish
+     * --------------------------------------------------------
+     * 向 Mediator 发布数据（tag + value）
+     */
+    void Publish(const QString& tag, const QVariant& value);
 
 signals:
-    void RequestSubscribe(QObject* owner,
-                          ITransport* transport,
-                          const QString& tag);
+    /*
+     * RequestSubscribe
+     * --------------------------------------------------------
+     * 统一订阅信号（带 policy）
+     * 使用 QueuedConnection 时，policy 仍然正确对应本次订阅
+     */
+    void RequestSubscribe(Observe* observer,
+                          const QString& tag,
+                          PolicyPtr policy);
 
+    /*
+     * RequestPublish
+     * --------------------------------------------------------
+     * 统一发布信号
+     */
     void RequestPublish(const QString& tag,
                         const QVariant& value);
 
+public slots:
+    /*
+     * OnDataReceived
+     * --------------------------------------------------------
+     * Mediator/Topic -> Observe 的回调入口
+     * 必须是 virtual，供 ActorObserve override
+     */
+    virtual void OnDataReceived(const QString& tag,
+                                const QVariant& value);
+
 protected:
-    // 业务真正实现的处理函数
+    /*
+     * ObserveData
+     * --------------------------------------------------------
+     * 真正业务处理入口（子类实现）
+     */
     virtual void ObserveData(const QString& tag,
                              const QVariant& value) = 0;
-
-private:
-    std::shared_ptr<ISubscriptionPolicy> m_pendingPolicy;
 };

@@ -1,13 +1,11 @@
 #pragma once
 #include <QVariant>
+#include <memory>
 
 /*
  * ISubscriptionPolicy
- * ============================================================
- * 订阅策略接口
- *
- * 决定：
- * - 新值到来时，是否通知订阅者
+ * ------------------------------------------------------------
+ * 订阅策略接口：决定是否触发订阅者
  */
 class ISubscriptionPolicy {
 public:
@@ -16,3 +14,17 @@ public:
     virtual bool ShouldExecute(const QVariant& oldValue,
                                const QVariant& newValue) = 0;
 };
+
+/*
+ * PolicyPtr
+ * ------------------------------------------------------------
+ * 统一策略指针类型，减少模板噪声
+ */
+using PolicyPtr = std::shared_ptr<ISubscriptionPolicy>;
+
+/*
+ * Qt 元对象系统声明
+ * ------------------------------------------------------------
+ * 让 PolicyPtr 可以通过 Qt::QueuedConnection 作为参数传递
+ */
+Q_DECLARE_METATYPE(PolicyPtr)

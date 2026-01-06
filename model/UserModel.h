@@ -1,6 +1,7 @@
 #pragma once
 
 #include "actor/ActorObserve.h"
+#include <QDebug>
 
 /*
  * UserModel
@@ -16,17 +17,29 @@ public:
         : ActorObserve(parent)
     {}
 
+
+// protected:
+//     void ObserveData(const QString& tag,
+//                      const QVariant& value) override
+//     {
+//         qDebug() << "[UserModel] ObserveData CALLED, tag =" << tag
+//                  << "value =" << value;
+
+//         // 暂时直接 return，不做任何逻辑
+//     }
+
 protected:
     void ObserveData(const QString& tag,
                      const QVariant& value) override
     {
-        if (tag == "score") {
-            int score = value.toInt();
+
+            if (tag == "user/score") {
+                      int score = value.toInt();
             int newLevel = score / 100;
 
             if (newLevel != m_level) {
                 m_level = newLevel;
-                Publish("level", m_level);
+                Publish("user/level", m_level);
             }
         }
     }

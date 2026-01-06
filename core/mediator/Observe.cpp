@@ -1,4 +1,5 @@
 #include "Observe.h"
+#include <QDebug>
 
 Observe::Observe(QObject* parent)
     : QObject(parent)
@@ -7,29 +8,22 @@ Observe::Observe(QObject* parent)
 
 Observe::~Observe() = default;
 
-void Observe::Subscribe(const QString& tag,
-                        std::shared_ptr<ISubscriptionPolicy> policy)
+void Observe::Subscribe(const QString& tag, PolicyPtr policy)
 {
-    m_pendingPolicy = std::move(policy);
-    emit RequestSubscribe(this, this, tag);
+    qDebug() << "[Observe] Subscribe request:" << this << tag;
+
+    // ✅ policy 直接跟信号走，避免 pendingPolicy 被后一次 Subscribe 覆盖
+    emit RequestSubscribe(this, tag, policy);
 }
 
-void Observe::Publish(const QString& tag,
-                      const QVariant& value)
+void Observe::Publish(const QString& tag, const QVariant& value)
 {
     emit RequestPublish(tag, value);
 }
 
-std::shared_ptr<ISubscriptionPolicy> Observe::TakePendingPolicy()
-{
-    auto p = m_pendingPolicy;
-    m_pendingPolicy.reset();
-    return p;
-}
-
-void Observe::OnDataReceived(const QString&,
-                             const QString& tag,
+void Observe::OnDataReceived(const QString& tag,
                              const QVariant& value)
 {
+    // 默认实现：直接转给子类业务入口
     ObserveData(tag, value);
 }

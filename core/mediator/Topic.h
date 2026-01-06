@@ -1,42 +1,53 @@
 #pragma once
-#include <QString>
+
+#include <QObject>
 #include <QVariant>
-#include <QPointer>
+#include <QString>
 #include <vector>
 #include <memory>
 
-#include "../transport/ITransport.h"
 #include "../policy/ISubscriptionPolicy.h"
+
+class Observe;
 
 /*
  * Topic
  * ============================================================
- * 管理某一个 typeKey:tag 下的所有订阅者
+ * 每个 tag 一个 Topic
+ *
+ * 管理：
+ * - 订阅者列表（observer + policy）
+ * - 最近一次值（用于策略判断 old/new）
  */
-class Topic {
+class Topic : public QObject {
+    Q_OBJECT
 public:
-    Topic(const QString& typeKey,
-          const QString& tag);
+    explicit Topic(const QString& tag, QObject* parent = nullptr);
 
-    void AddSubscription(QObject* owner,
-                         ITransport* transport,
-                         std::shared_ptr<ISubscriptionPolicy> policy);
+    /*
+     * AddSubscriber
+     * --------------------------------------------------------
+     * 添加订阅者
+     */
+    void AddSubscriber(Observe* observer, PolicyPtr policy);
 
-    void RemoveAllByOwner(QObject* owner);
-
-    void Notify(const QVariant& value);
-
-    bool IsEmpty() const;
+    /*
+     * Notify
+     * --------------------------------------------------------
+     * 发布数据，按策略通知所有订阅者
+     */
+    void Notify(const QString& tag, const QVariant& value);
 
 private:
-    struct Item {
-        QPointer<QObject> owner;
-        ITransport* transport = nullptr;
-        std::shared_ptr<ISubscriptionPolicy> policy;
+    struct SubscriberItem {
+        Observe*   observer = nullptr; // 不拥有对象生命周期
+        PolicyPtr policy;              // 策略
     };
 
-    QString m_typeKey;
+private:
     QString m_tag;
     QVariant m_lastValue;
-    std::vector<Item> m_items;
+    bool m_hasLastValue = false;
+
+    std::vector<SubscriberItem> m_subscribers;
 };

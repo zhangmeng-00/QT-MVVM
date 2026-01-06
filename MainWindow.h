@@ -2,13 +2,22 @@
 
 #include <QMainWindow>
 #include <QThread>
-#include <memory>
-#include <vector>
 
+// Core
 #include "core/mediator/Mediator.h"
-#include "model/SensorModel.h"
+#include "core/policy/AlwaysPolicy.h"
+
+// Models
 #include "model/UserModel.h"
-#include "view/LabelViewObserve.h"
+#include "model/SensorModel.h"
+
+// ViewModels
+#include "viewmodel/UserViewModel.h"
+#include "viewmodel/SensorViewModel.h"
+
+// Binding helpers
+#include "view/binding/Binding.h"
+#include "view/binding/BindingCommand.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -17,48 +26,39 @@ QT_END_NAMESPACE
 /*
  * MainWindow
  * ============================================================
- * MVA(Qt) + Actor/Mailbox Demo
+ * 职责：
+ * - 作为 Composition Root（装配点）
+ * - 创建 Mediator / Model / ViewModel
+ * - 建立订阅与绑定
  *
- * 线程结构：
- * ------------------------------------------------------------
- * 1) UI 线程：MainWindow / View（LabelViewObserve）
- * 2) Mediator 线程：Mediator（总线）
- * 3) Actor 线程1：SensorModel（ActorObserve）
- * 4) Actor 线程2：UserModel（ActorObserve）
+ * 不包含任何业务逻辑
  */
-class MainWindow : public QMainWindow
-{
+class MainWindow : public QMainWindow {
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = nullptr);
+    explicit MainWindow(QWidget* parent = nullptr);
     ~MainWindow();
 
-private slots:
-    void on_btnPublish_clicked();
+private:
+    void setupMediator();
+    void setupModels();
+    void setupViewModels();
+    void setupSubscriptions();
+    void setupBindings();
 
 private:
-    void SetupThreads();
-    void SetupObjects();
-    void SetupConnections();
-    void SetupSubscriptions();
+    Ui::MainWindow* ui = nullptr;
 
-private:
-    Ui::MainWindow *ui = nullptr;
-
-    // ============ Mediator 线程 ============
+    // Mediator（事件总线）
     Mediator* m_mediator = nullptr;
     QThread*  m_mediatorThread = nullptr;
 
-    // ============ Actor(Model) 线程 ============
+    // Models
+    UserModel*   m_userModel   = nullptr;
     SensorModel* m_sensorModel = nullptr;
-    QThread*     m_sensorThread = nullptr;
 
-    UserModel*   m_userModel = nullptr;
-    QThread*     m_userThread = nullptr;
-
-    // ============ View（UI线程，不 moveToThread） ============
-    LabelViewObserve* m_tempView  = nullptr;
-    LabelViewObserve* m_scoreView = nullptr;
-    LabelViewObserve* m_levelView = nullptr;
+    // ViewModels
+    UserViewModel*   m_userVM   = nullptr;
+    SensorViewModel* m_sensorVM = nullptr;
 };

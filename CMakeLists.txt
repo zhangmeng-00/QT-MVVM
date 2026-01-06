@@ -51,10 +51,21 @@ add_executable(${PROJECT_NAME}
     view/BaseView.cpp
     view/LabelViewObserve.h
     view/LabelViewObserve.cpp
+
+    view/binding/Binding.h
+
     model/SensorModel.h
     model/SensorModel.cpp
     model/UserModel.h
     model/UserModel.cpp
+
+    viewmodel/BaseViewModel.h
+    viewmodel/UserViewModel.h
+    viewmodel/UserViewModel.cpp
+
+    view/binding/BindingCommand.h
+    viewmodel/SensorViewModel.h
+    view/binding/PropertyBindingAdapter.h
 )
 
 target_include_directories(MediatorMVAQt

@@ -1,23 +1,40 @@
-#include "actor/ActorObserve.h"
+#include "ActorObserve.h"
+#include <QMetaObject>
 
+/*
+ * 构造函数
+ */
 ActorObserve::ActorObserve(QObject* parent)
     : Observe(parent)
-    , m_actor(this)
 {
 }
 
-void ActorObserve::OnDataReceived(const QString& /*typeKey*/,
-                                  const QString& tag,
+/*
+ * OnDataReceived
+ * ------------------------------------------------------------
+ * 这里可能在 Mediator / 发布线程
+ * 只负责投递，不做业务
+ */
+void ActorObserve::OnDataReceived(const QString& tag,
                                   const QVariant& value)
 {
-    /*
-     * 关键点：
-     * --------------------------------------------------------
-     * - typeKey 只用于路由
-     * - 业务层不需要知道 typeKey
-     * - 所以这里只把 tag + value 投递给 ObserveData
-     */
-    m_actor.Post([this, tag, value]() {
-        ObserveData(tag, value);   // ✅ 正确：2 个参数
-    });
+    QMetaObject::invokeMethod(
+        this,
+        "onActorInvoke",
+        Qt::QueuedConnection,
+        Q_ARG(QString, tag),
+        Q_ARG(QVariant, value)
+        );
+}
+
+/*
+ * onActorInvoke
+ * ------------------------------------------------------------
+ * 一定在对象所属线程执行
+ * 这里才调用真正的业务逻辑
+ */
+void ActorObserve::onActorInvoke(QString tag,
+                                 QVariant value)
+{
+    ObserveData(tag, value);
 }
