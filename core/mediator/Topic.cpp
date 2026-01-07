@@ -10,63 +10,76 @@ Topic::Topic(const QString& tag, QObject* parent)
 
 /*
  * AddSubscriber
+ * ------------------------------------------------------------
+ * 新订阅者加入
+ * 如果 Topic 已有历史值 → 立即补发
  */
 void Topic::AddSubscriber(Observe* observer, PolicyPtr policy)
 {
     if (!observer) return;
 
-    // policy 允许为空：为空则默认 Always（可按你需要改成拒绝）
-    if (!policy) {
-        qDebug() << "[Topic] AddSubscriber policy is null, tag =" << m_tag
-                 << "observer =" << observer;
-    }
-
     SubscriberItem item;
     item.observer = observer;
-    item.policy = std::move(policy);
+    item.policy   = policy;
 
     m_subscribers.push_back(item);
 
     qDebug() << "[Topic] AddSubscriber tag =" << m_tag
              << "observer =" << observer
-             << "count =" << (int)m_subscribers.size();
+             << "count =" << m_subscribers.size();
+
+    /*
+     * ✅ 状态补发（关键）
+     * --------------------------------------------------------
+     * 如果 Topic 之前已经发布过数据
+     * 新订阅者立即收到一次 lastValue
+     */
+    if (m_hasLastValue) {
+        bool should = true;
+
+        if (policy) {
+            // old == new，用于决定是否补发
+            should = policy->ShouldExecute(m_lastValue, m_lastValue);
+        }
+
+        if (should) {
+            qDebug() << "[Topic] Replay last value to new subscriber, tag ="
+                     << m_tag << "value =" << m_lastValue;
+
+            observer->OnDataReceived(m_tag, m_lastValue);
+        }
+    }
 }
 
 /*
  * Notify
+ * ------------------------------------------------------------
+ * 正常发布流程
  */
 void Topic::Notify(const QString& tag, const QVariant& value)
 {
     Q_UNUSED(tag);
 
     qDebug() << "[Topic] Notify tag =" << m_tag
-             << "subscriber count =" << (int)m_subscribers.size();
+             << "subscriber count =" << m_subscribers.size();
 
-    // old/new 用于策略判断
     QVariant oldValue = m_lastValue;
     QVariant newValue = value;
 
     for (const auto& s : m_subscribers) {
         if (!s.observer) continue;
 
-        // 如果没提供策略，默认执行（相当于 AlwaysPolicy）
         bool should = true;
-        if (s.policy) {
-            if (m_hasLastValue) {
-                should = s.policy->ShouldExecute(oldValue, newValue);
-            } else {
-                // 第一次发布：通常选择通知（你也可以改成 false）
-                should = true;
-            }
+        if (s.policy && m_hasLastValue) {
+            should = s.policy->ShouldExecute(oldValue, newValue);
         }
 
         if (should) {
-            // 直接调用回调入口（如果 observer 是 ActorObserve，会转发到 Mailbox）
             s.observer->OnDataReceived(m_tag, newValue);
         }
     }
 
-    // 更新 lastValue
-    m_lastValue = newValue;
+    // 更新状态
+    m_lastValue   = newValue;
     m_hasLastValue = true;
 }

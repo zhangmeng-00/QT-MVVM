@@ -13,11 +13,9 @@ class Observe;
 /*
  * Topic
  * ============================================================
- * 每个 tag 一个 Topic
- *
- * 管理：
- * - 订阅者列表（observer + policy）
- * - 最近一次值（用于策略判断 old/new）
+ * - 一个 tag 对应一个 Topic
+ * - 保存最近一次发布的数据（State）
+ * - 支持新订阅者加入时自动补发 lastValue
  */
 class Topic : public QObject {
     Q_OBJECT
@@ -28,26 +26,29 @@ public:
      * AddSubscriber
      * --------------------------------------------------------
      * 添加订阅者
+     * 如果 Topic 已有历史值：
+     * - 立即按策略补发一次
      */
     void AddSubscriber(Observe* observer, PolicyPtr policy);
 
     /*
      * Notify
      * --------------------------------------------------------
-     * 发布数据，按策略通知所有订阅者
+     * 发布新数据
      */
     void Notify(const QString& tag, const QVariant& value);
 
 private:
     struct SubscriberItem {
-        Observe*   observer = nullptr; // 不拥有对象生命周期
-        PolicyPtr policy;              // 策略
+        Observe*   observer = nullptr;
+        PolicyPtr policy;
     };
 
 private:
     QString m_tag;
-    QVariant m_lastValue;
-    bool m_hasLastValue = false;
+
+    QVariant m_lastValue;      // 最近一次值
+    bool     m_hasLastValue{false};
 
     std::vector<SubscriberItem> m_subscribers;
 };
