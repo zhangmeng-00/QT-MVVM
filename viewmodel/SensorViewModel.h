@@ -3,54 +3,39 @@
 #include <QObject>
 #include <QString>
 #include <QVariant>
+#include <QRandomGenerator>
+#include <QDebug>
 
 #include "viewmodel/BaseViewModel.h"
+#include "core/command/ICommand.h"
+#include "core/command/SimpleCommand.h"
 
-/*
- * SensorViewModel
- * ============================================================
- * Subscribe:
- * - sensor/temperature
- *
- * Output:
- * - temperatureText (formatted)
- */
 class SensorViewModel : public BaseViewModel {
     Q_OBJECT
     Q_PROPERTY(QString temperatureText READ temperatureText NOTIFY temperatureTextChanged)
 
 public:
-    explicit SensorViewModel(QObject* parent = nullptr)
-        : BaseViewModel(parent)
-    {
-    }
+    explicit SensorViewModel(QObject* parent = nullptr);
 
-    QString temperatureText() const
-    {
-        return m_temperatureText;
-    }
+    QString temperatureText() const { return m_temperatureText; }
+
+    // ✅ 新增：给 UI 用的 Command
+    ICommand* publishTemperatureCommand() const { return m_publishTemperatureCommand; }
 
 signals:
     void temperatureTextChanged();
 
 public slots:
-    void publishCommand()
-    {
-        int temp = qrand() % 40;
-        Publish("sensor/temperature", temp);
-    }
+    // 🔴 原有逻辑，完全不动
+    void publishCommand();
 
 protected:
     void ObserveData(const QString& tag,
-                     const QVariant& value) override
-    {
-        if (tag == "sensor/temperature") {
-            m_temperatureText =
-                QString("%1 degC").arg(value.toInt());
-            emit temperatureTextChanged();
-        }
-    }
+                     const QVariant& value) override;
 
 private:
     QString m_temperatureText;
+
+    // ✅ 新增
+    SimpleCommand* m_publishTemperatureCommand = nullptr;
 };

@@ -106,20 +106,22 @@ void MainWindow::setupBindings()
                        "temperatureText");
 
     // ---------- Command Binding ----------
-    BindingCommand::Bind(
+    BindingCommand::BindCommand(
         ui->btnPublishScore,
-        &QPushButton::clicked,
-        m_userVM,
-        &UserViewModel::publishCommand
+        m_userVM->publishScoreCommand()
         );
 
 
-    BindingCommand::Bind(
+    BindingCommand::BindCommand(
         ui->btnPublishTemperature,
-        &QPushButton::clicked,
-        m_sensorVM,
-        &SensorViewModel::publishCommand
+        m_sensorVM->publishTemperatureCommand()
         );
+    BindingCommand::BindCommand(ui->btnLogin,
+                                m_userVM->loginCommand());
+
+    BindingCommand::BindCommand(ui->btnLogout,
+                                m_userVM->logoutCommand());
+
 
 }
 

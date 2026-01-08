@@ -16,8 +16,8 @@
 #include "viewmodel/SensorViewModel.h"
 
 // Binding helpers
-#include "view/binding/Binding.h"
-#include "view/binding/BindingCommand.h"
+#include "core/binding/Binding.h"
+#include "core/binding/BindingCommand.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

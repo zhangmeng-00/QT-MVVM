@@ -38,6 +38,14 @@ add_executable(${PROJECT_NAME}
     core/actor/ActorObserve.h
     core/actor/ActorObserve.cpp
 
+    core/command/ICommand.h
+    core/command/SimpleCommand.h
+
+    core/binding/BindingCommand.h
+    core/binding/Binding.h
+    core/binding/PropertyBindingAdapter.h
+    core/binding/PropertyBindingAdapter.h
+    core/binding/BindingHelper.h
     common/TypeKey.h
 
 
@@ -54,7 +62,7 @@ add_executable(${PROJECT_NAME}
     view/LabelViewObserve.h
     view/LabelViewObserve.cpp
 
-    view/binding/Binding.h
+
 
     model/SensorModel.h
     model/SensorModel.cpp
@@ -65,9 +73,9 @@ add_executable(${PROJECT_NAME}
     viewmodel/UserViewModel.h
     viewmodel/UserViewModel.cpp
 
-    view/binding/BindingCommand.h
+
     viewmodel/SensorViewModel.h
-    view/binding/PropertyBindingAdapter.h
+
     AppContext.h
     AppContext.cpp
     model/LoggerActor.h
@@ -76,7 +84,8 @@ add_executable(${PROJECT_NAME}
     model/SQLiteRecorderActor.cpp
     view/TraceViewer.h
     view/TraceViewer.cpp
-    view/binding/BindingHelper.h
+    viewmodel/SensorViewModel.cpp
+
 )
 
 target_include_directories(MediatorMVAQt
