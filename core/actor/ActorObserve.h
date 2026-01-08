@@ -24,9 +24,11 @@ protected:
      * Topic → ActorObserve 的入口
      * 可能运行在 Mediator 线程
      */
-    void OnDataReceived(const QString& tag,
+    void handleData(const QString& tag,
                         const QVariant& value) override;
-
+    // 业务实现只能写在这里
+    virtual void ObserveData(const QString& tag,
+                             const QVariant& value) = 0;
 protected slots:
     /*
      * Mailbox（Qt 事件循环保证串行）

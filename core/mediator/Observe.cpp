@@ -16,6 +16,12 @@ void Observe::Subscribe(const QString& tag, PolicyPtr policy)
     emit RequestSubscribe(this, tag, policy);
 }
 
+void Observe::Unsubscribe(const QString& tag)
+{
+    qDebug() << "[Observe] Unsubscribe request:" << this << tag;
+    emit RequestUnsubscribe(this, tag);
+}
+
 void Observe::Publish(const QString& tag, const QVariant& value)
 {
     emit RequestPublish(tag, value);
@@ -25,5 +31,5 @@ void Observe::OnDataReceived(const QString& tag,
                              const QVariant& value)
 {
     // 默认实现：直接转给子类业务入口
-    ObserveData(tag, value);
+    handleData(tag, value);
 }

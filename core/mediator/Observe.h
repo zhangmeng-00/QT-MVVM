@@ -33,6 +33,7 @@ public:
      * ✅ 关键点：policy 直接作为信号参数发送，避免异步串台
      */
     void Subscribe(const QString& tag, PolicyPtr policy);
+    void Unsubscribe(const QString& tag);
 
     /*
      * Publish
@@ -51,6 +52,7 @@ signals:
     void RequestSubscribe(Observe* observer,
                           const QString& tag,
                           PolicyPtr policy);
+     void RequestUnsubscribe(Observe* self, QString tag);
 
     /*
      * RequestPublish
@@ -59,6 +61,7 @@ signals:
      */
     void RequestPublish(const QString& tag,
                         const QVariant& value);
+
 
 public slots:
     /*
@@ -76,6 +79,6 @@ protected:
      * --------------------------------------------------------
      * 真正业务处理入口（子类实现）
      */
-    virtual void ObserveData(const QString& tag,
+    virtual void handleData(const QString& tag,
                              const QVariant& value) = 0;
 };

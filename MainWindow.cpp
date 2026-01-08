@@ -1,5 +1,10 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
+#include "AppContext.h"
+#include "model/LoggerActor.h"
+#include "model/RecorderActor.h"
+#include "model/SQLiteRecorderActor.h"
+#include "view/TraceViewer.h"
 
 /*
  * 构造函数
@@ -10,7 +15,6 @@ MainWindow::MainWindow(QWidget* parent)
 {
     ui->setupUi(this);
 
-    setupMediator();
     setupModels();
     setupViewModels();
     setupSubscriptions();
@@ -22,27 +26,7 @@ MainWindow::MainWindow(QWidget* parent)
  */
 MainWindow::~MainWindow()
 {
-    // 先停线程，再销毁对象
-    if (m_mediatorThread) {
-        m_mediatorThread->quit();
-        m_mediatorThread->wait();
-    }
-
-    delete m_mediator;
-    delete ui;
-}
-
-/*
- * 1️⃣ 创建并启动 Mediator（可独立线程）
- */
-void MainWindow::setupMediator()
-{
-    m_mediator = new Mediator;
-
-    // 如果你暂时不想用线程，可以直接 return
-    m_mediatorThread = new QThread(this);
-    m_mediator->moveToThread(m_mediatorThread);
-    m_mediatorThread->start();
+        delete ui;
 }
 
 /*
@@ -52,10 +36,22 @@ void MainWindow::setupModels()
 {
     m_userModel   = new UserModel(this);
     m_sensorModel = new SensorModel(this);
+    auto logger   = new LoggerActor(&AppContext::instance());
+    //auto recorder = new RecorderActor("run_trace.csv",
+    auto recorder = new SQLiteRecorderActor("run_trace.db",&AppContext::instance());
+
+
 
     // Model 接入 Mediator
-    m_mediator->ConnectObserve(m_userModel);
-    m_mediator->ConnectObserve(m_sensorModel);
+    AppContext::instance().ConnectObserve(m_userModel);
+    AppContext::instance().ConnectObserve(m_sensorModel);
+    AppContext::instance().ConnectObserve(logger);
+    AppContext::instance().ConnectObserve(recorder);
+
+
+    // 初始化Model
+    logger->Init();
+    recorder->Init();
 }
 
 /*
@@ -67,8 +63,8 @@ void MainWindow::setupViewModels()
     m_sensorVM = new SensorViewModel(this);
 
     // ViewModel 接入 Mediator
-    m_mediator->ConnectObserve(m_userVM);
-    m_mediator->ConnectObserve(m_sensorVM);
+    AppContext::instance().ConnectObserve(m_userVM);
+    AppContext::instance().ConnectObserve(m_sensorVM);
 }
 
 /*
@@ -94,30 +90,44 @@ void MainWindow::setupSubscriptions()
 void MainWindow::setupBindings()
 {
     // ---------- Property Binding ----------
-    Binding::BindLabel(ui->labelScore,
+    Binding::BindProperty(ui->labelScore,"text",
                        m_userVM,
                        "scoreText");
+    Binding::BindProperty(ui->lineEdit,"text",
+                          m_userVM,
+                          "userName");
 
-    Binding::BindLabel(ui->labelLevel,
+    Binding::BindProperty(ui->labelLevel,"text",
                        m_userVM,
                        "levelText");
 
-    Binding::BindLabel(ui->labelTemperature,
+    Binding::BindProperty(ui->labelTemperature,"text",
                        m_sensorVM,
                        "temperatureText");
 
     // ---------- Command Binding ----------
-    BindingCommand::BindCommand(
+    BindingCommand::Bind(
         ui->btnPublishScore,
+        &QPushButton::clicked,
         m_userVM,
         &UserViewModel::publishCommand
         );
 
 
-    BindingCommand::BindCommand(
+    BindingCommand::Bind(
         ui->btnPublishTemperature,
+        &QPushButton::clicked,
         m_sensorVM,
         &SensorViewModel::publishCommand
         );
 
 }
+
+void MainWindow::on_pushButton_clicked()
+{
+    auto viewer = new TraceViewer("run_trace.db", nullptr);
+    viewer->setAttribute(Qt::WA_DeleteOnClose); // 关闭即销毁（推荐）
+    viewer->show();
+
+}
+

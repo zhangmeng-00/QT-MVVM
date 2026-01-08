@@ -10,6 +10,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
+find_package(Qt5 REQUIRED COMPONENTS Widgets Sql)
+
 
 add_executable(${PROJECT_NAME}
     main.cpp
@@ -66,6 +68,15 @@ add_executable(${PROJECT_NAME}
     view/binding/BindingCommand.h
     viewmodel/SensorViewModel.h
     view/binding/PropertyBindingAdapter.h
+    AppContext.h
+    AppContext.cpp
+    model/LoggerActor.h
+    model/RecorderActor.h
+    model/SQLiteRecorderActor.h
+    model/SQLiteRecorderActor.cpp
+    view/TraceViewer.h
+    view/TraceViewer.cpp
+    view/binding/BindingHelper.h
 )
 
 target_include_directories(MediatorMVAQt
@@ -75,5 +86,6 @@ target_include_directories(MediatorMVAQt
 )
 
 
-
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets
+    Qt5::Widgets
+    Qt5::Sql)

@@ -1,128 +1,88 @@
 #pragma once
 
 #include <QObject>
-#include <QLabel>
 #include <QMetaObject>
 #include <QMetaProperty>
-#include <QVariant>
+#include <QMetaMethod>
 #include <QDebug>
 
-/*
- * BindingHelper
- * ============================================================
- * Qt5 Property Binding 中转对象
- *
- * 作用：
- * - 接收 ViewModel 的 NOTIFY 信号
- * - 从 ViewModel 读取属性
- * - 更新 QLabel
- *
- * 注意：
- * - 必须是 QObject + slot
- * - 不能用 lambda（Qt5 反射限制）
- */
-class BindingHelper : public QObject {
-    Q_OBJECT
-public:
-    BindingHelper(QLabel* label,
-                  QObject* viewModel,
-                  const char* propertyName,
-                  QObject* parent = nullptr)
-        : QObject(parent)
-        , m_label(label)
-        , m_viewModel(viewModel)
-        , m_propertyName(propertyName)
-    {}
+#include "BindingHelper.h"
 
-public slots:
-    void onPropertyChanged()
-    {
-        if (!m_label || !m_viewModel)
-            return;
-
-        QVariant v = m_viewModel->property(m_propertyName);
-        m_label->setText(v.toString());
-    }
-
-private:
-    QLabel*  m_label;
-    QObject* m_viewModel;
-    const char* m_propertyName;
-};
-
-/*
- * Binding
- * ============================================================
- * ViewModel → View 的属性绑定
- */
 namespace Binding {
 
 /*
- * BindLabel
+ * BindProperty
  * ------------------------------------------------------------
- * QLabel ← ViewModel.Q_PROPERTY
- *
- * @param label        QLabel*
- * @param viewModel    QObject*（ViewModel）
- * @param propertyName Q_PROPERTY 名称（字符串）
+ * View.Q_PROPERTY ← ViewModel.Q_PROPERTY
  */
-inline void BindLabel(QLabel* label,
-                      QObject* viewModel,
-                      const char* propertyName)
+inline void BindProperty(QObject* view,
+                         const char* viewProperty,
+                         QObject* viewModel,
+                         const char* vmProperty)
 {
-    if (!label || !viewModel) {
-        qWarning() << "[Binding] label or viewModel is null";
+    if (!view || !viewModel) {
+        qWarning() << "[Binding] view or viewModel is null";
         return;
     }
 
-    // 1️⃣ 初始同步一次
-    label->setText(viewModel->property(propertyName).toString());
+    // 1️⃣ 初始同步
+    view->setProperty(
+        viewProperty,
+        viewModel->property(vmProperty)
+        );
 
-    // 2️⃣ 查找属性
+    // 2️⃣ 查找 ViewModel 的属性
     const QMetaObject* mo = viewModel->metaObject();
-    int propIndex = mo->indexOfProperty(propertyName);
+    int propIndex = mo->indexOfProperty(vmProperty);
     if (propIndex < 0) {
-        qWarning() << "[Binding] Property not found:" << propertyName;
+        qWarning() << "[Binding] VM property not found:" << vmProperty;
         return;
     }
 
     QMetaProperty prop = mo->property(propIndex);
     if (!prop.hasNotifySignal()) {
-        qWarning() << "[Binding] Property has no NOTIFY:" << propertyName;
+        qWarning() << "[Binding] VM property has no NOTIFY:" << vmProperty;
         return;
     }
 
-    // 3️⃣ 获取 NOTIFY 信号索引（Qt5 稳定方式）
-    int notifyIndex = prop.notifySignalIndex();
-    if (notifyIndex < 0) {
-        qWarning() << "[Binding] notifySignalIndex invalid:" << propertyName;
-        return;
-    }
-
-    QMetaMethod signalMethod = mo->method(notifyIndex);
-
-    // Qt SIGNAL 字符串格式："2signalName()"
+    // 3️⃣ 获取 NOTIFY signal
+    QMetaMethod signalMethod = prop.notifySignal();
     QByteArray signalStr = QByteArray("2") + signalMethod.methodSignature();
 
-    // 4️⃣ 创建 helper（生命周期跟随 label）
+    // 4️⃣ 创建 helper（生命周期跟随 view）
     auto* helper = new BindingHelper(
-        label,
+        view,
+        viewProperty,
         viewModel,
-        propertyName,
-        label
+        vmProperty,
+        view
         );
 
-    // 5️⃣ 用 Qt5 唯一可靠的方式连接
+    // 5️⃣ 连接信号（Qt5 反射方式）
     bool ok = QObject::connect(
         viewModel,
         signalStr.constData(),
         helper,
-        SLOT(onPropertyChanged())
+        SLOT(onVmPropertyChanged())
         );
 
     if (!ok) {
-        qWarning() << "[Binding] connect failed for property:" << propertyName;
+        qWarning() << "[Binding] connect failed:"
+                   << vmProperty << "->" << viewProperty;
     }
 }
 
 } // namespace Binding
+/*
+| 控件           | 可绑定的 viewProperty                   |
+| ------------ | ----------------------------------- |
+| QLabel       | `"text"`, `"enabled"`, `"visible"`  |
+| QLineEdit    | `"text"`, `"enabled"`, `"readOnly"` |
+| QPushButton  | `"text"`, `"enabled"`, `"visible"`  |
+| QWidget      | `"enabled"`, `"visible"`            |
+| QProgressBar | `"value"`, `"minimum"`, `"maximum"` |
+| QSlider      | `"value"`, `"minimum"`, `"maximum"` |
+| QSpinBox     | `"value"`                           |
+| QCheckBox    | `"checked"`, `"enabled"`            |
+| QRadioButton | `"checked"`                         |
+*/

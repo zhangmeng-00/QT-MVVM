@@ -1,5 +1,6 @@
 #include "ActorObserve.h"
 #include <QMetaObject>
+#include <QThread>
 
 /*
  * 构造函数
@@ -15,16 +16,22 @@ ActorObserve::ActorObserve(QObject* parent)
  * 这里可能在 Mediator / 发布线程
  * 只负责投递，不做业务
  */
-void ActorObserve::OnDataReceived(const QString& tag,
+void ActorObserve::handleData(const QString& tag,
                                   const QVariant& value)
 {
-    QMetaObject::invokeMethod(
-        this,
-        "onActorInvoke",
-        Qt::QueuedConnection,
-        Q_ARG(QString, tag),
-        Q_ARG(QVariant, value)
-        );
+    // 如果已经在对象线程，直接调用
+    if (QThread::currentThread() == thread()) {
+        ObserveData(tag, value);
+    } else {
+        // 否则，强制投递回对象线程
+        QMetaObject::invokeMethod(
+            this,
+            [this, tag, value]() {
+                ObserveData(tag, value);
+            },
+            Qt::QueuedConnection
+            );
+    }
 }
 
 /*

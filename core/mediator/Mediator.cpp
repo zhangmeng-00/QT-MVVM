@@ -36,6 +36,10 @@ void Mediator::ConnectObserve(Observe* obs)
     connect(obs, &Observe::RequestPublish,
             this, &Mediator::OnPublish,
             Qt::QueuedConnection);
+    connect(obs, &Observe::RequestUnsubscribe,
+            this, &Mediator::OnUnsubscribe,
+            Qt::QueuedConnection);
+
 }
 
 /*
@@ -50,6 +54,25 @@ void Mediator::OnSubscribe(Observe* observer,
     auto topic = getOrCreateTopic(tag);
     topic->AddSubscriber(observer, policy);
 }
+/*
+ * OnUnsubscribe
+ */
+void Mediator::OnUnsubscribe(Observe* obs, const QString& tag)
+{
+    QMutexLocker locker(&m_mutex);
+
+    auto it = m_topics.find(tag);
+    if (it == m_topics.end())
+        return;
+
+    it.value()->RemoveSubscriber(obs);   // ✅ QMap 正确访问
+
+    if (!it.value()->HasSubscriber()) {
+        qDebug() << "[Mediator] Remove empty topic:" << tag;
+        m_topics.erase(it);
+    }
+}
+
 
 /*
  * OnPublish
@@ -58,7 +81,7 @@ void Mediator::OnPublish(const QString& tag,
                          const QVariant& value)
 {
     auto topic = getOrCreateTopic(tag);
-    topic->Notify(tag, value);
+    topic->Notify(value);
 }
 
 /*
@@ -68,8 +91,12 @@ std::shared_ptr<Topic> Mediator::getOrCreateTopic(const QString& tag)
 {
     QMutexLocker locker(&m_mutex);
 
-    if (!m_topics.contains(tag)) {
-        m_topics[tag] = std::make_shared<Topic>(tag);
+    auto it = m_topics.find(tag);
+    if (it != m_topics.end()) {
+        return it.value();   // ✅
     }
-    return m_topics[tag];
+
+    auto topic = std::make_shared<Topic>(tag);
+    m_topics.insert(tag, topic);
+    return topic;
 }

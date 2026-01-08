@@ -41,6 +41,8 @@ private slots:
                      const QString& tag,
                      PolicyPtr policy);
 
+    void OnUnsubscribe(Observe* obs, const QString& tag);
+
     /*
      * OnPublish
      * --------------------------------------------------------
