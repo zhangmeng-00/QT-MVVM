@@ -18,7 +18,8 @@
  */
 enum class TopicKind {
     Event,   // 事件型 Topic（发生过）
-    State    // 状态型 Topic（当前是）
+    State,    // 状态型 Topic（当前是）
+    Command  //命令型 Topic
 };
 
 /*
