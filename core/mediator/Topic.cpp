@@ -67,14 +67,14 @@ void Topic::AddSubscriber(Observe* observer, PolicyPtr policy)
         });
 
         // ✅ Replay lastValue：新订阅者默认应该拿到当前状态
-        // 重要：replay 不走 ValueChangedPolicy old==new 判断，否则新订阅会收不到
-        if (m_hasLastValue) {
-            qDebug() << "[Topic] Replay last value to new subscriber, tag ="
-                     << m_tag << "value =" << m_lastValue;
+        // // 重要：replay 不走 ValueChangedPolicy old==new 判断，否则新订阅会收不到
+        // if (m_hasLastValue) {
+        //     qDebug() << "[Topic] Replay last value to new subscriber, tag ="
+        //              << m_tag << "value =" << m_lastValue;
 
-            // 这里直接发：订阅即同步状态
-            observer->OnDataReceived(m_tag, m_lastValue);
-        }
+        //     // 这里直接发：订阅即同步状态
+        //     observer->OnDataReceived(m_tag, m_lastValue);
+        // }
     }
 }
 

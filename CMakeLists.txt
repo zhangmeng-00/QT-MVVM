@@ -85,6 +85,9 @@ add_executable(${PROJECT_NAME}
     view/TraceViewer.h
     view/TraceViewer.cpp
     viewmodel/SensorViewModel.cpp
+    core/mediator/TopicMeta.h
+    core/mediator/TopicRegistry.h
+    core/mediator/TopicRegistry.cpp
 
 )
 

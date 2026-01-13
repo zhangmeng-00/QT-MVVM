@@ -1,4 +1,5 @@
 #include "SensorViewModel.h"
+#include "core/policy/AlwaysPolicy.h"
 
 SensorViewModel::SensorViewModel(QObject* parent)
     : BaseViewModel(parent)
@@ -13,6 +14,7 @@ SensorViewModel::SensorViewModel(QObject* parent)
         },
         this
         );
+    //Subscribe("sensor/temperature",std::make_shared<AlwaysPolicy>());
 }
 
 void SensorViewModel::publishCommand()
@@ -29,5 +31,10 @@ void SensorViewModel::ObserveData(const QString& tag,
         m_temperatureText = QString("%1 °C").arg(value.toInt());
         emit temperatureTextChanged();
         Publish("user/level", 3);
+        Subscribe("user/level",std::make_shared<AlwaysPolicy>());
+    }
+    if (tag == "user/level") {
+        qDebug() <<"user/level"<<value;
     }
 }
+

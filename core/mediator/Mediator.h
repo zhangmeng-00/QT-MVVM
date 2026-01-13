@@ -4,6 +4,7 @@
 #include <QMap>
 #include <QMutex>
 #include <memory>
+#include <QVariant>
 
 #include "Topic.h"
 #include "Observe.h"
@@ -58,8 +59,11 @@ private:
      * 获取或创建 Topic
      */
     std::shared_ptr<Topic> getOrCreateTopic(const QString& tag);
+    // ⭐ Sticky 判断（可演进）
 
 private:
     QMutex m_mutex; // 保护 topics
     QMap<QString, std::shared_ptr<Topic>> m_topics; // tag -> Topic
+    // ⭐ Sticky 状态缓存
+    QMap<QString, QVariant> m_stateCache;
 };

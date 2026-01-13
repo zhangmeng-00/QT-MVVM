@@ -77,7 +77,7 @@ void MainWindow::setupSubscriptions()
 
     // ViewModels
     m_userVM->Subscribe("user/score",std::make_shared<AlwaysPolicy>());
-    m_userVM->Subscribe("user/level",std::make_shared<AlwaysPolicy>());
+    m_userVM->Subscribe("user/level",std::make_shared<ValueChangedPolicy>());
 
     m_sensorVM->Subscribe("sensor/temperature",std::make_shared<AlwaysPolicy>());
     qDebug() << ">>> setupSubscriptions called";

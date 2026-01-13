@@ -6,6 +6,7 @@
 // Core
 #include "core/mediator/Mediator.h"
 #include "core/policy/AlwaysPolicy.h"
+#include "core/policy/ValueChangedPolicy.h"
 
 // Models
 #include "model/UserModel.h"
