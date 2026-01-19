@@ -11,6 +11,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 find_package(Qt5 REQUIRED COMPONENTS Widgets Sql)
+find_package(Qt5 REQUIRED COMPONENTS Core Widgets Network SerialBus)
 
 
 add_executable(${PROJECT_NAME}
@@ -88,6 +89,7 @@ add_executable(${PROJECT_NAME}
     core/mediator/TopicMeta.h
     core/mediator/TopicRegistry.h
     core/mediator/TopicRegistry.cpp
+    model/modbus/ModbusMasterModel.cpp model/modbus/ModbusMasterModel.h model/modbus/ModbusModuleBase.cpp model/modbus/ModbusModuleBase.h model/modbus/PidPressureModule.cpp model/modbus/PidPressureModule.h model/modbus/PointDef.h
 
 )
 
@@ -100,4 +102,8 @@ target_include_directories(MediatorMVAQt
 
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets
     Qt5::Widgets
-    Qt5::Sql)
+    Qt5::Sql
+    Qt5::Core
+    Qt5::Widgets
+    Qt5::Network
+    Qt5::SerialBus)
