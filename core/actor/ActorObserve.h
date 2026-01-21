@@ -1,0 +1,38 @@
+#pragma once
+
+#include "mediator/Observe.h"
+#include <QString>
+#include <QVariant>
+
+/*
+ * ActorObserve
+ * ============================================================
+ * Qt5 Actor / Mailbox 风格的 Observe
+ *
+ * 职责：
+ * - 拦截 OnDataReceived（Topic → Observe 的入口）
+ * - 把消息投递到对象所属线程
+ * - 确保 ObserveData 串行执行
+ */
+class ActorObserve : public Observe {
+    Q_OBJECT
+public:
+    explicit ActorObserve(QObject* parent = nullptr);
+
+protected:
+    /*
+     * Topic → ActorObserve 的入口
+     * 可能运行在 Mediator 线程
+     */
+    void handleData(const QString& tag,
+                        const QVariant& value) override;
+    // 业务实现只能写在这里
+    virtual void ObserveData(const QString& tag,
+                             const QVariant& value) = 0;
+protected slots:
+    /*
+     * Mailbox（Qt 事件循环保证串行）
+     */
+    void onActorInvoke(QString tag,
+                       QVariant value);
+};
