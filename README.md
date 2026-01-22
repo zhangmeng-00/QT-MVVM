@@ -145,4 +145,52 @@ MainWindow.h/.cpp
 
 ```cpp
 virtual void SetupSubscriptions() {}
+Model 重写它：
 
+void UserModel::SetupSubscriptions() override {
+  Subscribe("user/score", std::make_shared<AlwaysPolicy>());
+  Subscribe("user/level", std::make_shared<ValueChangedPolicy>());
+}
+
+
+在 AppContext::ConnectObserve() 中，连接后调用（建议在 mediator 线程执行）：
+
+InvokeOnMediator([this, obs](){
+  m_mediator->ConnectObserve(obs);
+  obs->SetupSubscriptions();
+});
+
+
+这样外部只需要：
+
+ctx.ConnectObserve(model);   // 自动完成订阅
+
+绑定与命令（BindProperty / BindCommand）
+BindProperty（属性绑定）
+
+将 VM 的 Q_PROPERTY 映射到控件属性：
+
+Binding::BindProperty(ui->labelScore, "text", m_userVM, "scoreText");
+
+BindCommand（事件绑定）
+
+将任意 QObject 的任意 signal 绑定到 ICommand，并传入 signal 参数：
+
+BindingCommand::BindCommand(ui->btnLogin, &QAbstractButton::clicked, m_userVM->loginCommand());
+
+BindingCommand::BindCommand(ui->horizontalSliderTemp, &QSlider::valueChanged, m_sensorVM->setTargetTemperatureCommand());
+
+BindingCommand::BindCommand(ui->comboBoxMode,
+    QOverload<int>::of(&QComboBox::currentIndexChanged),
+    m_userVM->modeChangedCommand());
+
+
+注意：有重载的 signal 必须用 QOverload 指定签名。
+
+SimpleCommand（做法A：支持参数）
+
+无参：SimpleCommand(std::function<void()>)
+
+有参：SimpleCommand(std::function<void(const QVariantList&)>)
+
+BindCommand 会把信号参数自动打包为 QVariantList 传入 ExecuteArgs(args)。
