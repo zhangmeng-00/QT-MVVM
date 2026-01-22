@@ -145,7 +145,7 @@ MainWindow.h/.cpp
 
 ```cpp
 virtual void SetupSubscriptions() {}
-Model 重写它：
+#### Model 重写：
 
 void UserModel::SetupSubscriptions() override {
   Subscribe("user/score", std::make_shared<AlwaysPolicy>());
@@ -153,7 +153,7 @@ void UserModel::SetupSubscriptions() override {
 }
 
 
-在 AppContext::ConnectObserve() 中，连接后调用（建议在 mediator 线程执行）：
+####在 AppContext::ConnectObserve() 中，连接后调用（建议在 mediator 线程执行）：
 
 InvokeOnMediator([this, obs](){
   m_mediator->ConnectObserve(obs);
@@ -161,18 +161,18 @@ InvokeOnMediator([this, obs](){
 });
 
 
-这样外部只需要：
+####这样外部只需要：
 
 ctx.ConnectObserve(model);   // 自动完成订阅
 
-绑定与命令（BindProperty / BindCommand）
+####绑定与命令（BindProperty / BindCommand）
 BindProperty（属性绑定）
 
-将 VM 的 Q_PROPERTY 映射到控件属性：
+####将 VM 的 Q_PROPERTY 映射到控件属性：
 
 Binding::BindProperty(ui->labelScore, "text", m_userVM, "scoreText");
 
-BindCommand（事件绑定）
+####BindCommand（事件绑定）
 
 将任意 QObject 的任意 signal 绑定到 ICommand，并传入 signal 参数：
 
@@ -185,7 +185,7 @@ BindingCommand::BindCommand(ui->comboBoxMode,
     m_userVM->modeChangedCommand());
 
 
-注意：有重载的 signal 必须用 QOverload 指定签名。
+####注意：有重载的 signal 必须用 QOverload 指定签名。
 
 SimpleCommand（做法A：支持参数）
 
