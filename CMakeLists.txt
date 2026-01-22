@@ -13,6 +13,11 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 find_package(Qt5 REQUIRED COMPONENTS Widgets Sql)
 find_package(Qt5 REQUIRED COMPONENTS Core Widgets Network SerialBus)
 
+if (MSVC)
+    add_compile_options(/utf-8)
+endif()
+
+
 
 add_executable(${PROJECT_NAME}
     main.cpp

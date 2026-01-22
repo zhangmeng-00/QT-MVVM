@@ -3,132 +3,238 @@
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
   <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>498</width>
-    <height>384</height>
-   </rect>
+   <rect><x>0</x><y>0</y><width>980</width><height>640</height></rect>
   </property>
   <property name="windowTitle">
-   <string>Mediator MVA Qt Demo</string>
+   <string>MediatorMVAQt Demo</string>
   </property>
+
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout_2">
-    <item row="0" column="0">
-     <layout class="QGridLayout" name="gridLayout">
-      <item row="0" column="0" colspan="2">
-       <widget class="QLabel" name="labelTemperatureTitle">
-        <property name="text">
-         <string>Temperature:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QLabel" name="labelTemperature">
-        <property name="frameShape">
-         <enum>QFrame::Box</enum>
-        </property>
-        <property name="text">
-         <string>--</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="QPushButton" name="btnPublishTemperature">
-        <property name="text">
-         <string>Publish Temperature</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="0" rowspan="2">
-       <widget class="QLabel" name="labelScoreTitle">
-        <property name="text">
-         <string>Score:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="1">
-       <widget class="QLabel" name="labelScore">
-        <property name="frameShape">
-         <enum>QFrame::Box</enum>
-        </property>
-        <property name="text">
-         <string>0</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="1">
-       <widget class="QPushButton" name="btnPublishScore">
-        <property name="text">
-         <string>Publish Score</string>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="0">
-       <widget class="QLabel" name="labelLevelTitle">
-        <property name="text">
-         <string>Level:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="1">
-       <widget class="QLabel" name="labelLevel">
-        <property name="frameShape">
-         <enum>QFrame::Box</enum>
-        </property>
-        <property name="text">
-         <string>Lv.0</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="6" column="0" colspan="2">
-       <widget class="QPushButton" name="pushButton">
-        <property name="text">
-         <string>open trace</string>
-        </property>
-       </widget>
-      </item>
-      <item row="7" column="0">
-       <widget class="QLineEdit" name="lineEdit"/>
-      </item>
-      <item row="7" column="1">
-       <widget class="QPushButton" name="btnLogout">
-        <property name="text">
-         <string>btnLogout</string>
-        </property>
-       </widget>
-      </item>
-      <item row="8" column="1">
-       <widget class="QPushButton" name="btnLogin">
-        <property name="text">
-         <string>btnLogin</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
+   <layout class="QVBoxLayout" name="verticalLayoutMain">
+
+    <item>
+     <widget class="QGroupBox" name="groupStatus">
+      <property name="title"><string>Live Status</string></property>
+      <layout class="QFormLayout" name="formLayoutStatus">
+       <item row="0" column="0">
+        <widget class="QLabel" name="labelScoreTitle">
+         <property name="text"><string>Score:</string></property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLabel" name="labelScore">
+         <property name="text"><string>0</string></property>
+         <property name="minimumWidth"><number>120</number></property>
+        </widget>
+       </item>
+
+       <item row="1" column="0">
+        <widget class="QLabel" name="labelLevelTitle">
+         <property name="text"><string>Level:</string></property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLabel" name="labelLevel">
+         <property name="text"><string>0</string></property>
+        </widget>
+       </item>
+
+       <item row="2" column="0">
+        <widget class="QLabel" name="labelTemperatureTitle">
+         <property name="text"><string>Temperature:</string></property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLabel" name="labelTemperature">
+         <property name="text"><string>0.0 ℃</string></property>
+        </widget>
+       </item>
+
+       <item row="3" column="0">
+        <widget class="QLabel" name="labelLoginTitle">
+         <property name="text"><string>Login State:</string></property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QLabel" name="labelLoginState">
+         <property name="text"><string>Logged Out</string></property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
     </item>
+
+    <item>
+     <widget class="QGroupBox" name="groupUser">
+      <property name="title"><string>User</string></property>
+      <layout class="QFormLayout" name="formLayoutUser">
+       <item row="0" column="0">
+        <widget class="QLabel" name="labelUserNameTitle">
+         <property name="text"><string>User Name:</string></property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="lineEdit">
+         <property name="placeholderText">
+          <string>Input user name (demo)</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+
+    <item>
+     <widget class="QGroupBox" name="groupCommands">
+      <property name="title"><string>Commands</string></property>
+      <layout class="QGridLayout" name="gridLayoutCommands">
+       <item row="0" column="0">
+        <widget class="QPushButton" name="btnPublishScore">
+         <property name="text"><string>Publish Score</string></property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QPushButton" name="btnPublishTemperature">
+         <property name="text"><string>Publish Temperature</string></property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QPushButton" name="btnLogin">
+         <property name="text"><string>Login</string></property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QPushButton" name="btnLogout">
+         <property name="text"><string>Logout</string></property>
+        </widget>
+       </item>
+
+       <item row="1" column="0" colspan="4">
+        <widget class="QPushButton" name="pushButton">
+         <property name="text"><string>Open Trace Viewer</string></property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+
+    <!-- 下面是“其它控件事件”演示区域（不影响你现有业务，可按需启用绑定） -->
+    <item>
+     <widget class="QGroupBox" name="groupDemo">
+      <property name="title"><string>Other Widgets / Events Demo (optional)</string></property>
+      <layout class="QGridLayout" name="gridLayoutDemo">
+
+       <item row="0" column="0" colspan="2">
+        <widget class="QCheckBox" name="checkBoxLoggedIn">
+         <property name="text">
+          <string>Logged In (toggled(bool))</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2" colspan="2">
+        <widget class="QLabel" name="labelCheckBoxState">
+         <property name="text"><string>False</string></property>
+        </widget>
+       </item>
+
+       <item row="1" column="0">
+        <widget class="QLabel" name="labelSliderTitle">
+         <property name="text"><string>Temp Target Slider:</string></property>
+        </widget>
+       </item>
+       <item row="1" column="1" colspan="2">
+        <widget class="QSlider" name="horizontalSliderTemp">
+         <property name="orientation"><enum>Qt::Horizontal</enum></property>
+         <property name="minimum"><number>0</number></property>
+         <property name="maximum"><number>100</number></property>
+         <property name="value"><number>30</number></property>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QLabel" name="labelSliderValue">
+         <property name="text"><string>30</string></property>
+        </widget>
+       </item>
+
+       <item row="2" column="0">
+        <widget class="QLabel" name="labelModeTitle">
+         <property name="text"><string>Mode:</string></property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QComboBox" name="comboBoxMode">
+         <item><property name="text"><string>Mode A</string></property></item>
+         <item><property name="text"><string>Mode B</string></property></item>
+         <item><property name="text"><string>Mode C</string></property></item>
+        </widget>
+       </item>
+       <item row="2" column="2" colspan="2">
+        <widget class="QLabel" name="labelModeValue">
+         <property name="text"><string>Mode A</string></property>
+        </widget>
+       </item>
+
+       <item row="3" column="0">
+        <widget class="QLabel" name="labelCountTitle">
+         <property name="text"><string>Count:</string></property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QSpinBox" name="spinBoxCount">
+         <property name="minimum"><number>0</number></property>
+         <property name="maximum"><number>9999</number></property>
+         <property name="value"><number>10</number></property>
+        </widget>
+       </item>
+       <item row="3" column="2" colspan="2">
+        <widget class="QLabel" name="labelCountValue">
+         <property name="text"><string>10</string></property>
+        </widget>
+       </item>
+
+       <item row="4" column="0">
+        <widget class="QLabel" name="labelGainTitle">
+         <property name="text"><string>Gain:</string></property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QDoubleSpinBox" name="doubleSpinBoxGain">
+         <property name="minimum"><double>0</double></property>
+         <property name="maximum"><double>1000</double></property>
+         <property name="decimals"><number>3</number></property>
+         <property name="singleStep"><double>0.1</double></property>
+         <property name="value"><double>1.0</double></property>
+        </widget>
+       </item>
+       <item row="4" column="2" colspan="2">
+        <widget class="QLabel" name="labelGainValue">
+         <property name="text"><string>1.000</string></property>
+        </widget>
+       </item>
+
+       <item row="5" column="0" colspan="4">
+        <widget class="QPushButton" name="btnApply">
+         <property name="text"><string>Apply (demo)</string></property>
+        </widget>
+       </item>
+
+      </layout>
+     </widget>
+    </item>
+
+    <item>
+     <spacer name="verticalSpacerBottom">
+      <property name="orientation"><enum>Qt::Vertical</enum></property>
+      <property name="sizeHint" stdset="0">
+       <size><width>20</width><height>40</height></size>
+      </property>
+     </spacer>
+    </item>
+
    </layout>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>498</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
+
+  <widget class="QMenuBar" name="menubar"/>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
