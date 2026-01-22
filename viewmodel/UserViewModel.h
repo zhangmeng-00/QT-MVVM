@@ -67,6 +67,7 @@ signals:
 public slots:
     void publishCommand();
     void resetCommand();
+    void SetupSubscriptions() override;
 
 protected:
     void ObserveData(const QString& tag,

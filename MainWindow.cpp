@@ -1,10 +1,11 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 
-#include "AppContext.h"
+#include "core/app/AppContext.h"
 #include "model/LoggerActor.h"
 #include "model/SQLiteRecorderActor.h"
 #include "view/TraceViewer.h"
+#include "core/app/Bootstrap.h"
 
 #include <QAbstractButton>
 #include <QComboBox>
@@ -18,33 +19,16 @@ MainWindow::MainWindow(QWidget* parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    // ✅ 装配全局组件（只做一次）
+    Bootstrap::InstallAll(AppContext::instance());
 
-    setupModels();
     setupViewModels();
-    setupSubscriptions();
     setupBindings();
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
-}
-
-void MainWindow::setupModels()
-{
-    m_userModel   = new UserModel(this);
-    m_sensorModel = new SensorModel(this);
-
-    auto logger   = new LoggerActor(&AppContext::instance());
-    auto recorder = new SQLiteRecorderActor("run_trace.db", &AppContext::instance());
-
-    AppContext::instance().ConnectObserve(m_userModel);
-    AppContext::instance().ConnectObserve(m_sensorModel);
-    AppContext::instance().ConnectObserve(logger);
-    AppContext::instance().ConnectObserve(recorder);
-
-    logger->Init();
-    recorder->Init();
 }
 
 void MainWindow::setupViewModels()
@@ -56,17 +40,6 @@ void MainWindow::setupViewModels()
     AppContext::instance().ConnectObserve(m_sensorVM);
 }
 
-void MainWindow::setupSubscriptions()
-{
-    // UserModel
-    m_userModel->Subscribe("user/score", std::make_shared<AlwaysPolicy>());
-
-    // ViewModels
-    m_userVM->Subscribe("user/score", std::make_shared<AlwaysPolicy>());
-    m_userVM->Subscribe("user/level", std::make_shared<ValueChangedPolicy>());
-
-    m_sensorVM->Subscribe("sensor/temperature", std::make_shared<AlwaysPolicy>());
-}
 
 void MainWindow::setupBindings()
 {

@@ -54,6 +54,11 @@ void SensorViewModel::publishCommand()
     Publish("sensor/temperature", temperature);
 }
 
+void SensorViewModel::SetupSubscriptions()
+{
+    Subscribe("sensor/temperature", std::make_shared<AlwaysPolicy>());
+}
+
 void SensorViewModel::ObserveData(const QString& tag, const QVariant& value)
 {
     if (tag == "sensor/temperature") {

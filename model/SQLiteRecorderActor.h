@@ -18,7 +18,7 @@ public:
 
     ~SQLiteRecorderActor();
 
-    void Init();
+    void SetupSubscriptions() override;
 
 protected:
     void ObserveData(const QString& tag,

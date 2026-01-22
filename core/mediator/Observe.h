@@ -34,6 +34,8 @@ public:
      */
     void Subscribe(const QString& tag, PolicyPtr policy);
     void Unsubscribe(const QString& tag);
+    //增加SetupSubscriptions,所有的Model统一在模块内部订阅，只需要重写SetupSubscriptions就可以了---zm
+    virtual void SetupSubscriptions() {}
 
     /*
      * Publish

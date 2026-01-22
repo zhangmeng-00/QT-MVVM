@@ -27,7 +27,7 @@ public:
 
 //         // 暂时直接 return，不做任何逻辑
 //     }
-
+    virtual void SetupSubscriptions() override;
 protected:
     void ObserveData(const QString& tag,
                      const QVariant& value) override

@@ -25,10 +25,10 @@ add_executable(${PROJECT_NAME}
     MainWindow.cpp
     MainWindow.ui
 
-    core/actor/Actor.h
-    core/actor/Actor.cpp
 
-    core/transport/ITransport.h
+
+
+
 
     core/policy/ISubscriptionPolicy.h
     core/policy/AlwaysPolicy.h
@@ -40,6 +40,9 @@ add_executable(${PROJECT_NAME}
     core/mediator/Topic.cpp
     core/mediator/Mediator.h
     core/mediator/Mediator.cpp
+    core/mediator/TopicMeta.h
+    core/mediator/TopicRegistry.h
+    core/mediator/TopicRegistry.cpp
 
     core/actor/ActorObserve.h
     core/actor/ActorObserve.cpp
@@ -49,9 +52,11 @@ add_executable(${PROJECT_NAME}
 
     core/binding/BindingCommand.h
     core/binding/Binding.h
-    core/binding/PropertyBindingAdapter.h
-    core/binding/PropertyBindingAdapter.h
     core/binding/BindingHelper.h
+    core/app/AppContext.cpp
+    core/app/AppContext.h
+
+
     common/TypeKey.h
 
 
@@ -59,42 +64,42 @@ add_executable(${PROJECT_NAME}
 
 
 
+    view/TraceViewer.h
+    view/TraceViewer.cpp
+    viewmodel/SensorViewModel.cpp
 
-
-    model/BaseModel.h
-    model/BaseModel.cpp
-    view/BaseView.h
-    view/BaseView.cpp
-    view/LabelViewObserve.h
-    view/LabelViewObserve.cpp
-
-
-
-    model/SensorModel.h
-    model/SensorModel.cpp
-    model/UserModel.h
-    model/UserModel.cpp
 
     viewmodel/BaseViewModel.h
     viewmodel/UserViewModel.h
     viewmodel/UserViewModel.cpp
-
-
     viewmodel/SensorViewModel.h
 
-    AppContext.h
-    AppContext.cpp
+
+
+    model/BaseModel.h
+    model/BaseModel.cpp
+    model/SensorModel.h
+    model/SensorModel.cpp
+    model/UserModel.h
+    model/UserModel.cpp
     model/LoggerActor.h
     model/RecorderActor.h
     model/SQLiteRecorderActor.h
     model/SQLiteRecorderActor.cpp
-    view/TraceViewer.h
-    view/TraceViewer.cpp
-    viewmodel/SensorViewModel.cpp
-    core/mediator/TopicMeta.h
-    core/mediator/TopicRegistry.h
-    core/mediator/TopicRegistry.cpp
-    model/modbus/ModbusMasterModel.cpp model/modbus/ModbusMasterModel.h model/modbus/ModbusModuleBase.cpp model/modbus/ModbusModuleBase.h model/modbus/PidPressureModule.cpp model/modbus/PidPressureModule.h model/modbus/PointDef.h
+
+
+
+    model/modbus/ModbusMasterModel.cpp
+    model/modbus/ModbusMasterModel.h
+    model/modbus/ModbusModuleBase.cpp
+    model/modbus/ModbusModuleBase.h
+    model/modbus/PidPressureModule.cpp
+    model/modbus/PidPressureModule.h
+    model/modbus/PointDef.h
+    core/app/Bootstrap.h
+    core/app/Bootstrap.cpp
+
+
 
 )
 

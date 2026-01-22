@@ -32,9 +32,7 @@ private slots:
     void on_pushButton_clicked();
 
 private:
-    void setupModels();
     void setupViewModels();
-    void setupSubscriptions();
     void setupBindings();
 
 private:

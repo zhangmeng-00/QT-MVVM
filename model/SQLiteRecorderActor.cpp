@@ -43,7 +43,7 @@ void SQLiteRecorderActor::initDatabase()
         );
 }
 
-void SQLiteRecorderActor::Init()
+void SQLiteRecorderActor::SetupSubscriptions()
 {
     qDebug() << "[SQLiteRecorder] Init";
 

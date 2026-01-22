@@ -1,4 +1,6 @@
 #include "UserViewModel.h"
+#include "core/policy/AlwaysPolicy.h"
+#include "core/policy/ValueChangedPolicy.h"
 
 UserViewModel::UserViewModel(QObject* parent)
     : BaseViewModel(parent)
@@ -154,6 +156,12 @@ void UserViewModel::resetCommand()
 {
     qDebug() << "UserViewModel::resetCommand()";
     Publish("user/score", 0);
+}
+
+void UserViewModel::SetupSubscriptions()
+{
+    Subscribe("user/score", std::make_shared<AlwaysPolicy>());
+    Subscribe("user/level", std::make_shared<ValueChangedPolicy>());
 }
 
 void UserViewModel::ObserveData(const QString& tag, const QVariant& value)

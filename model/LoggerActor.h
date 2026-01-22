@@ -14,7 +14,7 @@ public:
         : ActorObserve(parent)
     {}
 
-    void Init()
+    void SetupSubscriptions() override
     {
         Subscribe("user/score", std::make_shared<AlwaysPolicy>());
         Subscribe("user/level", std::make_shared<AlwaysPolicy>());
