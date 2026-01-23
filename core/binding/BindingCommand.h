@@ -13,42 +13,38 @@
 /*
  * BindingCommand
  * ============================================================
- * 目标：把“任何控件/对象的任何 signal 或事件”绑定到 ICommand
+ * 目标：把 “任意 sender 的任意 signal” 绑定到 ICommand
  *
- * 1) signal 绑定：
- *    BindCommand(sender, &Sender::signal, command)
- *    - signal 的参数会自动打包成 QVariantList，传给 command->ExecuteArgs(args)
+ * 特性：
+ * 1) signal 参数会自动打包成 QVariantList（signalArgs）
+ * 2) 可选 argMapper：把 signalArgs 映射成你真正想传给 command 的 args
+ *    - 例如你统一约定 args = [tag, payload]
+ * 3) 可选 canExecArgsGetter：用于计算 enabled（CanExecuteArgs）时提供参数
+ *    - 如果不提供，默认用“最终 args”去计算 enabled
+ * 4) 可选 enableTarget：指定哪个对象需要 setEnabled（默认 sender）
  *
- * 2) enabled 同步：
- *    - 默认同步 sender 的 enabled
- *    - 也可指定 enableTarget（例如：多个控件共用一个命令）
- *
- * 3) 兼容旧写法：
- *    BindCommand(QAbstractButton*, ICommand*) / BindCommand(QAction*, ICommand*)
+ * 注意：
+ * - 使用了“泛型 lambda 参数 (auto&&...)”，要求 C++14+（Qt 5.15 + MSVC2019 没问题）
  */
 
 namespace BindingCommand {
 
 // ------------------------------------------------------------
-// 内部工具：通用 setEnabled
+// 内部工具：通用 setEnabled（QWidget/QAction/拥有 enabled 属性的 QObject）
 // ------------------------------------------------------------
 inline void SetEnabled(QObject* target, bool enabled)
 {
     if (!target) return;
 
-    // QWidget
     if (auto w = qobject_cast<QWidget*>(target)) {
         w->setEnabled(enabled);
         return;
     }
-
-    // QAction
     if (auto act = qobject_cast<QAction*>(target)) {
         act->setEnabled(enabled);
         return;
     }
 
-    // 任何拥有 enabled 属性的 QObject（Qt 大量类都支持）
     const int idx = target->metaObject()->indexOfProperty("enabled");
     if (idx >= 0) {
         target->setProperty("enabled", enabled);
@@ -61,7 +57,7 @@ inline void SetEnabled(QObject* target, bool enabled)
 inline QVariantList EmptyArgs() { return {}; }
 
 // ------------------------------------------------------------
-// 核心：任意 sender + 任意 signal → ICommand（带参数）
+// 核心：任意 sender + 任意 signal -> ICommand
 // ------------------------------------------------------------
 template <typename Sender, typename Signal>
 inline void BindCommand(
@@ -69,7 +65,8 @@ inline void BindCommand(
     Signal signal,
     ICommand* command,
     QObject* enableTarget = nullptr,
-    std::function<QVariantList()> canExecArgsGetter = {})
+    std::function<QVariantList()> canExecArgsGetter = {},
+    std::function<QVariantList(const QVariantList& signalArgs)> argMapper = {})
 {
     if (!sender || !command) {
         qWarning() << "[BindingCommand] sender or command is null";
@@ -78,41 +75,50 @@ inline void BindCommand(
 
     QObject* target = enableTarget ? enableTarget : sender;
 
-    // 初始 enabled
+    // ---------- 初始 enabled ----------
     {
-        const QVariantList args = canExecArgsGetter ? canExecArgsGetter() : EmptyArgs();
-        SetEnabled(target, command->CanExecuteArgs(args));
+        // 如果提供了 canExecArgsGetter，就用它；否则用空参数（或者也可用最终 args，这里用空参数更安全）
+        const QVariantList canArgs = canExecArgsGetter ? canExecArgsGetter() : EmptyArgs();
+        SetEnabled(target, command->CanExecuteArgs(canArgs));
     }
 
-    // 1) signal → ExecuteArgs(args)
+    // ---------- 1) signal -> ExecuteArgs(finalArgs) ----------
     QObject::connect(
         sender,
         signal,
-        command,
-        [command, target, canExecArgsGetter](auto&&... a) {
-            // 打包参数
-            QVariantList args;
-            args.reserve(sizeof...(a));
-            //(args << QVariant::fromValue(std::forward<decltype(a)>(a)), ...);
-            using expander = int[];
-            (void)expander{0, ( (args << QVariant::fromValue(std::forward<decltype(a)>(a))), 0 )...};
-            command->ExecuteArgs(args);
+        command, // context：当 command 析构时自动断开连接
+        [command, target, canExecArgsGetter, argMapper](auto&&... a) {
 
-            // 触发后顺便刷新 enabled（常见场景：执行后状态变化）
-            const QVariantList canArgs = canExecArgsGetter ? canExecArgsGetter() : EmptyArgs();
+            // 1.1 打包 signal 参数 -> signalArgs
+            QVariantList signalArgs;
+            signalArgs.reserve(sizeof...(a));
+            using expander = int[];
+            (void)expander{0, (((signalArgs << QVariant::fromValue(std::forward<decltype(a)>(a)))), 0)...};
+
+            // 1.2 生成最终 args（默认=signalArgs，若提供 argMapper 则用映射后的）
+            const QVariantList finalArgs = argMapper ? argMapper(signalArgs) : signalArgs;
+
+            // 1.3 执行命令
+            command->ExecuteArgs(finalArgs);
+
+            // 1.4 执行后刷新 enabled：
+            //     - 若提供 canExecArgsGetter：用它
+            //     - 否则默认用 finalArgs 来评估（适合你的 [tag,payload] 模式）
+            const QVariantList canArgs = canExecArgsGetter ? canExecArgsGetter() : finalArgs;
             SetEnabled(target, command->CanExecuteArgs(canArgs));
         }
-    );
+        );
 
-    // 2) Command 的 CanExecuteChanged → enabled 同步
+    // ---------- 2) Command CanExecuteChanged -> 刷新 enabled ----------
     QObject::connect(
         command,
         &ICommand::CanExecuteChanged,
-        sender,
-        [command, target, canExecArgsGetter](bool /*canExecute*/) {
-            const QVariantList args = canExecArgsGetter ? canExecArgsGetter() : EmptyArgs();
-            SetEnabled(target, command->CanExecuteArgs(args));
+        sender,  // context：sender 析构时自动断开
+        [command, target, canExecArgsGetter](bool /*unused*/) {
+            const QVariantList canArgs = canExecArgsGetter ? canExecArgsGetter() : EmptyArgs();
+            SetEnabled(target, command->CanExecuteArgs(canArgs));
         }
-    );
+        );
 }
-}
+
+} // namespace BindingCommand

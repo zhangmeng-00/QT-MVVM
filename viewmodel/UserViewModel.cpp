@@ -1,173 +1,210 @@
 #include "UserViewModel.h"
 #include "core/policy/AlwaysPolicy.h"
-#include "core/policy/ValueChangedPolicy.h"
 
+// 构造函数：创建统一命令 + 注册所有 action + （可选）订阅状态
 UserViewModel::UserViewModel(QObject* parent)
     : BaseViewModel(parent)
 {
-    // 发布积分 Command（受业务状态控制）
-    m_publishScoreCommand = new SimpleCommand(
-        [this]() { publishCommand(); },
-        [this]() { return m_canPublish; },
+    // 1) 注册 tag -> handler（和 MainWindow 里发出的 tag 一一对应）
+    RegisterActions();
+
+    // 2) 创建统一命令：Command 本身不包含业务，只回调 OnUICommand/CanUICommand
+    m_uiCommand = new DispatcherCommand(
+        [this](const QVariantList& args) { OnUICommand(args); },
+        [this](const QVariantList& args) { return CanUICommand(args); },
         this
         );
 
-    // 重置积分 Command（始终可用）
-    m_resetScoreCommand = new SimpleCommand(
-        [this]() { resetCommand(); },
-        []() { return true; },
-        this
-        );
 
-    // 业务状态变化 → 刷新 publishScoreCommand
-    connect(this, &UserViewModel::CanPublishChanged,
-            m_publishScoreCommand, &SimpleCommand::RaiseCanExecuteChanged);
-
-    // ✅ Apply 命令（演示：要求已登录 + 用户名非空）
-    m_applyCommand = new SimpleCommand(
-        [this]() {
-            qDebug() << "[VM] Apply:"
-                     << "userName=" << m_userName
-                     << "loggedIn=" << m_loggedIn
-                     << "modeIndex=" << m_modeIndex
-                     << "count=" << m_count;
-
-            // 你想接入 Mediator 的话可以 Publish：
-            Publish("user/name", m_userName);
-            Publish("user/mode", m_modeIndex);
-            Publish("user/count", m_count);
-            Publish("user/logged_in", m_loggedIn);
-        },
-        [this]() {
-            return m_loggedIn && !m_userName.trimmed().isEmpty();
-        },
-        this
-        );
-
-    // ✅ Login / Logout（注意：状态改变后要让两个按钮都刷新 enabled）
-    m_loginCommand = new SimpleCommand(
-        [this]() {
-            m_loggedIn = true;
-            m_loginStateText = "Logged In";
-            emit loginStateTextChanged();
-            emit LoginStateChanged(true);
-
-            // 刷新 login/logout/apply 的 enabled
-            m_loginCommand->RaiseCanExecuteChanged();
-            m_logoutCommand->RaiseCanExecuteChanged();
-            m_applyCommand->RaiseCanExecuteChanged();
-        },
-        [this]() { return !m_loggedIn; },
-        this
-        );
-
-    m_logoutCommand = new SimpleCommand(
-        [this]() {
-            m_loggedIn = false;
-            m_loginStateText = "Logged Out";
-            emit loginStateTextChanged();
-            emit LoginStateChanged(false);
-
-            m_loginCommand->RaiseCanExecuteChanged();
-            m_logoutCommand->RaiseCanExecuteChanged();
-            m_applyCommand->RaiseCanExecuteChanged();
-        },
-        [this]() { return m_loggedIn; },
-        this
-        );
-
-    // ✅ lineEdit::textEdited(QString) → 更新 userName（参数：args[0]=QString）
-    m_userNameEditedCommand = new SimpleCommand(
-        [this](const QVariantList& args) {
-            const QString text = args.value(0).toString();
-            if (m_userName == text) return;
-            m_userName = text;
-            emit userNameChanged();
-            m_applyCommand->RaiseCanExecuteChanged();
-        },
-        nullptr,
-        this
-        );
-
-    // ✅ checkBox::toggled(bool) → 直接设置登录状态（参数：args[0]=bool）
-    // （演示用：你也可以不用这个，直接用 login/logout 按钮）
-    m_toggleLoginCommand = new SimpleCommand(
-        [this](const QVariantList& args) {
-            const bool on = args.value(0).toBool();
-            if (m_loggedIn == on) return;
-
-            m_loggedIn = on;
-            m_loginStateText = on ? "Logged In" : "Logged Out";
-            emit loginStateTextChanged();
-            emit LoginStateChanged(on);
-
-            m_loginCommand->RaiseCanExecuteChanged();
-            m_logoutCommand->RaiseCanExecuteChanged();
-            m_applyCommand->RaiseCanExecuteChanged();
-        },
-        nullptr,
-        this
-        );
-
-    // ✅ comboBox::currentIndexChanged(int)（参数：args[0]=int）
-    m_modeChangedCommand = new SimpleCommand(
-        [this](const QVariantList& args) {
-            const int idx = args.value(0).toInt();
-            m_modeIndex = idx;
-
-            const QString text = (idx >= 0 && idx < m_modes.size()) ? m_modes[idx] : QString("Mode %1").arg(idx);
-            if (m_modeText != text) {
-                m_modeText = text;
-                emit modeTextChanged();
-            }
-            m_applyCommand->RaiseCanExecuteChanged();
-        },
-        nullptr,
-        this
-        );
-
-    // ✅ spinBox::valueChanged(int)（参数：args[0]=int）
-    m_countChangedCommand = new SimpleCommand(
-        [this](const QVariantList& args) {
-            const int v = args.value(0).toInt();
-            m_count = v;
-
-            const QString text = QString::number(v);
-            if (m_countText != text) {
-                m_countText = text;
-                emit countTextChanged();
-            }
-            m_applyCommand->RaiseCanExecuteChanged();
-        },
-        nullptr,
-        this
-        );
 }
 
-void UserViewModel::publishCommand()
+void UserViewModel::RegisterActions()
 {
-    qDebug() << "UserViewModel::publishCommand()";
-    int score = QRandomGenerator::global()->bounded(0, 500);
-    qDebug() << "[VM] publish score =" << score;
-    Publish("user/score", score);
+    // =========================================================
+    // 1) user/publish_score  <--- btnPublishScore
+    // args = ["user/publish_score", true]
+    // =========================================================
+    m_actions.insert("user/publish_score", Action{
+                                               [this](const QVariantList&) {
+                                                   // 业务逻辑：产生随机分数，然后发布
+                                                   int score = QRandomGenerator::global()->bounded(0, 500);
+                                                   qDebug() << "[UserVM] publish random score =" << score;
+
+                                                   Publish("user/score", score);
+                                               },
+                                               [this](const QVariantList&) -> bool {
+                                                   // 例：必须先收到 user/level 才允许发布
+                                                   return m_canPublish;
+                                               }
+                                           });
+
+    // =========================================================
+    // 2) user/login <--- btnLogin
+    // args = ["user/login", true]
+    // =========================================================
+    m_actions.insert("user/login", Action{
+                                       [this](const QVariantList&) {
+                                           if (m_loggedIn) return;
+
+                                           m_loggedIn = true;
+
+                                           // 更新 UI 文本（对应 labelLoginState <- loginStateText）
+                                           m_loginStateText = "LoggedIn";
+                                           emit loginStateTextChanged();
+
+                                           // 发布状态（给其它模块/Model 用）
+                                           Publish("user/logged_in", true);
+                                           RefreshCommandStates(); // 刷新 login/logout/publish 按钮 enable
+                                       },
+                                       [this](const QVariantList&) -> bool {
+                                           return !m_loggedIn;
+                                       }
+                                   });
+
+    // =========================================================
+    // 3) user/logout <--- btnLogout
+    // args = ["user/logout", true]
+    // =========================================================
+    m_actions.insert("user/logout", Action{
+                                        [this](const QVariantList&) {
+                                            if (!m_loggedIn) return;
+
+                                            m_loggedIn = false;
+
+                                            m_loginStateText = "LoggedOut";
+                                            emit loginStateTextChanged();
+
+                                            Publish("user/logged_in", false);
+
+                                            RefreshCommandStates();
+                                        },
+                                        [this](const QVariantList&) -> bool {
+                                            return m_loggedIn;
+                                        }
+                                    });
+
+    // =========================================================
+    // 4) user/logged_in <--- checkBoxLoggedIn.toggled(bool)
+    // args = ["user/logged_in", bool]
+    // =========================================================
+    m_actions.insert("user/logged_in", Action{
+                                           [this](const QVariantList& args) {
+                                               bool on = args.value(1).toBool();
+
+                                               m_loggedIn = on;
+                                               m_loginStateText = on ? "LoggedIn" : "LoggedOut";
+                                               emit loginStateTextChanged();
+
+                                               Publish("user/logged_in", on);
+                                               RefreshCommandStates();
+                                           },
+                                           nullptr
+                                       });
+
+    // =========================================================
+    // 5) user/mode <--- comboBoxMode.currentIndexChanged(int)
+    // args = ["user/mode", int]
+    // =========================================================
+    m_actions.insert("user/mode", Action{
+                                      [this](const QVariantList& args) {
+                                          int idx = args.value(1).toInt();
+
+                                          // 更新 UI 文本（对应 labelModeValue <- modeText）
+                                          m_modeText = QString::number(idx);
+                                          emit modeTextChanged();
+
+                                          Publish("user/mode", idx);
+                                      },
+                                      nullptr
+                                  });
+
+    // =========================================================
+    // 6) user/count <--- spinBoxCount.valueChanged(int)
+    // args = ["user/count", int]
+    // =========================================================
+    m_actions.insert("user/count", Action{
+                                       [this](const QVariantList& args) {
+                                           int v = args.value(1).toInt();
+
+                                           // 更新 UI 文本（对应 labelCountValue <- countText）
+                                           m_countText = QString::number(v);
+                                           emit countTextChanged();
+
+                                           Publish("user/count", v);
+                                       },
+                                       nullptr
+                                   });
+
+    // =========================================================
+    // 7) user/name <--- lineEdit.textEdited(QString)
+    // args = ["user/name", QString]
+    // =========================================================
+    m_actions.insert("user/name", Action{
+                                      [this](const QVariantList& args) {
+                                          QString name = args.value(1).toString();
+
+                                          if (name == m_userName) return;
+                                          m_userName = name;
+                                          emit userNameChanged();
+
+                                          Publish("user/name", name);
+                                      },
+                                      nullptr
+                                  });
 }
 
-void UserViewModel::resetCommand()
+void UserViewModel::OnUICommand(const QVariantList& args)
 {
-    qDebug() << "UserViewModel::resetCommand()";
-    Publish("user/score", 0);
+    if (args.isEmpty()) {
+        qWarning() << "[UserVM] OnUICommand: empty args";
+        return;
+    }
+
+    const QString tag = args[0].toString();
+    if (tag.isEmpty()) {
+        qWarning() << "[UserVM] OnUICommand: empty tag";
+        return;
+    }
+
+    auto it = m_actions.find(tag);
+    if (it == m_actions.end() || !it->exec) {
+        qWarning() << "[UserVM] OnUICommand: no handler, tag =" << tag << "args =" << args;
+        return;
+    }
+
+    it->exec(args);
+}
+
+bool UserViewModel::CanUICommand(const QVariantList& args) const
+{
+    if (args.isEmpty()) return true;
+
+    const QString tag = args[0].toString();
+    if (tag.isEmpty()) return false;
+
+    auto it = m_actions.find(tag);
+    if (it != m_actions.end() && it->can) {
+        return it->can(args);
+    }
+    return true;
+}
+
+void UserViewModel::RefreshCommandStates()
+{
+    if (m_uiCommand) {
+        m_uiCommand->RaiseCanExecuteChanged();
+    }
 }
 
 void UserViewModel::SetupSubscriptions()
 {
     Subscribe("user/score", std::make_shared<AlwaysPolicy>());
-    Subscribe("user/level", std::make_shared<ValueChangedPolicy>());
+    Subscribe("user/level", std::make_shared<AlwaysPolicy>());
 }
 
+// ObserveData：用于接收来自 Model / 其它模块发布的状态，更新显示用 Q_PROPERTY
 void UserViewModel::ObserveData(const QString& tag, const QVariant& value)
 {
-    qDebug() << "[VM] ObserveData tag =" << tag << "value =" << value;
-
     if (tag == "user/score") {
         m_scoreText = QString::number(value.toInt());
         emit scoreTextChanged();
@@ -175,17 +212,14 @@ void UserViewModel::ObserveData(const QString& tag, const QVariant& value)
     }
 
     if (tag == "user/level") {
-        m_levelText = QString("Lv.%1").arg(value.toInt());
+        const int lv = value.toInt();
+        m_levelText = QString("Lv.%1").arg(lv);
         emit levelTextChanged();
 
-        // 这里只是你原来的演示逻辑，我保留
-        m_userName = QString("Lv.%1").arg(value.toInt());
-        emit userNameChanged();
-        m_applyCommand->RaiseCanExecuteChanged();
-
+        // 例：收到 level 后才允许 publish_score
         if (!m_canPublish) {
             m_canPublish = true;
-            emit CanPublishChanged(true);
+            RefreshCommandStates();
         }
         return;
     }
