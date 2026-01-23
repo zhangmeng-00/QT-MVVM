@@ -1,93 +1,196 @@
 # MediatorMVAQt
 
+Qt 5.15 + MVVM + Mediator + Observe + Binding + Command  
+面向工业上位机 / 自动化测试软件的可维护架构 Demo。
+
+---
+
+## 目录
+
+- [核心目标](#核心目标)
+- [架构概览](#架构概览)
+- [项目结构](#项目结构)
+- [启动流程](#启动流程)
+- [职责边界](#职责边界)
+- [订阅策略（推荐：Model 内自订阅）](#订阅策略推荐model-内自订阅)
+- [绑定与命令（BindProperty / BindCommand）](#绑定与命令bindproperty--bindcommand)
+- [新增模块/新增模型的标准流程](#新增模块新增模型的标准流程)
+- [常见问题](#常见问题)
+
+---
+
+## 核心目标
+
+1. **解耦**：UI、业务、硬件、记录/追溯彼此低耦合  
+2. **可追溯**：Command + Recorder 记录行为，支持回放/审计  
+3. **可演进**：新增硬件/业务模块不改 UI 主流程  
+4. **线程安全**：Mediator 运行在独立线程，所有操作通过 AppContext 串行投递
+
+---
+
+## 架构概览
+
+- **AppContext**  
+  应用容器（Composition Root），持有 `Mediator` 和其线程，提供线程安全的 `ConnectObserve()` 等接口。
+
+- **Mediator / Topic**  
+  消息总线与 Topic 路由。发布/订阅统一走 Topic。
+
+- **Observe（基类）**  
+  Model / ViewModel / Actor 都可以继承 Observe，获得 Publish/Subscribe 能力。
+
+- **Model**（业务层）  
+  业务状态、协议/驱动、算法、状态机。  
+  ✅ 推荐：在 Model 内声明订阅（`SetupSubscriptions()`），高内聚。
+
+- **ViewModel**（UI 逻辑层）  
+  暴露 `Q_PROPERTY` 给 UI；提供 `ICommand*` 给 BindCommand。  
+  不直接操作 UI，只操作状态与 Publish。
+
+- **View(MainWindow/UI)**  
+  只做：创建 VM、绑定属性、绑定命令。不负责创建 Model/驱动/日志器。
+
+- **Bootstrap（core/app/Bootstrap.*）**  
+  统一创建全局组件（Model/Logger/Recorder/Driver 等）并连接 Mediator。
+
+---
+
+## 项目结构
+
+推荐结构（与你当前工程一致）：
+core/
+app/
+AppContext.h/.cpp
+Bootstrap.h/.cpp
+mediator/
+Mediator.h/.cpp
+Topic*.h/.cpp
+Observe.h/.cpp
+binding/
+Binding.h/.cpp # BindProperty
+BindingCommand.h # BindCommand（通用 signal -> ICommand）
+command/
+ICommand.h
+SimpleCommand.h
+model/
+UserModel.*
+SensorModel.*
+LoggerActor.*
+SQLiteRecorderActor.*
+viewmodel/
+UserViewModel.*
+SensorViewModel.*
+view/
+TraceViewer.*
+MainWindow.ui
+MainWindow.h/.cpp
 
 
-## Getting started
+---
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+## 启动流程
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+应用启动后，推荐流程如下：
 
-## Add your files
+1. `AppContext::instance()` 创建 Mediator 并启动 Mediator 线程  
+2. `Bootstrap::InstallAll(AppContext::instance())`  
+   - 创建全局组件（Model / Logger / Recorder / Driver…）
+   - `ctx.ConnectObserve(obj)` 接入 Mediator  
+   - 调用 logger/recorder 的 `Init()`  
+3. `MainWindow` 创建 ViewModel，并 `ConnectObserve(vm)`  
+4. `MainWindow` 做 UI 绑定（Property + Command）
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+> 重点：MainWindow 不再创建 Model/Logger/Recorder，只做 UI 装配。
 
-```
-cd existing_repo
-git remote add origin http://gitlab/zmg/mediatormvaqt.git
-git branch -M main
-git push -uf origin main
-```
+---
 
-## Integrate with your tools
+## 职责边界
 
-- [ ] [Set up project integrations](http://gitlab/zmg/mediatormvaqt/-/settings/integrations)
+### AppContext（应用容器）
+- 创建/持有 Mediator + 线程
+- 提供线程安全调用：所有 mediator 操作通过 `invokeMethod(QueuedConnection)`
+- 统一连接 Observe：`ConnectObserve(obj)`
 
-## Collaborate with your team
+### Bootstrap（装配入口）
+- 创建全局 Model/Actor/Driver/Service
+- 将组件接入 Mediator
+- 做基础设施 Init（记录器、日志器、数据库等）
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+### Model（业务层）
+- 业务状态、协议驱动、算法、状态机
+- ✅ 推荐：Model 内声明订阅（自订阅），外部无需写 Subscribe
+- 通过 Publish 输出业务状态（Topic）
 
-## Test and Deploy
+### ViewModel（UI 逻辑层）
+- 提供 Q_PROPERTY 给 UI（显示数据）
+- 提供 ICommand 给 UI（点击、值改变等）
+- 通过 Publish 触发业务动作或状态变化
 
-Use the built-in continuous integration in GitLab.
+### View（MainWindow）
+- 创建 ViewModel（parent 为窗口）
+- BindProperty 绑定显示
+- BindCommand 绑定控件事件到 ICommand
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+---
 
-***
+## 订阅策略（推荐：Model 内自订阅）
 
-# Editing this README
+### 为什么推荐？
+- 订阅就是依赖声明，放在 Model 内可实现高内聚
+- 外部装配只需 `ConnectObserve(model)`，无需散落 Subscribe
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+### 推荐实现方式
 
-## Suggestions for a good README
+在 `Observe`（或你的业务基类）中添加：
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+```cpp
+virtual void SetupSubscriptions() {}
+#### Model 重写：
 
-## Name
-Choose a self-explaining name for your project.
+void UserModel::SetupSubscriptions() override {
+  Subscribe("user/score", std::make_shared<AlwaysPolicy>());
+  Subscribe("user/level", std::make_shared<ValueChangedPolicy>());
+}
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+####在 AppContext::ConnectObserve() 中，连接后调用（建议在 mediator 线程执行）：
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+InvokeOnMediator([this, obs](){
+  m_mediator->ConnectObserve(obs);
+  obs->SetupSubscriptions();
+});
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+####这样外部只需要：
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+ctx.ConnectObserve(model);   // 自动完成订阅
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+####绑定与命令（BindProperty / BindCommand）
+BindProperty（属性绑定）
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+####将 VM 的 Q_PROPERTY 映射到控件属性：
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+Binding::BindProperty(ui->labelScore, "text", m_userVM, "scoreText");
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+####BindCommand（事件绑定）
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+将任意 QObject 的任意 signal 绑定到 ICommand，并传入 signal 参数：
 
-## License
-For open source projects, say how it is licensed.
+BindingCommand::BindCommand(ui->btnLogin, &QAbstractButton::clicked, m_userVM->loginCommand());
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+BindingCommand::BindCommand(ui->horizontalSliderTemp, &QSlider::valueChanged, m_sensorVM->setTargetTemperatureCommand());
+
+BindingCommand::BindCommand(ui->comboBoxMode,
+    QOverload<int>::of(&QComboBox::currentIndexChanged),
+    m_userVM->modeChangedCommand());
+
+
+####注意：有重载的 signal 必须用 QOverload 指定签名。
+
+SimpleCommand（做法A：支持参数）
+
+无参：SimpleCommand(std::function<void()>)
+
+有参：SimpleCommand(std::function<void(const QVariantList&)>)
+
+BindCommand 会把信号参数自动打包为 QVariantList 传入 ExecuteArgs(args)。
