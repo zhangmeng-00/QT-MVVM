@@ -54,11 +54,31 @@ void Mediator::OnSubscribe(Observe* observer,
 
     // ⭐ Sticky Topic：新订阅者立刻收到当前状态
     if (TopicRegistry::instance().IsSticky(tag)) {
-        QMutexLocker locker(&m_mutex);
-        if (m_stateCache.contains(tag)) {
-            observer->OnDataReceived(tag, m_stateCache[tag]);
+        QVariant cached;
+        bool has = false;
+
+        {
+            QMutexLocker locker(&m_mutex);
+            auto it = m_stateCache.find(tag);
+            if (it != m_stateCache.end()) {
+                cached = it.value();
+                has = true;
+            }
+        }
+
+        if (has && observer) {
+            const QString t = tag;
+            const QVariant v = cached;
+
+            // ✅ 回到 observer 所在线程
+            QMetaObject::invokeMethod(
+                observer,
+                [observer, t, v](){ observer->OnDataReceived(t, v); },
+                Qt::QueuedConnection
+                );
         }
     }
+
 }
 
 /*

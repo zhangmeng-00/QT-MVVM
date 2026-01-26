@@ -47,7 +47,7 @@ void PidPressureModule::handleReadResult(
 {
     /*
      * 将一整段寄存器数据
-     * 映射为业务语义并发布 state/*
+     * 映射为业务语义并发布 state
      */
     for (const auto& p : m_points) {
         QVariant value;

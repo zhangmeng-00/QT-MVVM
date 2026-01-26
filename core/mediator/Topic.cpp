@@ -1,6 +1,8 @@
 #include "Topic.h"
 #include "Observe.h"
+
 #include <QDebug>
+#include <QMutexLocker>
 #include <algorithm>
 
 Topic::Topic(const QString& tag, QObject* parent)
@@ -32,6 +34,16 @@ void Topic::cleanupDeadSubscribersLocked()
         );
 }
 
+void Topic::onObserverDestroyed(QObject* /*obj*/)
+{
+    // 只清理已失效的 QPointer 项（最稳，不依赖析构对象地址）
+    QMutexLocker lk(&m_mutex);
+    cleanupDeadSubscribersLocked();
+
+    qDebug() << "[Topic] Cleanup dead subscribers tag =" << m_tag
+             << "count =" << (int)m_subscribers.size();
+}
+
 void Topic::AddSubscriber(Observe* observer, PolicyPtr policy)
 {
     if (!observer) return;
@@ -40,7 +52,7 @@ void Topic::AddSubscriber(Observe* observer, PolicyPtr policy)
         QMutexLocker lk(&m_mutex);
         cleanupDeadSubscribersLocked();
 
-        // 去重：防止重复订阅导致count虚高
+        // 去重：防止重复订阅导致 count 虚高
         if (!containsLocked(observer)) {
             SubscriberItem item;
             item.observer = observer;
@@ -51,7 +63,7 @@ void Topic::AddSubscriber(Observe* observer, PolicyPtr policy)
                      << "observer =" << observer
                      << "count =" << (int)m_subscribers.size();
         } else {
-            // 已订阅：更新policy（可选）
+            // 已订阅：更新 policy（可选）
             for (auto& s : m_subscribers) {
                 if (s.observer == observer) {
                     s.policy = policy;
@@ -59,23 +71,29 @@ void Topic::AddSubscriber(Observe* observer, PolicyPtr policy)
                 }
             }
         }
-
-        // observer 析构自动移除（避免野指针）
-        // 注意：重复 connect 也没关系，但更严谨可以加 Qt::UniqueConnection（lambda不支持唯一）
-        QObject::connect(observer, &QObject::destroyed, this, [this, observer] {
-            this->RemoveSubscriber(observer);
-        });
-
-        // ✅ Replay lastValue：新订阅者默认应该拿到当前状态
-        // // 重要：replay 不走 ValueChangedPolicy old==new 判断，否则新订阅会收不到
-        // if (m_hasLastValue) {
-        //     qDebug() << "[Topic] Replay last value to new subscriber, tag ="
-        //              << m_tag << "value =" << m_lastValue;
-
-        //     // 这里直接发：订阅即同步状态
-        //     observer->OnDataReceived(m_tag, m_lastValue);
-        // }
     }
+
+    // ✅ 用 slot + UniqueConnection，避免重复 connect（lambda 无法 Unique）
+    QObject::connect(observer, &QObject::destroyed,
+                     this, &Topic::onObserverDestroyed,
+                     Qt::UniqueConnection);
+
+    // ✅ Replay lastValue（如果你需要新订阅者立刻拿到当前状态，可以打开）
+    // 注意：Replay 不应被 ValueChangedPolicy 过滤
+    /*
+    Observe* obs = observer;
+    QVariant last;
+    bool hasLast = false;
+    {
+        QMutexLocker lk(&m_mutex);
+        hasLast = m_hasLastValue;
+        last = m_lastValue;
+    }
+    if (hasLast && obs) {
+        qDebug() << "[Topic] Replay last value tag =" << m_tag << "value =" << last;
+        obs->OnDataReceived(m_tag, last);
+    }
+    */
 }
 
 void Topic::RemoveSubscriber(Observe* observer)
@@ -101,7 +119,7 @@ void Topic::RemoveSubscriber(Observe* observer)
 
 void Topic::Notify(const QVariant& value)
 {
-    // 快照：避免回调里再subscribe/unsubscribe导致迭代器问题
+    // 快照：避免回调里再 subscribe/unsubscribe 导致迭代器问题
     std::vector<SubscriberItem> snapshot;
     QVariant oldValue;
     QVariant newValue = value;
@@ -130,14 +148,21 @@ void Topic::Notify(const QVariant& value)
 
         bool should = true;
 
-        // 你的 policy 语义是“是否执行”
-        // 这里保留：首次发布时 hadLast=false，你可以选择让 policy 自己处理 invalid oldValue
+        // policy 只影响未来通知；首次发布时 hadLast=false，这里默认不过滤
         if (s.policy && hadLast) {
             should = s.policy->ShouldExecute(oldValue, newValue);
         }
-
+        // 用invokeMethod投递到Observe自己的线程
         if (should) {
-            obs->OnDataReceived(m_tag, newValue);
+            const QString tag = m_tag;
+            const QVariant v = newValue;
+
+            QMetaObject::invokeMethod(
+                obs,
+                [obs, tag, v](){ obs->OnDataReceived(tag, v); },
+                Qt::QueuedConnection
+                );
         }
+
     }
 }
