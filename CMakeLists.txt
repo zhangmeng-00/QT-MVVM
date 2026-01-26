@@ -5,80 +5,39 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
+# 统一用 C++17（你原来被后面的 C++14 覆盖了）
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(CMAKE_CXX_STANDARD 14)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-
+# Qt5/Qt6 自适应
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
-find_package(Qt5 REQUIRED COMPONENTS Widgets Sql)
-find_package(Qt5 REQUIRED COMPONENTS Core Widgets Network SerialBus)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Widgets Sql Network SerialBus)
 
 if (MSVC)
+    # 解决中文注释 / 字符串在 MSVC 下的编码问题
     add_compile_options(/utf-8)
 endif()
 
+# 1) 先编译 core 库
+add_subdirectory(core)
 
-
+# 2) 再编译应用程序
 add_executable(${PROJECT_NAME}
     main.cpp
     MainWindow.h
     MainWindow.cpp
     MainWindow.ui
 
-
-
-
-
-
-    core/policy/ISubscriptionPolicy.h
-    core/policy/AlwaysPolicy.h
-    core/policy/ValueChangedPolicy.h
-
-    core/mediator/Observe.h
-    core/mediator/Observe.cpp
-    core/mediator/Topic.h
-    core/mediator/Topic.cpp
-    core/mediator/Mediator.h
-    core/mediator/Mediator.cpp
-    core/mediator/TopicMeta.h
-    core/mediator/TopicRegistry.h
-    core/mediator/TopicRegistry.cpp
-
-    core/actor/ActorObserve.h
-    core/actor/ActorObserve.cpp
-
-    core/command/ICommand.h
-    core/command/SimpleCommand.h
-
-    core/binding/BindingCommand.h
-    core/binding/Binding.h
-    core/binding/BindingHelper.h
-    core/app/AppContext.cpp
-    core/app/AppContext.h
-
-
     common/TypeKey.h
-
-
-
-
-
 
     view/TraceViewer.h
     view/TraceViewer.cpp
-    viewmodel/SensorViewModel.cpp
-
 
     viewmodel/BaseViewModel.h
     viewmodel/UserViewModel.h
     viewmodel/UserViewModel.cpp
     viewmodel/SensorViewModel.h
-
-
+    viewmodel/SensorViewModel.cpp
 
     model/BaseModel.h
     model/BaseModel.cpp
@@ -91,8 +50,6 @@ add_executable(${PROJECT_NAME}
     model/SQLiteRecorderActor.h
     model/SQLiteRecorderActor.cpp
 
-
-
     model/modbus/ModbusMasterModel.cpp
     model/modbus/ModbusMasterModel.h
     model/modbus/ModbusModuleBase.cpp
@@ -100,26 +57,23 @@ add_executable(${PROJECT_NAME}
     model/modbus/PidPressureModule.cpp
     model/modbus/PidPressureModule.h
     model/modbus/PointDef.h
-    core/app/Bootstrap.h
-    core/app/Bootstrap.cpp
-    core/command/DispatcherCommand.h
-    core/binding/BindingCommandHelpers.h
-
-
-
+    app/AppContext.h
+    app/AppContext.cpp
+    app/Bootstrap.h
+    app/Bootstrap.cpp
 )
 
-target_include_directories(MediatorMVAQt
+target_include_directories(${PROJECT_NAME}
     PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}
-        ${CMAKE_CURRENT_SOURCE_DIR}/core
 )
 
-
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets
-    Qt5::Widgets
-    Qt5::Sql
-    Qt5::Core
-    Qt5::Widgets
-    Qt5::Network
-    Qt5::SerialBus)
+target_link_libraries(${PROJECT_NAME}
+    PRIVATE
+        MediatorCore
+        Qt${QT_VERSION_MAJOR}::Core
+        Qt${QT_VERSION_MAJOR}::Widgets
+        Qt${QT_VERSION_MAJOR}::Sql
+        Qt${QT_VERSION_MAJOR}::Network
+        Qt${QT_VERSION_MAJOR}::SerialBus
+)

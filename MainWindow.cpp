@@ -1,8 +1,8 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 
-#include "core/app/AppContext.h"
-#include "core/app/Bootstrap.h"
+#include "app/AppContext.h"
+#include "app/Bootstrap.h"
 
 #include "view/TraceViewer.h"
 #include "core/binding/BindingCommandHelpers.h"

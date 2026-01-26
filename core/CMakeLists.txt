@@ -1,0 +1,51 @@
+# core 作为独立库编译（纯框架，不依赖 QtSql）
+
+add_library(MediatorCore
+    # policy
+    policy/ISubscriptionPolicy.h
+    policy/AlwaysPolicy.h
+    policy/ValueChangedPolicy.h
+
+    # mediator
+    mediator/Observe.h
+    mediator/Observe.cpp
+    mediator/Topic.h
+    mediator/Topic.cpp
+    mediator/Mediator.h
+    mediator/Mediator.cpp
+    mediator/TopicMeta.h
+    mediator/TopicRegistry.h
+    mediator/TopicRegistry.cpp
+
+    # actor
+    actor/ActorObserve.h
+    actor/ActorObserve.cpp
+
+    # command
+    command/ICommand.h
+    command/SimpleCommand.h
+    command/DispatcherCommand.h
+
+    # binding (依赖 QtWidgets)
+    binding/BindingCommand.h
+    binding/BindingCommandHelpers.h
+    binding/Binding.h
+    binding/BindingHelper.h
+    binding/EventCommandFilter.h
+)
+
+target_include_directories(MediatorCore
+    PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}      # core/
+        ${CMAKE_CURRENT_SOURCE_DIR}/..   # 项目根（兼容 include "core/..."）
+)
+
+target_link_libraries(MediatorCore
+    PUBLIC
+        Qt${QT_VERSION_MAJOR}::Core
+        Qt${QT_VERSION_MAJOR}::Widgets   # 你 core 里还有 binding，所以需要 Widgets
+)
+
+target_compile_features(MediatorCore PUBLIC cxx_std_17)
+
+add_library(MediatorCore::MediatorCore ALIAS MediatorCore)

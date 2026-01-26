@@ -1,4 +1,4 @@
-#include "core/app/Bootstrap.h"
+#include "Bootstrap.h"
 
 #include "AppContext.h"
 
