@@ -1,6 +1,6 @@
 #pragma once
 
-#include "actor/ActorObserve.h"
+#include "BaseModel.h"
 #include <QDebug>
 
 /*
@@ -10,11 +10,11 @@
  * - 根据 score 计算 level
  * - 发布 level
  */
-class UserModel : public ActorObserve {
+class UserModel : public BaseModel {
     Q_OBJECT
 public:
     explicit UserModel(QObject* parent = nullptr)
-        : ActorObserve(parent)
+        : BaseModel(parent)
     {}
 
 

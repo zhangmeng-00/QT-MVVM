@@ -1,6 +1,7 @@
 #pragma once
 
 #include "actor/ActorObserve.h"
+#include "LogEntry.h"
 
 /*
  * BaseModel
@@ -23,14 +24,18 @@ public:
      */
     explicit BaseModel(QObject* parent = nullptr,
                       bool useSeparateThread = false);
-    
-    ~BaseModel() override;
-
-private:
-    // 单独线程（如果使用）
-    QThread* m_thread = nullptr;
 
 protected:
+    /*
+     * log
+     * --------------------------------------------------------
+     * 默认日志发布：user/logging
+     * 子类可重写
+     */
+    virtual void log(const QString& modelName,
+                     LogLevel level,
+                     const QString& message);
+
     /*
      * ObserveData
      * --------------------------------------------------------

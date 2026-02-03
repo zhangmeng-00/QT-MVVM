@@ -4,6 +4,8 @@
 #include <QString>
 #include <QVariant>
 
+class QThread;
+
 /*
  * ActorObserve
  * ============================================================
@@ -17,7 +19,9 @@
 class ActorObserve : public Observe {
     Q_OBJECT
 public:
-    explicit ActorObserve(QObject* parent = nullptr);
+    explicit ActorObserve(QObject* parent = nullptr,
+                          bool useSeparateThread = false);
+    ~ActorObserve() override;
 
 protected:
     /*
@@ -35,4 +39,8 @@ protected slots:
      */
     void onActorInvoke(QString tag,
                        QVariant value);
+
+private:
+    // 单独线程（如果使用）
+    QThread* m_thread = nullptr;
 };

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QString>
+#include <QMetaType>
 
 // 日志级别枚举
 enum class LogLevel {
