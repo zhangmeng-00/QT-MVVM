@@ -1,22 +1,22 @@
-#ifndef LOG_ENTRY_H
-#define LOG_ENTRY_H
+#pragma once
 
-#include <string>
+#include <QString>
 
-// LogLevel Enum
+// 日志级别枚举
 enum class LogLevel {
     Debug,
-    Info,
-    Warn,
-    Error,
-    Fatal
+    INFO,
+    WARN,
+    ERROR,
+    FATAL
 };
 
-// LogEntry Struct
+// 日志条目结构体
 struct LogEntry {
-    std::string modelName;
+    QString modelName;
     LogLevel logLevel;
-    std::string logMessage;
+    QString logMessage;
 };
 
-#endif // LOG_ENTRY_H
+// 为LogEntry结构体提供Q_DECLARE_METATYPE宏，使其可以在QVariant中使用
+Q_DECLARE_METATYPE(LogEntry)

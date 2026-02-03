@@ -15,9 +15,20 @@
 class BaseModel : public ActorObserve {
     Q_OBJECT
 public:
-    explicit BaseModel(QObject* parent = nullptr)
-        : ActorObserve(parent)
-    {}
+    /*
+     * BaseModel 构造函数
+     * --------------------------------------------------------
+     * @param parent: 父对象
+     * @param useSeparateThread: 是否使用单独的线程运行
+     */
+    explicit BaseModel(QObject* parent = nullptr,
+                      bool useSeparateThread = false);
+    
+    ~BaseModel() override;
+
+private:
+    // 单独线程（如果使用）
+    QThread* m_thread = nullptr;
 
 protected:
     /*
