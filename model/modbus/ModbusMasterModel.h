@@ -4,6 +4,7 @@
 #include <QTimer>
 #include <QList>
 #include <QModbusTcpClient>
+#include <QHash>
 
 class ModbusModuleBase;
 
@@ -130,4 +131,5 @@ private:
      * 轮询周期可配置（如 200ms）
      */
     QTimer m_pollTimer;
+    QHash<int, quint16> m_hrCache;
 };

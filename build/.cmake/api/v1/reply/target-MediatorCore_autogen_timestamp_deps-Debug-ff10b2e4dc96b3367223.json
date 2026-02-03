@@ -1,0 +1,27 @@
+{
+	"backtrace" : 0,
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : 
+		[
+			"core/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			}
+		]
+	},
+	"id" : "MediatorCore_autogen_timestamp_deps::@57760688d1f824db5d9c",
+	"isGeneratorProvided" : true,
+	"name" : "MediatorCore_autogen_timestamp_deps",
+	"paths" : 
+	{
+		"build" : "core",
+		"source" : "core"
+	},
+	"sources" : [],
+	"type" : "UTILITY"
+}

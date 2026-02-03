@@ -61,6 +61,7 @@ add_executable(${PROJECT_NAME}
     app/AppContext.cpp
     app/Bootstrap.h
     app/Bootstrap.cpp
+    common/TestStruct.h
 )
 
 target_include_directories(${PROJECT_NAME}

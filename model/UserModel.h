@@ -30,19 +30,7 @@ public:
     virtual void SetupSubscriptions() override;
 protected:
     void ObserveData(const QString& tag,
-                     const QVariant& value) override
-    {
-
-            if (tag == "user/score") {
-                      int score = value.toInt();
-            int newLevel = score / 100;
-
-            if (newLevel != m_level) {
-                m_level = newLevel;
-                Publish("user/level", m_level);
-            }
-        }
-    }
+                     const QVariant& value) override;
 
 private:
     int m_level = 0;

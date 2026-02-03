@@ -1,0 +1,227 @@
+{
+	"AUTOGEN_COMMAND_LINE_LENGTH_MAX" : 32000,
+	"BUILD_DIR" : "D:/3_Source Code/31_QT/MediatorMVAQt/build/core/MediatorCore_autogen",
+	"CMAKE_BINARY_DIR" : "D:/3_Source Code/31_QT/MediatorMVAQt/build",
+	"CMAKE_CURRENT_BINARY_DIR" : "D:/3_Source Code/31_QT/MediatorMVAQt/build/core",
+	"CMAKE_CURRENT_SOURCE_DIR" : "D:/3_Source Code/31_QT/MediatorMVAQt/core",
+	"CMAKE_EXECUTABLE" : "C:/Program Files/CMake/bin/cmake.exe",
+	"CMAKE_LIST_FILES" : [ "D:/3_Source Code/31_QT/MediatorMVAQt/core/CMakeLists.txt" ],
+	"CMAKE_SOURCE_DIR" : "D:/3_Source Code/31_QT/MediatorMVAQt",
+	"CROSS_CONFIG" : false,
+	"DEP_FILE" : "D:/3_Source Code/31_QT/MediatorMVAQt/build/core/MediatorCore_autogen/deps",
+	"DEP_FILE_RULE_NAME" : "MediatorCore_autogen/timestamp",
+	"HEADERS" : 
+	[
+		[
+			"D:/3_Source Code/31_QT/MediatorMVAQt/core/actor/ActorObserve.h",
+			"MU",
+			"S2F74K5HCR/moc_ActorObserve.cpp",
+			null
+		],
+		[
+			"D:/3_Source Code/31_QT/MediatorMVAQt/core/binding/Binding.h",
+			"MU",
+			"YURQU3T53E/moc_Binding.cpp",
+			null
+		],
+		[
+			"D:/3_Source Code/31_QT/MediatorMVAQt/core/binding/BindingCommand.h",
+			"MU",
+			"YURQU3T53E/moc_BindingCommand.cpp",
+			null
+		],
+		[
+			"D:/3_Source Code/31_QT/MediatorMVAQt/core/binding/BindingCommandHelpers.h",
+			"MU",
+			"YURQU3T53E/moc_BindingCommandHelpers.cpp",
+			null
+		],
+		[
+			"D:/3_Source Code/31_QT/MediatorMVAQt/core/binding/BindingHelper.h",
+			"MU",
+			"YURQU3T53E/moc_BindingHelper.cpp",
+			null
+		],
+		[
+			"D:/3_Source Code/31_QT/MediatorMVAQt/core/binding/EventCommandFilter.h",
+			"MU",
+			"YURQU3T53E/moc_EventCommandFilter.cpp",
+			null
+		],
+		[
+			"D:/3_Source Code/31_QT/MediatorMVAQt/core/command/DispatcherCommand.h",
+			"MU",
+			"LTLVFUOEFO/moc_DispatcherCommand.cpp",
+			null
+		],
+		[
+			"D:/3_Source Code/31_QT/MediatorMVAQt/core/command/ICommand.h",
+			"MU",
+			"LTLVFUOEFO/moc_ICommand.cpp",
+			null
+		],
+		[
+			"D:/3_Source Code/31_QT/MediatorMVAQt/core/command/SimpleCommand.h",
+			"MU",
+			"LTLVFUOEFO/moc_SimpleCommand.cpp",
+			null
+		],
+		[
+			"D:/3_Source Code/31_QT/MediatorMVAQt/core/mediator/Mediator.h",
+			"MU",
+			"J3OSQKNXQN/moc_Mediator.cpp",
+			null
+		],
+		[
+			"D:/3_Source Code/31_QT/MediatorMVAQt/core/mediator/Observe.h",
+			"MU",
+			"J3OSQKNXQN/moc_Observe.cpp",
+			null
+		],
+		[
+			"D:/3_Source Code/31_QT/MediatorMVAQt/core/mediator/Topic.h",
+			"MU",
+			"J3OSQKNXQN/moc_Topic.cpp",
+			null
+		],
+		[
+			"D:/3_Source Code/31_QT/MediatorMVAQt/core/mediator/TopicMeta.h",
+			"MU",
+			"J3OSQKNXQN/moc_TopicMeta.cpp",
+			null
+		],
+		[
+			"D:/3_Source Code/31_QT/MediatorMVAQt/core/mediator/TopicRegistry.h",
+			"MU",
+			"J3OSQKNXQN/moc_TopicRegistry.cpp",
+			null
+		],
+		[
+			"D:/3_Source Code/31_QT/MediatorMVAQt/core/policy/AlwaysPolicy.h",
+			"MU",
+			"UZYPO632FN/moc_AlwaysPolicy.cpp",
+			null
+		],
+		[
+			"D:/3_Source Code/31_QT/MediatorMVAQt/core/policy/ISubscriptionPolicy.h",
+			"MU",
+			"UZYPO632FN/moc_ISubscriptionPolicy.cpp",
+			null
+		],
+		[
+			"D:/3_Source Code/31_QT/MediatorMVAQt/core/policy/ValueChangedPolicy.h",
+			"MU",
+			"UZYPO632FN/moc_ValueChangedPolicy.cpp",
+			null
+		]
+	],
+	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
+	"INCLUDE_DIR" : "D:/3_Source Code/31_QT/MediatorMVAQt/build/core/MediatorCore_autogen/include",
+	"INCLUDE_DIR_Debug" : "D:/3_Source Code/31_QT/MediatorMVAQt/build/core/MediatorCore_autogen/include_Debug",
+	"INCLUDE_DIR_RelWithDebInfo" : "D:/3_Source Code/31_QT/MediatorMVAQt/build/core/MediatorCore_autogen/include_RelWithDebInfo",
+	"INCLUDE_DIR_Release" : "D:/3_Source Code/31_QT/MediatorMVAQt/build/core/MediatorCore_autogen/include_Release",
+	"MOC_COMPILATION_FILE" : "D:/3_Source Code/31_QT/MediatorMVAQt/build/core/MediatorCore_autogen/mocs_compilation.cpp",
+	"MOC_COMPILATION_FILE_Debug" : "D:/3_Source Code/31_QT/MediatorMVAQt/build/core/MediatorCore_autogen/mocs_compilation_Debug.cpp",
+	"MOC_COMPILATION_FILE_RelWithDebInfo" : "D:/3_Source Code/31_QT/MediatorMVAQt/build/core/MediatorCore_autogen/mocs_compilation_RelWithDebInfo.cpp",
+	"MOC_COMPILATION_FILE_Release" : "D:/3_Source Code/31_QT/MediatorMVAQt/build/core/MediatorCore_autogen/mocs_compilation_Release.cpp",
+	"MOC_DEFINITIONS" : [],
+	"MOC_DEFINITIONS_Debug" : [ "QT_CORE_LIB", "QT_GUI_LIB", "QT_WIDGETS_LIB", "WIN32" ],
+	"MOC_DEFINITIONS_RelWithDebInfo" : [ "QT_CORE_LIB", "QT_GUI_LIB", "QT_NO_DEBUG", "QT_WIDGETS_LIB", "WIN32" ],
+	"MOC_DEFINITIONS_Release" : [ "QT_CORE_LIB", "QT_GUI_LIB", "QT_NO_DEBUG", "QT_WIDGETS_LIB", "WIN32" ],
+	"MOC_DEPEND_FILTERS" : 
+	[
+		[
+			"Q_PLUGIN_METADATA",
+			"[\n][ \t]*Q_PLUGIN_METADATA[ \t]*\\([^\\)]*FILE[ \t]*\"([^\"]+)\""
+		]
+	],
+	"MOC_INCLUDES" : [],
+	"MOC_INCLUDES_Debug" : 
+	[
+		"D:/3_Source Code/31_QT/MediatorMVAQt/core",
+		"D:/3_Source Code/31_QT/MediatorMVAQt",
+		"C:/Qt/5.15.2/msvc2019/include",
+		"C:/Qt/5.15.2/msvc2019/include/QtCore",
+		"C:/Qt/5.15.2/msvc2019/mkspecs/win32-msvc",
+		"C:/Qt/5.15.2/msvc2019/include/QtWidgets",
+		"C:/Qt/5.15.2/msvc2019/include/QtGui",
+		"C:/Qt/5.15.2/msvc2019/include/QtANGLE"
+	],
+	"MOC_INCLUDES_RelWithDebInfo" : 
+	[
+		"D:/3_Source Code/31_QT/MediatorMVAQt/core",
+		"D:/3_Source Code/31_QT/MediatorMVAQt",
+		"C:/Qt/5.15.2/msvc2019/include",
+		"C:/Qt/5.15.2/msvc2019/include/QtCore",
+		"C:/Qt/5.15.2/msvc2019/mkspecs/win32-msvc",
+		"C:/Qt/5.15.2/msvc2019/include/QtWidgets",
+		"C:/Qt/5.15.2/msvc2019/include/QtGui",
+		"C:/Qt/5.15.2/msvc2019/include/QtANGLE"
+	],
+	"MOC_INCLUDES_Release" : 
+	[
+		"D:/3_Source Code/31_QT/MediatorMVAQt/core",
+		"D:/3_Source Code/31_QT/MediatorMVAQt",
+		"C:/Qt/5.15.2/msvc2019/include",
+		"C:/Qt/5.15.2/msvc2019/include/QtCore",
+		"C:/Qt/5.15.2/msvc2019/mkspecs/win32-msvc",
+		"C:/Qt/5.15.2/msvc2019/include/QtWidgets",
+		"C:/Qt/5.15.2/msvc2019/include/QtGui",
+		"C:/Qt/5.15.2/msvc2019/include/QtANGLE"
+	],
+	"MOC_MACRO_NAMES" : [ "Q_OBJECT", "Q_GADGET", "Q_NAMESPACE", "Q_NAMESPACE_EXPORT" ],
+	"MOC_OPTIONS" : [],
+	"MOC_PATH_PREFIX" : false,
+	"MOC_PREDEFS_CMD" : [],
+	"MOC_PREDEFS_FILE" : "",
+	"MOC_RELAXED_MODE" : false,
+	"MOC_SKIP" : [],
+	"MULTI_CONFIG" : true,
+	"PARALLEL" : 16,
+	"PARSE_CACHE_FILE" : "D:/3_Source Code/31_QT/MediatorMVAQt/build/core/CMakeFiles/MediatorCore_autogen.dir/ParseCache.txt",
+	"PARSE_CACHE_FILE_Debug" : "D:/3_Source Code/31_QT/MediatorMVAQt/build/core/CMakeFiles/MediatorCore_autogen.dir/ParseCache_Debug.txt",
+	"PARSE_CACHE_FILE_RelWithDebInfo" : "D:/3_Source Code/31_QT/MediatorMVAQt/build/core/CMakeFiles/MediatorCore_autogen.dir/ParseCache_RelWithDebInfo.txt",
+	"PARSE_CACHE_FILE_Release" : "D:/3_Source Code/31_QT/MediatorMVAQt/build/core/CMakeFiles/MediatorCore_autogen.dir/ParseCache_Release.txt",
+	"QT_MOC_EXECUTABLE" : "C:/Qt/5.15.2/msvc2019/bin/moc.exe",
+	"QT_UIC_EXECUTABLE" : "C:/Qt/5.15.2/msvc2019/bin/uic.exe",
+	"QT_VERSION_MAJOR" : 5,
+	"QT_VERSION_MINOR" : 15,
+	"SETTINGS_FILE" : "D:/3_Source Code/31_QT/MediatorMVAQt/build/core/CMakeFiles/MediatorCore_autogen.dir/AutogenUsed.txt",
+	"SETTINGS_FILE_Debug" : "D:/3_Source Code/31_QT/MediatorMVAQt/build/core/CMakeFiles/MediatorCore_autogen.dir/AutogenUsed_Debug.txt",
+	"SETTINGS_FILE_RelWithDebInfo" : "D:/3_Source Code/31_QT/MediatorMVAQt/build/core/CMakeFiles/MediatorCore_autogen.dir/AutogenUsed_RelWithDebInfo.txt",
+	"SETTINGS_FILE_Release" : "D:/3_Source Code/31_QT/MediatorMVAQt/build/core/CMakeFiles/MediatorCore_autogen.dir/AutogenUsed_Release.txt",
+	"SOURCES" : 
+	[
+		[
+			"D:/3_Source Code/31_QT/MediatorMVAQt/core/actor/ActorObserve.cpp",
+			"MU",
+			null
+		],
+		[
+			"D:/3_Source Code/31_QT/MediatorMVAQt/core/mediator/Mediator.cpp",
+			"MU",
+			null
+		],
+		[
+			"D:/3_Source Code/31_QT/MediatorMVAQt/core/mediator/Observe.cpp",
+			"MU",
+			null
+		],
+		[
+			"D:/3_Source Code/31_QT/MediatorMVAQt/core/mediator/Topic.cpp",
+			"MU",
+			null
+		],
+		[
+			"D:/3_Source Code/31_QT/MediatorMVAQt/core/mediator/TopicRegistry.cpp",
+			"MU",
+			null
+		]
+	],
+	"UIC_OPTIONS" : [],
+	"UIC_SEARCH_PATHS" : [],
+	"UIC_SKIP" : [],
+	"UIC_UI_FILES" : [],
+	"USE_BETTER_GRAPH" : false,
+	"VERBOSITY" : 0
+}

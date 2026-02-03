@@ -1,5 +1,6 @@
 #include "SensorViewModel.h"
 #include "core/policy/AlwaysPolicy.h"
+#include "common/TestStruct.h"
 
 SensorViewModel::SensorViewModel(QObject* parent)
     : BaseViewModel(parent)
@@ -52,6 +53,13 @@ void SensorViewModel::publishCommand()
     int temperature = QRandomGenerator::global()->bounded(20, 80);
     qDebug() << "[VM] publish temperature =" << temperature;
     Publish("sensor/temperature", temperature);
+    SensorSample sample("S1", 36.5, 101.3);
+
+    // ✅ 关键：结构体塞进 QVariant
+    QVariant payload = QVariant::fromValue(sample);
+
+    Publish("sensor/sample", payload);   // 你框架里 Publish(tag, QVariant)
+
 }
 
 void SensorViewModel::SetupSubscriptions()

@@ -143,31 +143,42 @@ void ModbusMasterModel::writeFloat(
     m_client->sendWriteRequest(unit, unitId);
 }
 
-void ModbusMasterModel::writeBit(
-    int unitId,
-    int reg,
-    int bit,
-    bool on)
+// 假设你已经有：QHash<int, quint16> m_hrCache;  // key = reg(1-based or 0-based你统一)
+// 并且在 read reply 的时候更新它
+
+void ModbusMasterModel::writeBit(int unitId, int reg1Based, int bit, bool on)
 {
-    /*
-     * 写 bit 的正确方式：
-     * - 读取当前 word
-     * - 修改目标 bit
-     * - 写回整个 word
-     */
-    QModbusDataUnit unit(
-        QModbusDataUnit::HoldingRegisters,
-        reg - 1,
-        1);
+    const int addr0 = reg1Based - 1;   // QtModbus 0-based 地址
+    const int cacheKey = reg1Based;    // 你也可以用 addr0，关键是统一
 
-    quint16 value = unit.value(0);
+    auto doWrite = [&](quint16 currentWord){
+        quint16 value = currentWord;
+        if (on) value |=  (quint16(1) << bit);
+        else    value &= ~(quint16(1) << bit);
 
-    if (on)
-        value |= (1 << bit);
-    else
-        value &= ~(1 << bit);
+        QModbusDataUnit unit(QModbusDataUnit::HoldingRegisters, addr0, 1);
+        unit.setValue(0, value);
+        m_client->sendWriteRequest(unit, unitId);
+    };
 
-    unit.setValue(0, value);
+    if (m_hrCache.contains(cacheKey)) {
+        doWrite(m_hrCache.value(cacheKey));
+        return;
+    }
 
-    m_client->sendWriteRequest(unit, unitId);
+    // 缓存没有：先读一次，再在回调里改写
+    QModbusDataUnit readUnit(QModbusDataUnit::HoldingRegisters, addr0, 1);
+    if (auto* reply = m_client->sendReadRequest(readUnit, unitId)) {
+        connect(reply, &QModbusReply::finished, this, [=]() mutable {
+            reply->deleteLater();
+            if (reply->error() != QModbusDevice::NoError) return;
+
+            const auto result = reply->result();
+            quint16 currentWord = result.value(0);
+            // 更新缓存
+            m_hrCache[cacheKey] = currentWord;
+            // 再写
+            doWrite(currentWord);
+        });
+    }
 }

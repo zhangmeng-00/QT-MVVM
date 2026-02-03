@@ -1,0 +1,12 @@
+{
+	"Configs" : 
+	[
+		"Debug"
+	],
+	"InstallScripts" : 
+	[
+		"D:/3_Source Code/31_QT/MediatorMVAQt/build/cmake_install.cmake",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/build/core/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
