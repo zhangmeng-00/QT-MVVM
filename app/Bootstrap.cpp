@@ -7,6 +7,7 @@
 #include "model/SensorModel.h"
 #include "model/LoggerActor.h"
 #include "model/SQLiteRecorderActor.h"
+#include "model/LogModel.h"
 
 #include <QDebug>
 
@@ -34,6 +35,7 @@ CoreObjects InstallAll(AppContext& ctx)
     // 1) 创建 Model（业务层，全局共享）
     g_core.userModel   = new UserModel(&ctx);
     g_core.sensorModel = new SensorModel(&ctx);
+    g_core.logModel    = new LogModel(&ctx, true); // 让LogModel单独运行在一个线程
 
     // 2) 创建基础设施（日志/记录）
     g_core.logger   = new LoggerActor(&ctx);
@@ -42,12 +44,14 @@ CoreObjects InstallAll(AppContext& ctx)
     // 3) 统一 parent（确保生命周期由 AppContext 托管）
     SetParentIfQObject(g_core.userModel,   &ctx);
     SetParentIfQObject(g_core.sensorModel, &ctx);
+    SetParentIfQObject(g_core.logModel,    &ctx);
     SetParentIfQObject(g_core.logger,      &ctx);
     SetParentIfQObject(g_core.recorder,    &ctx);
 
     // 4) 接入 Mediator（注意：如果你的 AppContext::ConnectObserve 已做线程安全 invoke，更稳）
     ctx.ConnectObserve(g_core.userModel);
     ctx.ConnectObserve(g_core.sensorModel);
+    ctx.ConnectObserve(g_core.logModel);
     ctx.ConnectObserve(g_core.logger);
     ctx.ConnectObserve(g_core.recorder);
 
@@ -65,5 +69,6 @@ void Shutdown(AppContext& ctx)
 
 UserModel* userModel() { return g_core.userModel; }
 SensorModel* sensorModel() { return g_core.sensorModel; }
+LogModel* logModel() { return g_core.logModel; }
 
 } // namespace Bootstrap

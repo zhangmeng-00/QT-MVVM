@@ -32,12 +32,17 @@ add_executable(${PROJECT_NAME}
 
     view/TraceViewer.h
     view/TraceViewer.cpp
+    view/LogListView.h
+    view/LogListView.cpp
+    view/LogListView.ui
 
     viewmodel/BaseViewModel.h
     viewmodel/UserViewModel.h
     viewmodel/UserViewModel.cpp
     viewmodel/SensorViewModel.h
     viewmodel/SensorViewModel.cpp
+    viewmodel/LogListViewModel.h
+    viewmodel/LogListViewModel.cpp
 
     model/BaseModel.h
     model/BaseModel.cpp
@@ -49,6 +54,9 @@ add_executable(${PROJECT_NAME}
     model/RecorderActor.h
     model/SQLiteRecorderActor.h
     model/SQLiteRecorderActor.cpp
+    model/LogEntry.h
+    model/LogModel.h
+    model/LogModel.cpp
 
     model/modbus/ModbusMasterModel.cpp
     model/modbus/ModbusMasterModel.h

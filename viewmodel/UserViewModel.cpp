@@ -1,5 +1,6 @@
 #include "UserViewModel.h"
 #include "core/policy/AlwaysPolicy.h"
+#include <cmath>
 
 // 构造函数：创建统一命令 + 注册所有 action + （可选）订阅状态
 UserViewModel::UserViewModel(QObject* parent)
@@ -31,6 +32,8 @@ void UserViewModel::RegisterActions()
                                                    qDebug() << "[UserVM] publish random score =" << score;
 
                                                    Publish("user/score", score);
+                                                   log("UserViewModel", LogLevel::INFO,
+                                                               QString("Published random score %1").arg(score));
                                                },
                                                [this](const QVariantList&) -> bool {
                                                    // 例：必须先收到 user/level 才允许发布

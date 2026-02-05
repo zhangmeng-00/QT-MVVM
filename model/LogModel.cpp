@@ -8,12 +8,14 @@
 using namespace std;
 
 LogModel::LogModel(QObject* parent, bool useSeparateThread)
-    : BaseModel(parent, useSeparateThread),
+    : ActorObserve(parent, useSeparateThread),
       m_dbPath("./logs.db")
 {
     // 初始化数据库
     if (!initDatabase()) {
         qCritical() << "Failed to initialize database";
+    } else {
+        publishLogList();
     }
 }
 
@@ -103,8 +105,9 @@ bool LogModel::initDatabase()
     QString createLogEntriesTable = R"(
         CREATE TABLE IF NOT EXISTS log_entries (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
-            level_id INTEGER NOT NULL,
+            -- 日志记录时间，默认当前时间本地时间   
+            timestamp DATETIME DEFAULT (datetime('now','localtime')),
+            level_id INTEGER NOT NULL,  
             message TEXT NOT NULL,
             source_id INTEGER NOT NULL,
             app_id INTEGER NOT NULL,
@@ -221,7 +224,7 @@ QList<LogEntry> LogModel::queryLatestLogs()
     QSqlQuery query(m_db);
     // 查询最新100条日志，按时间倒序，关联相关表
     QString querySql = R"(
-        SELECT ls.logger_name, ll.id - 1, le.message 
+        SELECT le.timestamp, ls.logger_name, ll.id - 1, le.message 
         FROM log_entries le
         JOIN log_sources ls ON le.source_id = ls.id
         JOIN log_levels ll ON le.level_id = ll.id
@@ -236,9 +239,10 @@ QList<LogEntry> LogModel::queryLatestLogs()
     
     while (query.next()) {
         LogEntry logEntry;
-        logEntry.modelName = query.value(0).toString();
-        logEntry.logLevel = static_cast<LogLevel>(query.value(1).toInt());
-        logEntry.logMessage = query.value(2).toString();
+        logEntry.timestamp = query.value(0).toString();
+        logEntry.modelName = query.value(1).toString();
+        logEntry.logLevel = static_cast<LogLevel>(query.value(2).toInt());
+        logEntry.logMessage = query.value(3).toString();
         logs.append(logEntry);
     }
     

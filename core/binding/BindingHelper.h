@@ -6,6 +6,8 @@
 #include <QVariant>
 #include <QThread>
 #include <QDebug>
+#include <QAbstractItemView>
+#include <QAbstractItemModel>
 
 /*
  * BindingHelper
@@ -49,7 +51,14 @@ public slots:
         }
 
         QVariant value = m_viewModel->property(m_vmProperty);
-        m_view->setProperty(m_viewProperty, value);
+        if (qobject_cast<QAbstractItemView*>(m_view)
+            && QByteArray(m_viewProperty) == QByteArray("model")) {
+            QObject* obj = value.value<QObject*>();
+            auto* model = qobject_cast<QAbstractItemModel*>(obj);
+            static_cast<QAbstractItemView*>(m_view)->setModel(model);
+        } else {
+            m_view->setProperty(m_viewProperty, value);
+        }
     }
 
 private:

@@ -9,6 +9,7 @@ class UserModel;
 class SensorModel;
 class LoggerActor;
 class SQLiteRecorderActor;
+class LogModel;
 
 namespace Bootstrap {
 
@@ -18,6 +19,7 @@ struct CoreObjects {
     SensorModel* sensorModel = nullptr;
     LoggerActor* logger = nullptr;
     SQLiteRecorderActor* recorder = nullptr;
+    LogModel* logModel = nullptr;
 };
 
 // 安装/装配（幂等，多次调用只会创建一次）
@@ -29,5 +31,6 @@ void Shutdown(AppContext& ctx);
 // 便捷 getter（可选）
 UserModel* userModel();
 SensorModel* sensorModel();
+LogModel* logModel();
 
 } // namespace Bootstrap

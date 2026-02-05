@@ -21,7 +21,7 @@ void UserModel::ObserveData(const QString &tag, const QVariant &value)
             m_level = newLevel;
             Publish("user/level", QVariant::fromValue(m_level));
             log("UserModel",
-                LogLevel::INFO,
+                LogLevel::WARN,
                 QString("User level updated to %1").arg(m_level));
         }
     }

@@ -5,6 +5,7 @@
 #include "app/Bootstrap.h"
 
 #include "view/TraceViewer.h"
+#include "view/LogListView.h"
 #include "core/binding/BindingCommandHelpers.h"
 
 #include <QAbstractButton>

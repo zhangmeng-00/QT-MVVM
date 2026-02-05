@@ -2,6 +2,7 @@
 
 #include "BaseModel.h"
 #include "LogEntry.h"
+#include "actor/ActorObserve.h"
 #include <QObject>
 #include <QString>
 #include <QVariant>
@@ -21,7 +22,7 @@
  * - 将日志数据存储到 SQLite 数据库
  * - 查询最新100条日志数据并发布为 user/logList
  */
-class LogModel : public BaseModel {
+class LogModel : public ActorObserve {
     Q_OBJECT
 public:
     /*

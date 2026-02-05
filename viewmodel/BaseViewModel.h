@@ -1,6 +1,9 @@
 #pragma once
 #include <QObject>
+#include <QDateTime>
+
 #include "actor/ActorObserve.h"
+#include "model/LogEntry.h"
 
 /*
  * BaseViewModel
@@ -14,6 +17,25 @@ public:
     explicit BaseViewModel(QObject* parent = nullptr)
         : ActorObserve(parent)
     {}
+
+protected:
+    /*
+     * log
+     * --------------------------------------------------------
+     * 默认日志发布：user/logging（用于 ViewModel）
+     */
+    virtual void log(const QString& modelName,
+                     LogLevel level,
+                     const QString& message)
+    {
+        LogEntry logEntry;
+        logEntry.timestamp = QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss");
+        logEntry.modelName = modelName;
+        logEntry.logLevel = level;
+        logEntry.logMessage = message;
+
+        Publish("user/logging", QVariant::fromValue<LogEntry>(logEntry));
+    }
 
 protected:
            // 子类实现 ObserveData(tag, value)

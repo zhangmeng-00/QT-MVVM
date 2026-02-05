@@ -54,9 +54,11 @@ void AppContext::ConnectObserve(Observe* obs)
     // 统一切到 mediator 线程执行
     InvokeOnMediator([this, obs]() {
         m_mediator->ConnectObserve(obs);
-        // ✅ 关键：连接后订阅
-        obs->SetupSubscriptions();
-    });
+        // ✅ 关键：连接后回自己线程订阅
+        QMetaObject::invokeMethod(obs, [obs]() {
+            obs->SetupSubscriptions();
+        }, Qt::QueuedConnection);
+    }); 
 }
 
 void AppContext::shutdownMediatorThread()

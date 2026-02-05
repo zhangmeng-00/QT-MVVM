@@ -222,6 +222,17 @@
      </widget>
     </item>
 
+        <item>
+         <widget class="QGroupBox" name="groupLogList">
+            <property name="title"><string>Log List</string></property>
+            <layout class="QVBoxLayout" name="verticalLayoutLogList">
+             <item>
+                <widget class="LogListView" name="logListView"/>
+             </item>
+            </layout>
+         </widget>
+        </item>
+
     <item>
      <spacer name="verticalSpacerBottom">
       <property name="orientation"><enum>Qt::Vertical</enum></property>
@@ -237,6 +248,13 @@
   <widget class="QMenuBar" name="menubar"/>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>LogListView</class>
+   <extends>QWidget</extends>
+   <header>view/LogListView.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

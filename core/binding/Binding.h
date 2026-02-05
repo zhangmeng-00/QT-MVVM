@@ -5,6 +5,8 @@
 #include <QMetaProperty>
 #include <QMetaMethod>
 #include <QDebug>
+#include <QAbstractItemView>
+#include <QAbstractItemModel>
 
 #include "BindingHelper.h"
 
@@ -26,10 +28,15 @@ inline void BindProperty(QObject* view,
     }
 
     // 1️⃣ 初始同步
-    view->setProperty(
-        viewProperty,
-        viewModel->property(vmProperty)
-        );
+    const QVariant initialValue = viewModel->property(vmProperty);
+    if (qobject_cast<QAbstractItemView*>(view)
+        && QByteArray(viewProperty) == QByteArray("model")) {
+        QObject* obj = initialValue.value<QObject*>();
+        auto* model = qobject_cast<QAbstractItemModel*>(obj);
+        static_cast<QAbstractItemView*>(view)->setModel(model);
+    } else {
+        view->setProperty(viewProperty, initialValue);
+    }
 
     // 2️⃣ 查找 ViewModel 的属性
     const QMetaObject* mo = viewModel->metaObject();
