@@ -1,6 +1,6 @@
 #pragma once
 
-#include "BaseModel.h"
+#include "core/model/BaseModel.h"
 #include <QDebug>
 
 /*

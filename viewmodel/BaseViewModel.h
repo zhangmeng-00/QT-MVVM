@@ -2,8 +2,8 @@
 #include <QObject>
 #include <QDateTime>
 
-#include "actor/ActorObserve.h"
-#include "model/LogEntry.h"
+#include "core/actor/ActorObserve.h"
+#include "core/model/LogEntry.h"
 
 /*
  * BaseViewModel

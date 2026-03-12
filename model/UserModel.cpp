@@ -6,8 +6,9 @@
 
 void UserModel::SetupSubscriptions()
 {
-  Subscribe("user/score", std::make_shared<AlwaysPolicy>());
-  Subscribe("sensor/sample", std::make_shared<AlwaysPolicy>());
+  // 使用带QVariant的订阅，明确指定数据类型
+  Subscribe("user/score", QVariant(0), std::make_shared<AlwaysPolicy>());
+  Subscribe("sensor/sample", QVariant::fromValue(SensorSample()), std::make_shared<AlwaysPolicy>());
 }
 
 void UserModel::ObserveData(const QString &tag, const QVariant &value)

@@ -38,8 +38,16 @@ private slots:
      * 处理订阅请求（来自任意线程）
      * ✅ policy 直接由信号传入，杜绝异步串台
      */
+
+    // 3参数版本（向后兼容）
     void OnSubscribe(Observe* observer,
                      const QString& tag,
+                     PolicyPtr policy);
+
+    // 4参数版本（带value，用于类型索引）
+    void OnSubscribe(Observe* observer,
+                     const QString& tag,
+                     const QVariant& value,
                      PolicyPtr policy);
 
     void OnUnsubscribe(Observe* obs, const QString& tag);
@@ -54,16 +62,25 @@ private slots:
 
 private:
     /*
+     * findTopic
+     * --------------------------------------------------------
+     * 查找Topic（不创建）
+     */
+    std::shared_ptr<Topic> findTopic(const QString& typeName,
+                                     const QString& tag);
+
+    /*
      * getOrCreateTopic
      * --------------------------------------------------------
-     * 获取或创建 Topic
+     * 获取或创建 Topic（按typeName + tag索引）
      */
-    std::shared_ptr<Topic> getOrCreateTopic(const QString& tag);
-    // ⭐ Sticky 判断（可演进）
+    std::shared_ptr<Topic> getOrCreateTopic(const QString& typeName,
+                                             const QString& tag);
 
 private:
     QMutex m_mutex; // 保护 topics
-    QMap<QString, std::shared_ptr<Topic>> m_topics; // tag -> Topic
-    // ⭐ Sticky 状态缓存
-    QMap<QString, QVariant> m_stateCache;
+    // 两层Map：第一层typeName -> 第二层tag -> Topic
+    QMap<QString, QMap<QString, std::shared_ptr<Topic>>> m_topics;
+    // 两层Map：第一层typeName -> 第二层tag -> cached value
+    QMap<QString, QMap<QString, QVariant>> m_stateCache;
 };

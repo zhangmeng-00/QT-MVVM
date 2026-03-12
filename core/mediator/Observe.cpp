@@ -13,7 +13,16 @@ void Observe::Subscribe(const QString& tag, PolicyPtr policy)
     qDebug() << "[Observe] Subscribe request:" << this << tag;
 
     // ✅ policy 直接跟信号走，避免 pendingPolicy 被后一次 Subscribe 覆盖
-    emit RequestSubscribe(this, tag, policy);
+    emit RequestSubscribe(this, tag, QVariant(), policy);
+}
+
+void Observe::Subscribe(const QString& tag, const QVariant& value, PolicyPtr policy)
+{
+    qDebug() << "[Observe] Subscribe request with value:" << this << tag
+             << "type:" << value.typeName();
+
+    // 带value的订阅，用于类型索引
+    emit RequestSubscribe(this, tag, value, policy);
 }
 
 void Observe::Unsubscribe(const QString& tag)

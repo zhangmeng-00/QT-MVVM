@@ -114,7 +114,8 @@ LogListViewModel::LogListViewModel(QObject* parent)
 
 void LogListViewModel::SetupSubscriptions()
 {
-    Subscribe("user/logList", std::make_shared<AlwaysPolicy>());
+    // 使用带QVariant的订阅，明确指定数据类型
+    Subscribe("user/logList", QVariant::fromValue(QList<LogEntry>()), std::make_shared<AlwaysPolicy>());
 }
 
 void LogListViewModel::ObserveData(const QString& tag, const QVariant& value)

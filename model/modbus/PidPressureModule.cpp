@@ -22,8 +22,9 @@ PidPressureModule::PidPressureModule(int instanceId,
      * - UI / ViewModel 只能 Publish cmd
      * - Model 才能 Subscribe 并执行
      */
-    Subscribe(topicBase() + "/cmd/set_sp", std::make_shared<AlwaysPolicy>());
-    Subscribe(topicBase() + "/cmd/set_enable", std::make_shared<AlwaysPolicy>());
+    // 使用带QVariant的订阅，明确指定数据类型
+    Subscribe(topicBase() + "/cmd/set_sp", QVariant(0.0), std::make_shared<AlwaysPolicy>());
+    Subscribe(topicBase() + "/cmd/set_enable", QVariant(false), std::make_shared<AlwaysPolicy>());
 }
 
 QModbusDataUnit PidPressureModule::buildReadUnit()

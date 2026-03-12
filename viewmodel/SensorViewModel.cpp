@@ -69,7 +69,8 @@ void SensorViewModel::publishCommand()
 
 void SensorViewModel::SetupSubscriptions()
 {
-    Subscribe("sensor/temperature", std::make_shared<AlwaysPolicy>());
+    // 使用带QVariant的订阅，明确指定数据类型
+    Subscribe("sensor/temperature", QVariant(0), std::make_shared<AlwaysPolicy>());
 }
 
 void SensorViewModel::ObserveData(const QString& tag, const QVariant& value)
@@ -80,7 +81,8 @@ void SensorViewModel::ObserveData(const QString& tag, const QVariant& value)
 
         // 你原来这段我保留（演示用途）
         Publish("user/level", 3);
-        Subscribe("user/level", std::make_shared<AlwaysPolicy>());
+        // 使用带QVariant的订阅，明确指定数据类型
+        Subscribe("user/level", QVariant(0), std::make_shared<AlwaysPolicy>());
         return;
     }
 

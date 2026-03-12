@@ -201,8 +201,9 @@ void UserViewModel::RefreshCommandStates()
 
 void UserViewModel::SetupSubscriptions()
 {
-    Subscribe("user/score", std::make_shared<AlwaysPolicy>());
-    Subscribe("user/level", std::make_shared<AlwaysPolicy>());
+    // 使用带QVariant的订阅，明确指定数据类型
+    Subscribe("user/score", QVariant(0), std::make_shared<AlwaysPolicy>());
+    Subscribe("user/level", QVariant(0), std::make_shared<AlwaysPolicy>());
 }
 
 // ObserveData：用于接收来自 Model / 其它模块发布的状态，更新显示用 Q_PROPERTY

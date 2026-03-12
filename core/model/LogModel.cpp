@@ -31,8 +31,8 @@ LogModel::~LogModel()
 
 void LogModel::SetupSubscriptions()
 {
-    // 订阅 user/logging 标签，使用 AlwaysPolicy 确保所有消息都被处理
-    Subscribe("user/logging", std::make_shared<AlwaysPolicy>());
+    // 使用带QVariant的订阅，明确指定数据类型
+    Subscribe("user/logging", QVariant::fromValue(LogEntry()), std::make_shared<AlwaysPolicy>());
 }
 
 void LogModel::ObserveData(const QString& tag, const QVariant& value)

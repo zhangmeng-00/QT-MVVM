@@ -29,8 +29,15 @@ void Mediator::ConnectObserve(Observe* obs)
      * - Observe 可能在 UI 线程
      * - Mediator 可能在独立线程
      */
-    connect(obs, &Observe::RequestSubscribe,
-            this, &Mediator::OnSubscribe,
+
+    // 连接带value的订阅信号
+    connect(obs, SIGNAL(RequestSubscribe(Observe*,QString,QVariant,PolicyPtr)),
+            this, SLOT(OnSubscribe(Observe*,QString,QVariant,PolicyPtr)),
+            Qt::QueuedConnection);
+
+    // 连接旧版3参数信号（向后兼容）
+    connect(obs, SIGNAL(RequestSubscribe(Observe*,QString,PolicyPtr)),
+            this, SLOT(OnSubscribe(Observe*,QString,PolicyPtr)),
             Qt::QueuedConnection);
 
     connect(obs, &Observe::RequestPublish,
@@ -42,13 +49,33 @@ void Mediator::ConnectObserve(Observe* obs)
 
 }
 /*
- * OnSubscribe
+ * OnSubscribe - 3参数版本（向后兼容）
  */
 void Mediator::OnSubscribe(Observe* observer,
                            const QString& tag,
                            PolicyPtr policy)
 {
-    auto topic = getOrCreateTopic(tag);
+    // 转发给4参数版本，传入空QVariant
+    OnSubscribe(observer, tag, QVariant(), policy);
+}
+
+/*
+ * OnSubscribe - 统一处理函数（带value）
+ */
+void Mediator::OnSubscribe(Observe* observer,
+                           const QString& tag,
+                           const QVariant& value,
+                           PolicyPtr policy)
+{
+    // 获取类型名用于索引
+    QString typeName = value.typeName();
+    if (typeName.isEmpty()) {
+        typeName = "__empty__"; // 空类型使用默认键
+    }
+
+    qDebug() << "[Mediator] OnSubscribe:" << tag << "type:" << typeName;
+
+    auto topic = getOrCreateTopic(typeName, tag);
     topic->AddSubscriber(observer, policy);
 
     // ⭐ Sticky Policy：新订阅者立刻收到当前状态
@@ -58,10 +85,13 @@ void Mediator::OnSubscribe(Observe* observer,
 
         {
             QMutexLocker locker(&m_mutex);
-            auto it = m_stateCache.find(tag);
-            if (it != m_stateCache.end()) {
-                cached = it.value();
-                has = true;
+            auto typeIt = m_stateCache.find(typeName);
+            if (typeIt != m_stateCache.end()) {
+                auto it = typeIt.value().find(tag);
+                if (it != typeIt.value().end()) {
+                    cached = it.value();
+                    has = true;
+                }
             }
         }
 
@@ -81,21 +111,31 @@ void Mediator::OnSubscribe(Observe* observer,
 }
 
 /*
- * OnUnsubscribe
+ * OnUnsubscribe - 需要获取typeName才能正确退订
+ * 注意：由于信号不携带value，这里暂时无法确定typeName
+ * 解决方案：遍历所有typeName查找匹配的tag
  */
 void Mediator::OnUnsubscribe(Observe* obs, const QString& tag)
 {
     QMutexLocker locker(&m_mutex);
 
-    auto it = m_topics.find(tag);
-    if (it == m_topics.end())
-        return;
+    // 遍历所有typeName查找匹配的topic
+    for (auto typeIt = m_topics.begin(); typeIt != m_topics.end(); ++typeIt) {
+        auto it = typeIt.value().find(tag);
+        if (it != typeIt.value().end()) {
+            it.value()->RemoveSubscriber(obs);
 
-    it.value()->RemoveSubscriber(obs);   // ✅ QMap 正确访问
+            if (!it.value()->HasSubscriber()) {
+                qDebug() << "[Mediator] Remove empty topic:" << tag << "type:" << typeIt.key();
+                typeIt.value().erase(it);
+            }
 
-    if (!it.value()->HasSubscriber()) {
-        qDebug() << "[Mediator] Remove empty topic:" << tag;
-        m_topics.erase(it);
+            // 如果该typeName下没有更多topic，清理外层Map
+            if (typeIt.value().isEmpty()) {
+                m_topics.erase(typeIt);
+            }
+            return;
+        }
     }
 }
 
@@ -106,12 +146,38 @@ void Mediator::OnUnsubscribe(Observe* obs, const QString& tag)
 void Mediator::OnPublish(const QString& tag,
                          const QVariant& value)
 {
-    auto topic = getOrCreateTopic(tag);
+    // 获取类型名用于索引
+    QString typeName = value.typeName();
+    if (typeName.isEmpty()) {
+        typeName = "__empty__";
+    }
+
+    // ⭐ 修复：先尝试精确匹配，如果没找到则遍历所有typeName查找匹配的tag
+    // 这样可以兼容旧版订阅（QVariant为空）和新版订阅
+    auto topic = findTopic(typeName, tag);
+    if (!topic) {
+        // 精确匹配没找到，遍历所有typeName查找匹配的tag
+        QMutexLocker locker(&m_mutex);
+        for (auto typeIt = m_topics.begin(); typeIt != m_topics.end(); ++typeIt) {
+            auto it = typeIt.value().find(tag);
+            if (it != typeIt.value().end()) {
+                topic = it.value();
+                qDebug() << "[Mediator] Publish fallback: found topic in type:" << typeIt.key()
+                         << "for tag:" << tag;
+                break;
+            }
+        }
+    }
+
+    // 如果仍然没有topic，创建一个新的
+    if (!topic) {
+        topic = getOrCreateTopic(typeName, tag);
+    }
 
     // ⭐ 如果有 Sticky 订阅者，则缓存最后一次状态
     if (topic->HasStickySubscriber()) {
         QMutexLocker locker(&m_mutex);
-        m_stateCache[tag] = value;
+        m_stateCache[typeName][tag] = value;
     }
 
     // 正常事件分发
@@ -120,18 +186,47 @@ void Mediator::OnPublish(const QString& tag,
 
 
 /*
- * getOrCreateTopic
+ * findTopic - 查找Topic（不创建）
  */
-std::shared_ptr<Topic> Mediator::getOrCreateTopic(const QString& tag)
+std::shared_ptr<Topic> Mediator::findTopic(const QString& typeName,
+                                            const QString& tag)
 {
     QMutexLocker locker(&m_mutex);
 
-    auto it = m_topics.find(tag);
-    if (it != m_topics.end()) {
-        return it.value();   // ✅
+    auto typeIt = m_topics.find(typeName);
+    if (typeIt != m_topics.end()) {
+        auto it = typeIt.value().find(tag);
+        if (it != typeIt.value().end()) {
+            return it.value();
+        }
+    }
+    return nullptr;
+}
+
+
+/*
+ * getOrCreateTopic - 按typeName + tag索引
+ */
+std::shared_ptr<Topic> Mediator::getOrCreateTopic(const QString& typeName,
+                                                   const QString& tag)
+{
+    QMutexLocker locker(&m_mutex);
+
+    // 第一层：查找typeName
+    auto typeIt = m_topics.find(typeName);
+    if (typeIt != m_topics.end()) {
+        // 第二层：查找tag
+        auto it = typeIt.value().find(tag);
+        if (it != typeIt.value().end()) {
+            return it.value();
+        }
     }
 
+    // 创建新的Topic
     auto topic = std::make_shared<Topic>(tag);
-    m_topics.insert(tag, topic);
+
+    // 插入两层Map
+    m_topics[typeName][tag] = topic;
+
     return topic;
 }

@@ -6,7 +6,7 @@
 #include <QList>
 
 #include "viewmodel/BaseViewModel.h"
-#include "model/LogEntry.h"
+#include "core/model/LogEntry.h"
 
 class LogListTableModel : public QAbstractTableModel {
     Q_OBJECT
