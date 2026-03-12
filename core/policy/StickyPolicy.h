@@ -8,12 +8,10 @@
  */
 class StickyPolicy : public ISubscriptionPolicy {
 public:
-    bool ShouldExecute(const QVariant&, const QVariant&) override {
-        return true;
-    }
+    explicit StickyPolicy(bool replayLastValue = true)
+        : ISubscriptionPolicy(replayLastValue) {}
 
-    // 重发上一次值给新订阅者
-    bool ShouldReplayLastValue() const override {
+    bool ShouldExecute(const QVariant&, const QVariant&) override {
         return true;
     }
 };

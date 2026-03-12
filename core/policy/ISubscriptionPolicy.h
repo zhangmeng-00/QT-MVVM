@@ -9,13 +9,19 @@
  */
 class ISubscriptionPolicy {
 public:
+    explicit ISubscriptionPolicy(bool replayLastValue = false)
+        : m_replayLastValue(replayLastValue) {}
+
     virtual ~ISubscriptionPolicy() = default;
 
     virtual bool ShouldExecute(const QVariant& oldValue,
                                const QVariant& newValue) = 0;
 
     // 是否需要重发上一次值给新订阅者（Sticky）
-    virtual bool ShouldReplayLastValue() const { return false; }
+    virtual bool ShouldReplayLastValue() const { return m_replayLastValue; }
+
+protected:
+    bool m_replayLastValue{false};
 };
 
 /*
