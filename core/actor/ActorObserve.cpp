@@ -1,20 +1,34 @@
 #include "ActorObserve.h"
 #include <QMetaObject>
 #include <QThread>
+#include <QDebug>
 
 /*
  * 构造函数
  */
 ActorObserve::ActorObserve(QObject* parent, bool useSeparateThread)
-    : Observe(parent)
+    : Observe(nullptr)  // 暂时设置为空父对象，以便能移动到新线程
 {
+    qDebug() << "ActorObserve 构造函数 - 原始线程ID:" << QThread::currentThreadId()
+             << "useSeparateThread:" << useSeparateThread;
+
     if (useSeparateThread) {
         // 创建并启动单独的线程
-        m_thread = new QThread(this);
+        m_thread = new QThread(nullptr);  // 线程没有父对象
         // 将当前对象移到新线程
         moveToThread(m_thread);
+
+        // 连接线程启动信号，在线程启动后打印线程ID
+        connect(m_thread, &QThread::started, [this]() {
+            qDebug() << "ActorObserve 新线程已启动，线程ID:" << QThread::currentThreadId();
+            qDebug() << "LogModel 对象现在所在线程ID:" << thread()->currentThreadId();
+        });
+
         // 启动线程
         m_thread->start();
+    } else {
+        // 不使用单独线程时，设置正确的父对象
+        setParent(parent);
     }
 }
 

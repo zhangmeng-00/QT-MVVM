@@ -327,6 +327,30 @@ model\BaseModel.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\MediatorMVAQt.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\MediatorMVAQt.dir\model\BaseModel.cpp.s
 .PHONY : model\BaseModel.cpp.s
 
+model\LogModel.obj: model\LogModel.cpp.obj
+.PHONY : model\LogModel.obj
+
+# target to build an object file
+model\LogModel.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MediatorMVAQt.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\MediatorMVAQt.dir\model\LogModel.cpp.obj
+.PHONY : model\LogModel.cpp.obj
+
+model\LogModel.i: model\LogModel.cpp.i
+.PHONY : model\LogModel.i
+
+# target to preprocess a source file
+model\LogModel.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MediatorMVAQt.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\MediatorMVAQt.dir\model\LogModel.cpp.i
+.PHONY : model\LogModel.cpp.i
+
+model\LogModel.s: model\LogModel.cpp.s
+.PHONY : model\LogModel.s
+
+# target to generate assembly for a file
+model\LogModel.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MediatorMVAQt.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\MediatorMVAQt.dir\model\LogModel.cpp.s
+.PHONY : model\LogModel.cpp.s
+
 model\SQLiteRecorderActor.obj: model\SQLiteRecorderActor.cpp.obj
 .PHONY : model\SQLiteRecorderActor.obj
 
@@ -623,6 +647,9 @@ help:
 	@echo ... model/BaseModel.obj
 	@echo ... model/BaseModel.i
 	@echo ... model/BaseModel.s
+	@echo ... model/LogModel.obj
+	@echo ... model/LogModel.i
+	@echo ... model/LogModel.s
 	@echo ... model/SQLiteRecorderActor.obj
 	@echo ... model/SQLiteRecorderActor.i
 	@echo ... model/SQLiteRecorderActor.s

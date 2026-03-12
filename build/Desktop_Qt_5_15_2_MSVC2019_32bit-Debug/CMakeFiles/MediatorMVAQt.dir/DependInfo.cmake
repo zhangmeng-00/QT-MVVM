@@ -15,6 +15,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "C:/Users/89233/Downloads/MediatorMVAQT_with_pidtest/MediatorMVAQT/app/Bootstrap.cpp" "CMakeFiles/MediatorMVAQt.dir/app/Bootstrap.cpp.obj" "msvc" "CMakeFiles/MediatorMVAQt.dir/app/Bootstrap.cpp.obj.d"
   "C:/Users/89233/Downloads/MediatorMVAQT_with_pidtest/MediatorMVAQT/main.cpp" "CMakeFiles/MediatorMVAQt.dir/main.cpp.obj" "msvc" "CMakeFiles/MediatorMVAQt.dir/main.cpp.obj.d"
   "C:/Users/89233/Downloads/MediatorMVAQT_with_pidtest/MediatorMVAQT/model/BaseModel.cpp" "CMakeFiles/MediatorMVAQt.dir/model/BaseModel.cpp.obj" "msvc" "CMakeFiles/MediatorMVAQt.dir/model/BaseModel.cpp.obj.d"
+  "C:/Users/89233/Downloads/MediatorMVAQT_with_pidtest/MediatorMVAQT/model/LogModel.cpp" "CMakeFiles/MediatorMVAQt.dir/model/LogModel.cpp.obj" "msvc" "CMakeFiles/MediatorMVAQt.dir/model/LogModel.cpp.obj.d"
   "C:/Users/89233/Downloads/MediatorMVAQT_with_pidtest/MediatorMVAQT/model/SQLiteRecorderActor.cpp" "CMakeFiles/MediatorMVAQt.dir/model/SQLiteRecorderActor.cpp.obj" "msvc" "CMakeFiles/MediatorMVAQt.dir/model/SQLiteRecorderActor.cpp.obj.d"
   "C:/Users/89233/Downloads/MediatorMVAQT_with_pidtest/MediatorMVAQT/model/SensorModel.cpp" "CMakeFiles/MediatorMVAQt.dir/model/SensorModel.cpp.obj" "msvc" "CMakeFiles/MediatorMVAQt.dir/model/SensorModel.cpp.obj.d"
   "C:/Users/89233/Downloads/MediatorMVAQT_with_pidtest/MediatorMVAQT/model/UserModel.cpp" "CMakeFiles/MediatorMVAQt.dir/model/UserModel.cpp.obj" "msvc" "CMakeFiles/MediatorMVAQt.dir/model/UserModel.cpp.obj.d"

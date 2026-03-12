@@ -288,10 +288,30 @@ CMakeFiles\MediatorMVAQt.dir\model\UserModel.cpp.s: cmake_force
  /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\MediatorMVAQt.dir\model\UserModel.cpp.s /c C:\Users\89233\Downloads\MediatorMVAQT_with_pidtest\MediatorMVAQT\model\UserModel.cpp
 <<
 
+CMakeFiles\MediatorMVAQt.dir\model\LogModel.cpp.obj: CMakeFiles\MediatorMVAQt.dir\flags.make
+CMakeFiles\MediatorMVAQt.dir\model\LogModel.cpp.obj: C:\Users\89233\Downloads\MediatorMVAQT_with_pidtest\MediatorMVAQT\model\LogModel.cpp
+CMakeFiles\MediatorMVAQt.dir\model\LogModel.cpp.obj: CMakeFiles\MediatorMVAQt.dir\compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\3_Source Code\31_QT\MediatorMVAQt\build\Desktop_Qt_5_15_2_MSVC2019_32bit-Debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/MediatorMVAQt.dir/model/LogModel.cpp.obj"
+	$(CMAKE_COMMAND) -E cmake_cl_compile_depends --dep-file=CMakeFiles\MediatorMVAQt.dir\model\LogModel.cpp.obj.d --working-dir="D:\3_Source Code\31_QT\MediatorMVAQt\build\Desktop_Qt_5_15_2_MSVC2019_32bit-Debug" --filter-prefix="注意: 包含文件:  " -- C:\PROGRA~2\MIB055~1\2019\COMMUN~1\VC\Tools\MSVC\1429~1.301\bin\HostX64\x86\cl.exe @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /showIncludes /FoCMakeFiles\MediatorMVAQt.dir\model\LogModel.cpp.obj /FdCMakeFiles\MediatorMVAQt.dir\ /FS -c C:\Users\89233\Downloads\MediatorMVAQT_with_pidtest\MediatorMVAQT\model\LogModel.cpp
+<<
+
+CMakeFiles\MediatorMVAQt.dir\model\LogModel.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/MediatorMVAQt.dir/model/LogModel.cpp.i"
+	C:\PROGRA~2\MIB055~1\2019\COMMUN~1\VC\Tools\MSVC\1429~1.301\bin\HostX64\x86\cl.exe > CMakeFiles\MediatorMVAQt.dir\model\LogModel.cpp.i @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\89233\Downloads\MediatorMVAQT_with_pidtest\MediatorMVAQT\model\LogModel.cpp
+<<
+
+CMakeFiles\MediatorMVAQt.dir\model\LogModel.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/MediatorMVAQt.dir/model/LogModel.cpp.s"
+	C:\PROGRA~2\MIB055~1\2019\COMMUN~1\VC\Tools\MSVC\1429~1.301\bin\HostX64\x86\cl.exe @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\MediatorMVAQt.dir\model\LogModel.cpp.s /c C:\Users\89233\Downloads\MediatorMVAQT_with_pidtest\MediatorMVAQT\model\LogModel.cpp
+<<
+
 CMakeFiles\MediatorMVAQt.dir\model\SQLiteRecorderActor.cpp.obj: CMakeFiles\MediatorMVAQt.dir\flags.make
 CMakeFiles\MediatorMVAQt.dir\model\SQLiteRecorderActor.cpp.obj: C:\Users\89233\Downloads\MediatorMVAQT_with_pidtest\MediatorMVAQT\model\SQLiteRecorderActor.cpp
 CMakeFiles\MediatorMVAQt.dir\model\SQLiteRecorderActor.cpp.obj: CMakeFiles\MediatorMVAQt.dir\compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\3_Source Code\31_QT\MediatorMVAQt\build\Desktop_Qt_5_15_2_MSVC2019_32bit-Debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/MediatorMVAQt.dir/model/SQLiteRecorderActor.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\3_Source Code\31_QT\MediatorMVAQt\build\Desktop_Qt_5_15_2_MSVC2019_32bit-Debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/MediatorMVAQt.dir/model/SQLiteRecorderActor.cpp.obj"
 	$(CMAKE_COMMAND) -E cmake_cl_compile_depends --dep-file=CMakeFiles\MediatorMVAQt.dir\model\SQLiteRecorderActor.cpp.obj.d --working-dir="D:\3_Source Code\31_QT\MediatorMVAQt\build\Desktop_Qt_5_15_2_MSVC2019_32bit-Debug" --filter-prefix="注意: 包含文件:  " -- C:\PROGRA~2\MIB055~1\2019\COMMUN~1\VC\Tools\MSVC\1429~1.301\bin\HostX64\x86\cl.exe @<<
  /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /showIncludes /FoCMakeFiles\MediatorMVAQt.dir\model\SQLiteRecorderActor.cpp.obj /FdCMakeFiles\MediatorMVAQt.dir\ /FS -c C:\Users\89233\Downloads\MediatorMVAQT_with_pidtest\MediatorMVAQT\model\SQLiteRecorderActor.cpp
 <<
@@ -311,7 +331,7 @@ CMakeFiles\MediatorMVAQt.dir\model\SQLiteRecorderActor.cpp.s: cmake_force
 CMakeFiles\MediatorMVAQt.dir\model\modbus\ModbusMasterModel.cpp.obj: CMakeFiles\MediatorMVAQt.dir\flags.make
 CMakeFiles\MediatorMVAQt.dir\model\modbus\ModbusMasterModel.cpp.obj: C:\Users\89233\Downloads\MediatorMVAQT_with_pidtest\MediatorMVAQT\model\modbus\ModbusMasterModel.cpp
 CMakeFiles\MediatorMVAQt.dir\model\modbus\ModbusMasterModel.cpp.obj: CMakeFiles\MediatorMVAQt.dir\compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\3_Source Code\31_QT\MediatorMVAQt\build\Desktop_Qt_5_15_2_MSVC2019_32bit-Debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/MediatorMVAQt.dir/model/modbus/ModbusMasterModel.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\3_Source Code\31_QT\MediatorMVAQt\build\Desktop_Qt_5_15_2_MSVC2019_32bit-Debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/MediatorMVAQt.dir/model/modbus/ModbusMasterModel.cpp.obj"
 	$(CMAKE_COMMAND) -E cmake_cl_compile_depends --dep-file=CMakeFiles\MediatorMVAQt.dir\model\modbus\ModbusMasterModel.cpp.obj.d --working-dir="D:\3_Source Code\31_QT\MediatorMVAQt\build\Desktop_Qt_5_15_2_MSVC2019_32bit-Debug" --filter-prefix="注意: 包含文件:  " -- C:\PROGRA~2\MIB055~1\2019\COMMUN~1\VC\Tools\MSVC\1429~1.301\bin\HostX64\x86\cl.exe @<<
  /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /showIncludes /FoCMakeFiles\MediatorMVAQt.dir\model\modbus\ModbusMasterModel.cpp.obj /FdCMakeFiles\MediatorMVAQt.dir\ /FS -c C:\Users\89233\Downloads\MediatorMVAQT_with_pidtest\MediatorMVAQT\model\modbus\ModbusMasterModel.cpp
 <<
@@ -331,7 +351,7 @@ CMakeFiles\MediatorMVAQt.dir\model\modbus\ModbusMasterModel.cpp.s: cmake_force
 CMakeFiles\MediatorMVAQt.dir\model\modbus\ModbusModuleBase.cpp.obj: CMakeFiles\MediatorMVAQt.dir\flags.make
 CMakeFiles\MediatorMVAQt.dir\model\modbus\ModbusModuleBase.cpp.obj: C:\Users\89233\Downloads\MediatorMVAQT_with_pidtest\MediatorMVAQT\model\modbus\ModbusModuleBase.cpp
 CMakeFiles\MediatorMVAQt.dir\model\modbus\ModbusModuleBase.cpp.obj: CMakeFiles\MediatorMVAQt.dir\compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\3_Source Code\31_QT\MediatorMVAQt\build\Desktop_Qt_5_15_2_MSVC2019_32bit-Debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/MediatorMVAQt.dir/model/modbus/ModbusModuleBase.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\3_Source Code\31_QT\MediatorMVAQt\build\Desktop_Qt_5_15_2_MSVC2019_32bit-Debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/MediatorMVAQt.dir/model/modbus/ModbusModuleBase.cpp.obj"
 	$(CMAKE_COMMAND) -E cmake_cl_compile_depends --dep-file=CMakeFiles\MediatorMVAQt.dir\model\modbus\ModbusModuleBase.cpp.obj.d --working-dir="D:\3_Source Code\31_QT\MediatorMVAQt\build\Desktop_Qt_5_15_2_MSVC2019_32bit-Debug" --filter-prefix="注意: 包含文件:  " -- C:\PROGRA~2\MIB055~1\2019\COMMUN~1\VC\Tools\MSVC\1429~1.301\bin\HostX64\x86\cl.exe @<<
  /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /showIncludes /FoCMakeFiles\MediatorMVAQt.dir\model\modbus\ModbusModuleBase.cpp.obj /FdCMakeFiles\MediatorMVAQt.dir\ /FS -c C:\Users\89233\Downloads\MediatorMVAQT_with_pidtest\MediatorMVAQT\model\modbus\ModbusModuleBase.cpp
 <<
@@ -351,7 +371,7 @@ CMakeFiles\MediatorMVAQt.dir\model\modbus\ModbusModuleBase.cpp.s: cmake_force
 CMakeFiles\MediatorMVAQt.dir\model\modbus\PidPressureModule.cpp.obj: CMakeFiles\MediatorMVAQt.dir\flags.make
 CMakeFiles\MediatorMVAQt.dir\model\modbus\PidPressureModule.cpp.obj: C:\Users\89233\Downloads\MediatorMVAQT_with_pidtest\MediatorMVAQT\model\modbus\PidPressureModule.cpp
 CMakeFiles\MediatorMVAQt.dir\model\modbus\PidPressureModule.cpp.obj: CMakeFiles\MediatorMVAQt.dir\compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\3_Source Code\31_QT\MediatorMVAQt\build\Desktop_Qt_5_15_2_MSVC2019_32bit-Debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/MediatorMVAQt.dir/model/modbus/PidPressureModule.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\3_Source Code\31_QT\MediatorMVAQt\build\Desktop_Qt_5_15_2_MSVC2019_32bit-Debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/MediatorMVAQt.dir/model/modbus/PidPressureModule.cpp.obj"
 	$(CMAKE_COMMAND) -E cmake_cl_compile_depends --dep-file=CMakeFiles\MediatorMVAQt.dir\model\modbus\PidPressureModule.cpp.obj.d --working-dir="D:\3_Source Code\31_QT\MediatorMVAQt\build\Desktop_Qt_5_15_2_MSVC2019_32bit-Debug" --filter-prefix="注意: 包含文件:  " -- C:\PROGRA~2\MIB055~1\2019\COMMUN~1\VC\Tools\MSVC\1429~1.301\bin\HostX64\x86\cl.exe @<<
  /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /showIncludes /FoCMakeFiles\MediatorMVAQt.dir\model\modbus\PidPressureModule.cpp.obj /FdCMakeFiles\MediatorMVAQt.dir\ /FS -c C:\Users\89233\Downloads\MediatorMVAQT_with_pidtest\MediatorMVAQT\model\modbus\PidPressureModule.cpp
 <<
@@ -371,7 +391,7 @@ CMakeFiles\MediatorMVAQt.dir\model\modbus\PidPressureModule.cpp.s: cmake_force
 CMakeFiles\MediatorMVAQt.dir\app\AppContext.cpp.obj: CMakeFiles\MediatorMVAQt.dir\flags.make
 CMakeFiles\MediatorMVAQt.dir\app\AppContext.cpp.obj: C:\Users\89233\Downloads\MediatorMVAQT_with_pidtest\MediatorMVAQT\app\AppContext.cpp
 CMakeFiles\MediatorMVAQt.dir\app\AppContext.cpp.obj: CMakeFiles\MediatorMVAQt.dir\compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\3_Source Code\31_QT\MediatorMVAQt\build\Desktop_Qt_5_15_2_MSVC2019_32bit-Debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/MediatorMVAQt.dir/app/AppContext.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\3_Source Code\31_QT\MediatorMVAQt\build\Desktop_Qt_5_15_2_MSVC2019_32bit-Debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/MediatorMVAQt.dir/app/AppContext.cpp.obj"
 	$(CMAKE_COMMAND) -E cmake_cl_compile_depends --dep-file=CMakeFiles\MediatorMVAQt.dir\app\AppContext.cpp.obj.d --working-dir="D:\3_Source Code\31_QT\MediatorMVAQt\build\Desktop_Qt_5_15_2_MSVC2019_32bit-Debug" --filter-prefix="注意: 包含文件:  " -- C:\PROGRA~2\MIB055~1\2019\COMMUN~1\VC\Tools\MSVC\1429~1.301\bin\HostX64\x86\cl.exe @<<
  /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /showIncludes /FoCMakeFiles\MediatorMVAQt.dir\app\AppContext.cpp.obj /FdCMakeFiles\MediatorMVAQt.dir\ /FS -c C:\Users\89233\Downloads\MediatorMVAQT_with_pidtest\MediatorMVAQT\app\AppContext.cpp
 <<
@@ -391,7 +411,7 @@ CMakeFiles\MediatorMVAQt.dir\app\AppContext.cpp.s: cmake_force
 CMakeFiles\MediatorMVAQt.dir\app\Bootstrap.cpp.obj: CMakeFiles\MediatorMVAQt.dir\flags.make
 CMakeFiles\MediatorMVAQt.dir\app\Bootstrap.cpp.obj: C:\Users\89233\Downloads\MediatorMVAQT_with_pidtest\MediatorMVAQT\app\Bootstrap.cpp
 CMakeFiles\MediatorMVAQt.dir\app\Bootstrap.cpp.obj: CMakeFiles\MediatorMVAQt.dir\compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\3_Source Code\31_QT\MediatorMVAQt\build\Desktop_Qt_5_15_2_MSVC2019_32bit-Debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/MediatorMVAQt.dir/app/Bootstrap.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\3_Source Code\31_QT\MediatorMVAQt\build\Desktop_Qt_5_15_2_MSVC2019_32bit-Debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/MediatorMVAQt.dir/app/Bootstrap.cpp.obj"
 	$(CMAKE_COMMAND) -E cmake_cl_compile_depends --dep-file=CMakeFiles\MediatorMVAQt.dir\app\Bootstrap.cpp.obj.d --working-dir="D:\3_Source Code\31_QT\MediatorMVAQt\build\Desktop_Qt_5_15_2_MSVC2019_32bit-Debug" --filter-prefix="注意: 包含文件:  " -- C:\PROGRA~2\MIB055~1\2019\COMMUN~1\VC\Tools\MSVC\1429~1.301\bin\HostX64\x86\cl.exe @<<
  /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /showIncludes /FoCMakeFiles\MediatorMVAQt.dir\app\Bootstrap.cpp.obj /FdCMakeFiles\MediatorMVAQt.dir\ /FS -c C:\Users\89233\Downloads\MediatorMVAQT_with_pidtest\MediatorMVAQT\app\Bootstrap.cpp
 <<
@@ -421,6 +441,7 @@ MediatorMVAQt_OBJECTS = \
 "CMakeFiles\MediatorMVAQt.dir\model\BaseModel.cpp.obj" \
 "CMakeFiles\MediatorMVAQt.dir\model\SensorModel.cpp.obj" \
 "CMakeFiles\MediatorMVAQt.dir\model\UserModel.cpp.obj" \
+"CMakeFiles\MediatorMVAQt.dir\model\LogModel.cpp.obj" \
 "CMakeFiles\MediatorMVAQt.dir\model\SQLiteRecorderActor.cpp.obj" \
 "CMakeFiles\MediatorMVAQt.dir\model\modbus\ModbusMasterModel.cpp.obj" \
 "CMakeFiles\MediatorMVAQt.dir\model\modbus\ModbusModuleBase.cpp.obj" \
@@ -442,6 +463,7 @@ MediatorMVAQt.exe: CMakeFiles\MediatorMVAQt.dir\viewmodel\PidPressureViewModel.c
 MediatorMVAQt.exe: CMakeFiles\MediatorMVAQt.dir\model\BaseModel.cpp.obj
 MediatorMVAQt.exe: CMakeFiles\MediatorMVAQt.dir\model\SensorModel.cpp.obj
 MediatorMVAQt.exe: CMakeFiles\MediatorMVAQt.dir\model\UserModel.cpp.obj
+MediatorMVAQt.exe: CMakeFiles\MediatorMVAQt.dir\model\LogModel.cpp.obj
 MediatorMVAQt.exe: CMakeFiles\MediatorMVAQt.dir\model\SQLiteRecorderActor.cpp.obj
 MediatorMVAQt.exe: CMakeFiles\MediatorMVAQt.dir\model\modbus\ModbusMasterModel.cpp.obj
 MediatorMVAQt.exe: CMakeFiles\MediatorMVAQt.dir\model\modbus\ModbusModuleBase.cpp.obj
@@ -457,7 +479,7 @@ MediatorMVAQt.exe: C:\Qt\5.15.2\msvc2019\lib\Qt5SerialBusd.lib
 MediatorMVAQt.exe: C:\Qt\5.15.2\msvc2019\lib\Qt5Guid.lib
 MediatorMVAQt.exe: C:\Qt\5.15.2\msvc2019\lib\Qt5Cored.lib
 MediatorMVAQt.exe: CMakeFiles\MediatorMVAQt.dir\objects1.rsp
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="D:\3_Source Code\31_QT\MediatorMVAQt\build\Desktop_Qt_5_15_2_MSVC2019_32bit-Debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_19) "Linking CXX executable MediatorMVAQt.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="D:\3_Source Code\31_QT\MediatorMVAQt\build\Desktop_Qt_5_15_2_MSVC2019_32bit-Debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_20) "Linking CXX executable MediatorMVAQt.exe"
 	"C:\Program Files\CMake\bin\cmake.exe" -E vs_link_exe --msvc-ver=1929 --intdir=CMakeFiles\MediatorMVAQt.dir --rc=C:\PROGRA~2\WI3CF2~1\10\bin\100261~1.0\x64\rc.exe --mt=C:\PROGRA~2\WI3CF2~1\10\bin\100261~1.0\x64\mt.exe --manifests -- C:\PROGRA~2\MIB055~1\2019\COMMUN~1\VC\Tools\MSVC\1429~1.301\bin\Hostx64\x86\link.exe /nologo @CMakeFiles\MediatorMVAQt.dir\objects1.rsp @<<
  /out:MediatorMVAQt.exe /implib:MediatorMVAQt.lib /pdb:"D:\3_Source Code\31_QT\MediatorMVAQt\build\Desktop_Qt_5_15_2_MSVC2019_32bit-Debug\MediatorMVAQt.pdb" /version:0.0 /machine:X86 /debug /INCREMENTAL /subsystem:console  core\MediatorCore.lib C:\Qt\5.15.2\msvc2019\lib\Qt5Widgetsd.lib C:\Qt\5.15.2\msvc2019\lib\Qt5Sqld.lib C:\Qt\5.15.2\msvc2019\lib\Qt5Networkd.lib C:\Qt\5.15.2\msvc2019\lib\Qt5SerialBusd.lib C:\Qt\5.15.2\msvc2019\lib\Qt5Guid.lib C:\Qt\5.15.2\msvc2019\lib\Qt5Cored.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib 
 <<

@@ -133,6 +133,18 @@
 			null
 		],
 		[
+			"C:/Users/89233/Downloads/MediatorMVAQT_with_pidtest/MediatorMVAQT/model/LogEntry.h",
+			"MU",
+			"NLOY5YBGEN/moc_LogEntry.cpp",
+			null
+		],
+		[
+			"C:/Users/89233/Downloads/MediatorMVAQT_with_pidtest/MediatorMVAQT/model/LogModel.h",
+			"MU",
+			"NLOY5YBGEN/moc_LogModel.cpp",
+			null
+		],
+		[
 			"C:/Users/89233/Downloads/MediatorMVAQT_with_pidtest/MediatorMVAQT/model/LoggerActor.h",
 			"MU",
 			"NLOY5YBGEN/moc_LoggerActor.cpp",
@@ -297,6 +309,11 @@
 		],
 		[
 			"C:/Users/89233/Downloads/MediatorMVAQT_with_pidtest/MediatorMVAQT/model/BaseModel.cpp",
+			"MU",
+			null
+		],
+		[
+			"C:/Users/89233/Downloads/MediatorMVAQT_with_pidtest/MediatorMVAQT/model/LogModel.cpp",
 			"MU",
 			null
 		],

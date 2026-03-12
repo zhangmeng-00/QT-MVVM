@@ -83,6 +83,16 @@ build CMakeFiles\MediatorMVAQt.dir\Release\view\TraceViewer.cpp.obj: CXX_COMPILE
   TARGET_COMPILE_PDB = CMakeFiles\MediatorMVAQt.dir\Release\
   TARGET_PDB = Release\MediatorMVAQt.pdb
 
+build CMakeFiles\MediatorMVAQt.dir\Release\view\LogListView.cpp.obj: CXX_COMPILER__MediatorMVAQt_unscanned_Release D$:\3_Source$ Code\31_QT\MediatorMVAQt\view\LogListView.cpp || cmake_object_order_depends_target_MediatorMVAQt_RELEASE
+  CONFIG = Release
+  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_SERIALBUS_LIB -DQT_SQL_LIB -DQT_WIDGETS_LIB -DCMAKE_INTDIR=\"Release\"
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /O2 /Ob2 /DNDEBUG -std:c++17 -MD /utf-8
+  INCLUDES = -I"D:\3_Source Code\31_QT\MediatorMVAQt\build\MediatorMVAQt_autogen\include_Release" -I"D:\3_Source Code\31_QT\MediatorMVAQt" -I"D:\3_Source Code\31_QT\MediatorMVAQt\core" -I"D:\3_Source Code\31_QT\MediatorMVAQt\core\.." -external:IC:\Qt\5.15.2\msvc2019\include -external:IC:\Qt\5.15.2\msvc2019\include\QtCore -external:IC:\Qt\5.15.2\msvc2019\.\mkspecs\win32-msvc -external:IC:\Qt\5.15.2\msvc2019\include\QtWidgets -external:IC:\Qt\5.15.2\msvc2019\include\QtGui -external:IC:\Qt\5.15.2\msvc2019\include\QtANGLE -external:IC:\Qt\5.15.2\msvc2019\include\QtSql -external:IC:\Qt\5.15.2\msvc2019\include\QtNetwork -external:IC:\Qt\5.15.2\msvc2019\include\QtSerialBus -external:W0
+  OBJECT_DIR = CMakeFiles\MediatorMVAQt.dir\Release
+  OBJECT_FILE_DIR = CMakeFiles\MediatorMVAQt.dir\Release\view
+  TARGET_COMPILE_PDB = CMakeFiles\MediatorMVAQt.dir\Release\
+  TARGET_PDB = Release\MediatorMVAQt.pdb
+
 build CMakeFiles\MediatorMVAQt.dir\Release\viewmodel\UserViewModel.cpp.obj: CXX_COMPILER__MediatorMVAQt_unscanned_Release D$:\3_Source$ Code\31_QT\MediatorMVAQt\viewmodel\UserViewModel.cpp || cmake_object_order_depends_target_MediatorMVAQt_RELEASE
   CONFIG = Release
   DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_SERIALBUS_LIB -DQT_SQL_LIB -DQT_WIDGETS_LIB -DCMAKE_INTDIR=\"Release\"
@@ -94,6 +104,16 @@ build CMakeFiles\MediatorMVAQt.dir\Release\viewmodel\UserViewModel.cpp.obj: CXX_
   TARGET_PDB = Release\MediatorMVAQt.pdb
 
 build CMakeFiles\MediatorMVAQt.dir\Release\viewmodel\SensorViewModel.cpp.obj: CXX_COMPILER__MediatorMVAQt_unscanned_Release D$:\3_Source$ Code\31_QT\MediatorMVAQt\viewmodel\SensorViewModel.cpp || cmake_object_order_depends_target_MediatorMVAQt_RELEASE
+  CONFIG = Release
+  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_SERIALBUS_LIB -DQT_SQL_LIB -DQT_WIDGETS_LIB -DCMAKE_INTDIR=\"Release\"
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /O2 /Ob2 /DNDEBUG -std:c++17 -MD /utf-8
+  INCLUDES = -I"D:\3_Source Code\31_QT\MediatorMVAQt\build\MediatorMVAQt_autogen\include_Release" -I"D:\3_Source Code\31_QT\MediatorMVAQt" -I"D:\3_Source Code\31_QT\MediatorMVAQt\core" -I"D:\3_Source Code\31_QT\MediatorMVAQt\core\.." -external:IC:\Qt\5.15.2\msvc2019\include -external:IC:\Qt\5.15.2\msvc2019\include\QtCore -external:IC:\Qt\5.15.2\msvc2019\.\mkspecs\win32-msvc -external:IC:\Qt\5.15.2\msvc2019\include\QtWidgets -external:IC:\Qt\5.15.2\msvc2019\include\QtGui -external:IC:\Qt\5.15.2\msvc2019\include\QtANGLE -external:IC:\Qt\5.15.2\msvc2019\include\QtSql -external:IC:\Qt\5.15.2\msvc2019\include\QtNetwork -external:IC:\Qt\5.15.2\msvc2019\include\QtSerialBus -external:W0
+  OBJECT_DIR = CMakeFiles\MediatorMVAQt.dir\Release
+  OBJECT_FILE_DIR = CMakeFiles\MediatorMVAQt.dir\Release\viewmodel
+  TARGET_COMPILE_PDB = CMakeFiles\MediatorMVAQt.dir\Release\
+  TARGET_PDB = Release\MediatorMVAQt.pdb
+
+build CMakeFiles\MediatorMVAQt.dir\Release\viewmodel\LogListViewModel.cpp.obj: CXX_COMPILER__MediatorMVAQt_unscanned_Release D$:\3_Source$ Code\31_QT\MediatorMVAQt\viewmodel\LogListViewModel.cpp || cmake_object_order_depends_target_MediatorMVAQt_RELEASE
   CONFIG = Release
   DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_SERIALBUS_LIB -DQT_SQL_LIB -DQT_WIDGETS_LIB -DCMAKE_INTDIR=\"Release\"
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /O2 /Ob2 /DNDEBUG -std:c++17 -MD /utf-8
@@ -134,6 +154,16 @@ build CMakeFiles\MediatorMVAQt.dir\Release\model\UserModel.cpp.obj: CXX_COMPILER
   TARGET_PDB = Release\MediatorMVAQt.pdb
 
 build CMakeFiles\MediatorMVAQt.dir\Release\model\SQLiteRecorderActor.cpp.obj: CXX_COMPILER__MediatorMVAQt_unscanned_Release D$:\3_Source$ Code\31_QT\MediatorMVAQt\model\SQLiteRecorderActor.cpp || cmake_object_order_depends_target_MediatorMVAQt_RELEASE
+  CONFIG = Release
+  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_SERIALBUS_LIB -DQT_SQL_LIB -DQT_WIDGETS_LIB -DCMAKE_INTDIR=\"Release\"
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /O2 /Ob2 /DNDEBUG -std:c++17 -MD /utf-8
+  INCLUDES = -I"D:\3_Source Code\31_QT\MediatorMVAQt\build\MediatorMVAQt_autogen\include_Release" -I"D:\3_Source Code\31_QT\MediatorMVAQt" -I"D:\3_Source Code\31_QT\MediatorMVAQt\core" -I"D:\3_Source Code\31_QT\MediatorMVAQt\core\.." -external:IC:\Qt\5.15.2\msvc2019\include -external:IC:\Qt\5.15.2\msvc2019\include\QtCore -external:IC:\Qt\5.15.2\msvc2019\.\mkspecs\win32-msvc -external:IC:\Qt\5.15.2\msvc2019\include\QtWidgets -external:IC:\Qt\5.15.2\msvc2019\include\QtGui -external:IC:\Qt\5.15.2\msvc2019\include\QtANGLE -external:IC:\Qt\5.15.2\msvc2019\include\QtSql -external:IC:\Qt\5.15.2\msvc2019\include\QtNetwork -external:IC:\Qt\5.15.2\msvc2019\include\QtSerialBus -external:W0
+  OBJECT_DIR = CMakeFiles\MediatorMVAQt.dir\Release
+  OBJECT_FILE_DIR = CMakeFiles\MediatorMVAQt.dir\Release\model
+  TARGET_COMPILE_PDB = CMakeFiles\MediatorMVAQt.dir\Release\
+  TARGET_PDB = Release\MediatorMVAQt.pdb
+
+build CMakeFiles\MediatorMVAQt.dir\Release\model\LogModel.cpp.obj: CXX_COMPILER__MediatorMVAQt_unscanned_Release D$:\3_Source$ Code\31_QT\MediatorMVAQt\model\LogModel.cpp || cmake_object_order_depends_target_MediatorMVAQt_RELEASE
   CONFIG = Release
   DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_SERIALBUS_LIB -DQT_SQL_LIB -DQT_WIDGETS_LIB -DCMAKE_INTDIR=\"Release\"
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /O2 /Ob2 /DNDEBUG -std:c++17 -MD /utf-8
@@ -201,7 +231,7 @@ build CMakeFiles\MediatorMVAQt.dir\Release\app\Bootstrap.cpp.obj: CXX_COMPILER__
 #############################################
 # Link the executable Release\MediatorMVAQt.exe
 
-build Release\MediatorMVAQt.exe: CXX_EXECUTABLE_LINKER__MediatorMVAQt_Release CMakeFiles\MediatorMVAQt.dir\Release\MediatorMVAQt_autogen\mocs_compilation_Release.cpp.obj CMakeFiles\MediatorMVAQt.dir\Release\main.cpp.obj CMakeFiles\MediatorMVAQt.dir\Release\MainWindow.cpp.obj CMakeFiles\MediatorMVAQt.dir\Release\view\TraceViewer.cpp.obj CMakeFiles\MediatorMVAQt.dir\Release\viewmodel\UserViewModel.cpp.obj CMakeFiles\MediatorMVAQt.dir\Release\viewmodel\SensorViewModel.cpp.obj CMakeFiles\MediatorMVAQt.dir\Release\model\BaseModel.cpp.obj CMakeFiles\MediatorMVAQt.dir\Release\model\SensorModel.cpp.obj CMakeFiles\MediatorMVAQt.dir\Release\model\UserModel.cpp.obj CMakeFiles\MediatorMVAQt.dir\Release\model\SQLiteRecorderActor.cpp.obj CMakeFiles\MediatorMVAQt.dir\Release\model\modbus\ModbusMasterModel.cpp.obj CMakeFiles\MediatorMVAQt.dir\Release\model\modbus\ModbusModuleBase.cpp.obj CMakeFiles\MediatorMVAQt.dir\Release\model\modbus\PidPressureModule.cpp.obj CMakeFiles\MediatorMVAQt.dir\Release\app\AppContext.cpp.obj CMakeFiles\MediatorMVAQt.dir\Release\app\Bootstrap.cpp.obj | core\Release\MediatorCore.lib C$:\Qt\5.15.2\msvc2019\lib\Qt5Widgets.lib C$:\Qt\5.15.2\msvc2019\lib\Qt5Sql.lib C$:\Qt\5.15.2\msvc2019\lib\Qt5Network.lib C$:\Qt\5.15.2\msvc2019\lib\Qt5SerialBus.lib C$:\Qt\5.15.2\msvc2019\lib\Qt5Gui.lib C$:\Qt\5.15.2\msvc2019\lib\Qt5Core.lib || MediatorMVAQt_autogen$:Release MediatorMVAQt_autogen_timestamp_deps$:Release core\Release\MediatorCore.lib
+build Release\MediatorMVAQt.exe: CXX_EXECUTABLE_LINKER__MediatorMVAQt_Release CMakeFiles\MediatorMVAQt.dir\Release\MediatorMVAQt_autogen\mocs_compilation_Release.cpp.obj CMakeFiles\MediatorMVAQt.dir\Release\main.cpp.obj CMakeFiles\MediatorMVAQt.dir\Release\MainWindow.cpp.obj CMakeFiles\MediatorMVAQt.dir\Release\view\TraceViewer.cpp.obj CMakeFiles\MediatorMVAQt.dir\Release\view\LogListView.cpp.obj CMakeFiles\MediatorMVAQt.dir\Release\viewmodel\UserViewModel.cpp.obj CMakeFiles\MediatorMVAQt.dir\Release\viewmodel\SensorViewModel.cpp.obj CMakeFiles\MediatorMVAQt.dir\Release\viewmodel\LogListViewModel.cpp.obj CMakeFiles\MediatorMVAQt.dir\Release\model\BaseModel.cpp.obj CMakeFiles\MediatorMVAQt.dir\Release\model\SensorModel.cpp.obj CMakeFiles\MediatorMVAQt.dir\Release\model\UserModel.cpp.obj CMakeFiles\MediatorMVAQt.dir\Release\model\SQLiteRecorderActor.cpp.obj CMakeFiles\MediatorMVAQt.dir\Release\model\LogModel.cpp.obj CMakeFiles\MediatorMVAQt.dir\Release\model\modbus\ModbusMasterModel.cpp.obj CMakeFiles\MediatorMVAQt.dir\Release\model\modbus\ModbusModuleBase.cpp.obj CMakeFiles\MediatorMVAQt.dir\Release\model\modbus\PidPressureModule.cpp.obj CMakeFiles\MediatorMVAQt.dir\Release\app\AppContext.cpp.obj CMakeFiles\MediatorMVAQt.dir\Release\app\Bootstrap.cpp.obj | core\Release\MediatorCore.lib C$:\Qt\5.15.2\msvc2019\lib\Qt5Widgets.lib C$:\Qt\5.15.2\msvc2019\lib\Qt5Sql.lib C$:\Qt\5.15.2\msvc2019\lib\Qt5Network.lib C$:\Qt\5.15.2\msvc2019\lib\Qt5SerialBus.lib C$:\Qt\5.15.2\msvc2019\lib\Qt5Gui.lib C$:\Qt\5.15.2\msvc2019\lib\Qt5Core.lib || MediatorMVAQt_autogen$:Release MediatorMVAQt_autogen_timestamp_deps$:Release core\Release\MediatorCore.lib
   CONFIG = Release
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /O2 /Ob2 /DNDEBUG -MD
   LINK_FLAGS = /machine:X86 /INCREMENTAL:NO /subsystem:console
@@ -224,7 +254,7 @@ build MediatorMVAQt_autogen_timestamp_deps$:Release: phony core\Release\Mediator
 #############################################
 # Utility command for MediatorMVAQt_autogen
 
-build MediatorMVAQt_autogen$:Release: phony CMakeFiles\MediatorMVAQt_autogen-Release MediatorMVAQt_autogen\include_Release\ui_MainWindow.h MediatorMVAQt_autogen\timestamp MediatorMVAQt_autogen\mocs_compilation_Release.cpp MediatorMVAQt_autogen_timestamp_deps$:Release
+build MediatorMVAQt_autogen$:Release: phony CMakeFiles\MediatorMVAQt_autogen-Release MediatorMVAQt_autogen\include_Release\ui_MainWindow.h MediatorMVAQt_autogen\include_Release\view\ui_LogListView.h MediatorMVAQt_autogen\timestamp MediatorMVAQt_autogen\mocs_compilation_Release.cpp MediatorMVAQt_autogen_timestamp_deps$:Release
 
 
 #############################################
@@ -241,7 +271,7 @@ build MediatorMVAQt_autogen\timestamp MediatorMVAQt_autogen\mocs_compilation_Rel
 #############################################
 # Phony custom command for CMakeFiles\MediatorMVAQt_autogen-Release
 
-build CMakeFiles\MediatorMVAQt_autogen-Release MediatorMVAQt_autogen\include_Release\ui_MainWindow.h | ${cmake_ninja_workdir}CMakeFiles\MediatorMVAQt_autogen-Release ${cmake_ninja_workdir}MediatorMVAQt_autogen\include_Release\ui_MainWindow.h: phony MediatorMVAQt_autogen\timestamp || MediatorMVAQt_autogen_timestamp_deps$:Release core\MediatorCore_autogen$:Release core\MediatorCore_autogen_timestamp_deps$:Release core\Release\MediatorCore.lib
+build CMakeFiles\MediatorMVAQt_autogen-Release MediatorMVAQt_autogen\include_Release\ui_MainWindow.h MediatorMVAQt_autogen\include_Release\view\ui_LogListView.h | ${cmake_ninja_workdir}CMakeFiles\MediatorMVAQt_autogen-Release ${cmake_ninja_workdir}MediatorMVAQt_autogen\include_Release\ui_MainWindow.h ${cmake_ninja_workdir}MediatorMVAQt_autogen\include_Release\view\ui_LogListView.h: phony MediatorMVAQt_autogen\timestamp || MediatorMVAQt_autogen_timestamp_deps$:Release core\MediatorCore_autogen$:Release core\MediatorCore_autogen_timestamp_deps$:Release core\Release\MediatorCore.lib
 
 # =============================================================================
 # Write statements declared in CMakeLists.txt:

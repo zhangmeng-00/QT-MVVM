@@ -4,6 +4,7 @@
 #include <QDebug>
 #include <QDateTime>
 #include <memory>
+#include <QThread>
 
 using namespace std;
 
@@ -11,6 +12,8 @@ LogModel::LogModel(QObject* parent, bool useSeparateThread)
     : ActorObserve(parent, useSeparateThread),
       m_dbPath("./logs.db")
 {
+    qDebug() << "LogModel 构造函数线程ID:" << QThread::currentThreadId();
+
     // 初始化数据库
     if (!initDatabase()) {
         qCritical() << "Failed to initialize database";
@@ -34,10 +37,11 @@ void LogModel::SetupSubscriptions()
 
 void LogModel::ObserveData(const QString& tag, const QVariant& value)
 {
+    qDebug() << "LogModel::ObserveData 线程ID:" << QThread::currentThreadId();
+
     if (tag == "user/logging") {
         // 从 QVariant 中提取 LogEntry 结构体
         LogEntry logEntry = value.value<LogEntry>();
-        
         // 插入日志到数据库
         if (insertLog(logEntry)) {
             // 插入成功后，查询最新100条日志并发布

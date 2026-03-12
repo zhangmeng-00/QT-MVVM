@@ -11,6 +11,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/MediatorMVAQt.dir/main.cpp.obj.d"
   "CMakeFiles/MediatorMVAQt.dir/model/BaseModel.cpp.obj"
   "CMakeFiles/MediatorMVAQt.dir/model/BaseModel.cpp.obj.d"
+  "CMakeFiles/MediatorMVAQt.dir/model/LogModel.cpp.obj"
+  "CMakeFiles/MediatorMVAQt.dir/model/LogModel.cpp.obj.d"
   "CMakeFiles/MediatorMVAQt.dir/model/SQLiteRecorderActor.cpp.obj"
   "CMakeFiles/MediatorMVAQt.dir/model/SQLiteRecorderActor.cpp.obj.d"
   "CMakeFiles/MediatorMVAQt.dir/model/SensorModel.cpp.obj"

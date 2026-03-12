@@ -132,6 +132,18 @@
 			null
 		],
 		[
+			"D:/3_Source Code/31_QT/MediatorMVAQt/model/LogEntry.h",
+			"MU",
+			"NLOY5YBGEN/moc_LogEntry.cpp",
+			null
+		],
+		[
+			"D:/3_Source Code/31_QT/MediatorMVAQt/model/LogModel.h",
+			"MU",
+			"NLOY5YBGEN/moc_LogModel.cpp",
+			null
+		],
+		[
 			"D:/3_Source Code/31_QT/MediatorMVAQt/model/LoggerActor.h",
 			"MU",
 			"NLOY5YBGEN/moc_LoggerActor.cpp",
@@ -186,6 +198,12 @@
 			null
 		],
 		[
+			"D:/3_Source Code/31_QT/MediatorMVAQt/view/LogListView.h",
+			"MU",
+			"OTUN7GXZT4/moc_LogListView.cpp",
+			null
+		],
+		[
 			"D:/3_Source Code/31_QT/MediatorMVAQt/view/TraceViewer.h",
 			"MU",
 			"OTUN7GXZT4/moc_TraceViewer.cpp",
@@ -195,6 +213,12 @@
 			"D:/3_Source Code/31_QT/MediatorMVAQt/viewmodel/BaseViewModel.h",
 			"MU",
 			"7OCNMGYRF4/moc_BaseViewModel.cpp",
+			null
+		],
+		[
+			"D:/3_Source Code/31_QT/MediatorMVAQt/viewmodel/LogListViewModel.h",
+			"MU",
+			"7OCNMGYRF4/moc_LogListViewModel.cpp",
 			null
 		],
 		[
@@ -337,6 +361,7 @@
 			"MU",
 			null
 		],
+		[ "D:/3_Source Code/31_QT/MediatorMVAQt/model/LogModel.cpp", "MU", null ],
 		[
 			"D:/3_Source Code/31_QT/MediatorMVAQt/model/SQLiteRecorderActor.cpp",
 			"MU",
@@ -368,7 +393,17 @@
 			null
 		],
 		[
+			"D:/3_Source Code/31_QT/MediatorMVAQt/view/LogListView.cpp",
+			"MU",
+			null
+		],
+		[
 			"D:/3_Source Code/31_QT/MediatorMVAQt/view/TraceViewer.cpp",
+			"MU",
+			null
+		],
+		[
+			"D:/3_Source Code/31_QT/MediatorMVAQt/viewmodel/LogListViewModel.cpp",
 			"MU",
 			null
 		],

@@ -43,6 +43,8 @@ SensorViewModel::SensorViewModel(QObject* parent)
             }
 
             Publish("sensor/gain", m_gain);
+            log("SensorViewModel", LogLevel::INFO,
+                        QString("Gain changed to %1").arg(m_gain));
         },
         nullptr,
         this

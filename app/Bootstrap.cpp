@@ -35,7 +35,7 @@ CoreObjects InstallAll(AppContext& ctx)
     // 1) 创建 Model（业务层，全局共享）
     g_core.userModel   = new UserModel(&ctx);
     g_core.sensorModel = new SensorModel(&ctx);
-    g_core.logModel    = new LogModel(&ctx, true); // 让LogModel单独运行在一个线程
+    g_core.logModel    = new LogModel(nullptr, true); // 不传递父对象，以便能移动到新线程
 
     // 2) 创建基础设施（日志/记录）
     g_core.logger   = new LoggerActor(&ctx);
