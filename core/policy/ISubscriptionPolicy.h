@@ -13,6 +13,9 @@ public:
 
     virtual bool ShouldExecute(const QVariant& oldValue,
                                const QVariant& newValue) = 0;
+
+    // 是否需要重发上一次值给新订阅者（Sticky）
+    virtual bool ShouldReplayLastValue() const { return false; }
 };
 
 /*

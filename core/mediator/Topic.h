@@ -26,6 +26,8 @@ public:
 
     void AddSubscriber(Observe* observer, PolicyPtr policy);
     void RemoveSubscriber(Observe* observer);
+    PolicyPtr GetSubscriberPolicy(Observe* observer) const;
+    bool HasStickySubscriber() const;
 
     // 你原先是 Notify(tag,value)，tag 实际没用到，这里保持简化版
     void Notify(const QVariant& value);

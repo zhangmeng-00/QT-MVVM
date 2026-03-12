@@ -117,6 +117,28 @@ void Topic::RemoveSubscriber(Observe* observer)
     }
 }
 
+PolicyPtr Topic::GetSubscriberPolicy(Observe* observer) const
+{
+    QMutexLocker lk(&m_mutex);
+    for (const auto& s : m_subscribers) {
+        if (s.observer == observer) {
+            return s.policy;
+        }
+    }
+    return nullptr;
+}
+
+bool Topic::HasStickySubscriber() const
+{
+    QMutexLocker lk(&m_mutex);
+    for (const auto& s : m_subscribers) {
+        if (s.policy && s.policy->ShouldReplayLastValue()) {
+            return true;
+        }
+    }
+    return false;
+}
+
 void Topic::Notify(const QVariant& value)
 {
     // 快照：避免回调里再 subscribe/unsubscribe 导致迭代器问题

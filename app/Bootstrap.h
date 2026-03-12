@@ -7,8 +7,6 @@ class AppContext;
 // 你项目里的组件（按你现有代码）
 class UserModel;
 class SensorModel;
-class LoggerActor;
-class SQLiteRecorderActor;
 class LogModel;
 
 namespace Bootstrap {
@@ -17,8 +15,6 @@ namespace Bootstrap {
 struct CoreObjects {
     UserModel* userModel = nullptr;
     SensorModel* sensorModel = nullptr;
-    LoggerActor* logger = nullptr;
-    SQLiteRecorderActor* recorder = nullptr;
     LogModel* logModel = nullptr;
 };
 

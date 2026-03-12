@@ -5,9 +5,7 @@
 // 这些 include 根据你的实际路径调整
 #include "model/UserModel.h"
 #include "model/SensorModel.h"
-#include "model/LoggerActor.h"
-#include "model/SQLiteRecorderActor.h"
-#include "model/LogModel.h"
+#include "core/model/LogModel.h"
 
 #include <QDebug>
 
@@ -37,23 +35,15 @@ CoreObjects InstallAll(AppContext& ctx)
     g_core.sensorModel = new SensorModel(&ctx);
     g_core.logModel    = new LogModel(nullptr, true); // 不传递父对象，以便能移动到新线程
 
-    // 2) 创建基础设施（日志/记录）
-    g_core.logger   = new LoggerActor(&ctx);
-    g_core.recorder = new SQLiteRecorderActor("run_trace.db", &ctx);
-
-    // 3) 统一 parent（确保生命周期由 AppContext 托管）
+    // 2) 统一 parent（确保生命周期由 AppContext 托管）
     SetParentIfQObject(g_core.userModel,   &ctx);
     SetParentIfQObject(g_core.sensorModel, &ctx);
     SetParentIfQObject(g_core.logModel,    &ctx);
-    SetParentIfQObject(g_core.logger,      &ctx);
-    SetParentIfQObject(g_core.recorder,    &ctx);
 
-    // 4) 接入 Mediator（注意：如果你的 AppContext::ConnectObserve 已做线程安全 invoke，更稳）
+    // 3) 接入 Mediator（注意：如果你的 AppContext::ConnectObserve 已做线程安全 invoke，更稳）
     ctx.ConnectObserve(g_core.userModel);
     ctx.ConnectObserve(g_core.sensorModel);
     ctx.ConnectObserve(g_core.logModel);
-    ctx.ConnectObserve(g_core.logger);
-    ctx.ConnectObserve(g_core.recorder);
 
     return g_core;
 }

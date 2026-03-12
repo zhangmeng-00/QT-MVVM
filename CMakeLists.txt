@@ -44,19 +44,10 @@ add_executable(${PROJECT_NAME}
     viewmodel/LogListViewModel.h
     viewmodel/LogListViewModel.cpp
 
-    model/BaseModel.h
-    model/BaseModel.cpp
     model/SensorModel.h
     model/SensorModel.cpp
     model/UserModel.h
     model/UserModel.cpp
-    model/LoggerActor.h
-    model/RecorderActor.h
-    model/SQLiteRecorderActor.h
-    model/SQLiteRecorderActor.cpp
-    model/LogEntry.h
-    model/LogModel.h
-    model/LogModel.cpp
 
     model/modbus/ModbusMasterModel.cpp
     model/modbus/ModbusMasterModel.h

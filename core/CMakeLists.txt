@@ -1,10 +1,11 @@
-# core 作为独立库编译（纯框架，不依赖 QtSql）
+# core 作为独立库编译
 
 add_library(MediatorCore
     # policy
     policy/ISubscriptionPolicy.h
     policy/AlwaysPolicy.h
     policy/ValueChangedPolicy.h
+    policy/StickyPolicy.h
 
     # mediator
     mediator/Observe.h
@@ -13,9 +14,6 @@ add_library(MediatorCore
     mediator/Topic.cpp
     mediator/Mediator.h
     mediator/Mediator.cpp
-    mediator/TopicMeta.h
-    mediator/TopicRegistry.h
-    mediator/TopicRegistry.cpp
 
     # actor
     actor/ActorObserve.h
@@ -32,6 +30,13 @@ add_library(MediatorCore
     binding/Binding.h
     binding/BindingHelper.h
     binding/EventCommandFilter.h
+
+    # model
+    model/BaseModel.h
+    model/BaseModel.cpp
+    model/LogModel.h
+    model/LogModel.cpp
+    model/LogEntry.h
 )
 
 target_include_directories(MediatorCore
@@ -44,6 +49,7 @@ target_link_libraries(MediatorCore
     PUBLIC
         Qt${QT_VERSION_MAJOR}::Core
         Qt${QT_VERSION_MAJOR}::Widgets   # 你 core 里还有 binding，所以需要 Widgets
+        Qt${QT_VERSION_MAJOR}::Sql       # LogModel 需要 QtSql
 )
 
 target_compile_features(MediatorCore PUBLIC cxx_std_17)
