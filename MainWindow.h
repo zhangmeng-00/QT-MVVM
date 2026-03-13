@@ -16,7 +16,8 @@
 
 // Binding helpers
 #include "core/binding/Binding.h"
-#include "core/binding/BindingCommand.h"
+#include "core/binding/BindingEvents.h"
+#include "core/binding/BindingEventsHelpers.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
