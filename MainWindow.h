@@ -13,6 +13,7 @@
 // ViewModels
 #include "viewmodel/UserViewModel.h"
 #include "viewmodel/SensorViewModel.h"
+#include "viewmodel/LogListViewModel.h"
 
 // Binding helpers
 #include "core/binding/Binding.h"
@@ -46,4 +47,5 @@ private:
     // ViewModels
     UserViewModel*   m_userVM   = nullptr;
     SensorViewModel* m_sensorVM = nullptr;
+    LogListViewModel* m_logListVM = nullptr;
 };

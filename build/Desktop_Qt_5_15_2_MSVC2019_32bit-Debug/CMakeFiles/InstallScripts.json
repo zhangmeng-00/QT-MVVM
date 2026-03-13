@@ -1,8 +1,0 @@
-{
-	"InstallScripts" : 
-	[
-		"D:/3_Source Code/31_QT/MediatorMVAQt/build/Desktop_Qt_5_15_2_MSVC2019_32bit-Debug/cmake_install.cmake",
-		"D:/3_Source Code/31_QT/MediatorMVAQt/build/Desktop_Qt_5_15_2_MSVC2019_32bit-Debug/core/cmake_install.cmake"
-	],
-	"Parallel" : false
-}

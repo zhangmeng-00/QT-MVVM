@@ -37,11 +37,13 @@ MainWindow::~MainWindow()
 
 void MainWindow::setupViewModels()
 {
-    m_userVM   = new UserViewModel(this);
-    m_sensorVM = new SensorViewModel(this);
+    m_userVM     = new UserViewModel(this);
+    m_sensorVM   = new SensorViewModel(this);
+    m_logListVM  = new LogListViewModel(this);
 
     AppContext::instance().ConnectObserve(m_userVM);
     AppContext::instance().ConnectObserve(m_sensorVM);
+    AppContext::instance().ConnectObserve(m_logListVM);
 }
 
 void MainWindow::setupBindings()

@@ -25,27 +25,21 @@
 			null
 		],
 		[
-			"D:/3_Source Code/31_QT/MediatorMVAQt/core/binding/BindingCommand.h",
+			"D:/3_Source Code/31_QT/MediatorMVAQt/core/binding/BindingEvents.h",
 			"MU",
-			"YURQU3T53E/moc_BindingCommand.cpp",
+			"YURQU3T53E/moc_BindingEvents.cpp",
 			null
 		],
 		[
-			"D:/3_Source Code/31_QT/MediatorMVAQt/core/binding/BindingCommandHelpers.h",
+			"D:/3_Source Code/31_QT/MediatorMVAQt/core/binding/BindingEventsHelpers.h",
 			"MU",
-			"YURQU3T53E/moc_BindingCommandHelpers.cpp",
+			"YURQU3T53E/moc_BindingEventsHelpers.cpp",
 			null
 		],
 		[
 			"D:/3_Source Code/31_QT/MediatorMVAQt/core/binding/BindingHelper.h",
 			"MU",
 			"YURQU3T53E/moc_BindingHelper.cpp",
-			null
-		],
-		[
-			"D:/3_Source Code/31_QT/MediatorMVAQt/core/binding/EventCommandFilter.h",
-			"MU",
-			"YURQU3T53E/moc_EventCommandFilter.cpp",
 			null
 		],
 		[
@@ -85,15 +79,21 @@
 			null
 		],
 		[
-			"D:/3_Source Code/31_QT/MediatorMVAQt/core/mediator/TopicMeta.h",
+			"D:/3_Source Code/31_QT/MediatorMVAQt/core/model/BaseModel.h",
 			"MU",
-			"J3OSQKNXQN/moc_TopicMeta.cpp",
+			"NLOY5YBGEN/moc_BaseModel.cpp",
 			null
 		],
 		[
-			"D:/3_Source Code/31_QT/MediatorMVAQt/core/mediator/TopicRegistry.h",
+			"D:/3_Source Code/31_QT/MediatorMVAQt/core/model/LogEntry.h",
 			"MU",
-			"J3OSQKNXQN/moc_TopicRegistry.cpp",
+			"NLOY5YBGEN/moc_LogEntry.cpp",
+			null
+		],
+		[
+			"D:/3_Source Code/31_QT/MediatorMVAQt/core/model/LogModel.h",
+			"MU",
+			"NLOY5YBGEN/moc_LogModel.cpp",
 			null
 		],
 		[
@@ -106,6 +106,12 @@
 			"D:/3_Source Code/31_QT/MediatorMVAQt/core/policy/ISubscriptionPolicy.h",
 			"MU",
 			"UZYPO632FN/moc_ISubscriptionPolicy.cpp",
+			null
+		],
+		[
+			"D:/3_Source Code/31_QT/MediatorMVAQt/core/policy/StickyPolicy.h",
+			"MU",
+			"UZYPO632FN/moc_StickyPolicy.cpp",
 			null
 		],
 		[
@@ -125,9 +131,25 @@
 	"MOC_COMPILATION_FILE_RelWithDebInfo" : "D:/3_Source Code/31_QT/MediatorMVAQt/build/core/MediatorCore_autogen/mocs_compilation_RelWithDebInfo.cpp",
 	"MOC_COMPILATION_FILE_Release" : "D:/3_Source Code/31_QT/MediatorMVAQt/build/core/MediatorCore_autogen/mocs_compilation_Release.cpp",
 	"MOC_DEFINITIONS" : [],
-	"MOC_DEFINITIONS_Debug" : [ "QT_CORE_LIB", "QT_GUI_LIB", "QT_WIDGETS_LIB", "WIN32" ],
-	"MOC_DEFINITIONS_RelWithDebInfo" : [ "QT_CORE_LIB", "QT_GUI_LIB", "QT_NO_DEBUG", "QT_WIDGETS_LIB", "WIN32" ],
-	"MOC_DEFINITIONS_Release" : [ "QT_CORE_LIB", "QT_GUI_LIB", "QT_NO_DEBUG", "QT_WIDGETS_LIB", "WIN32" ],
+	"MOC_DEFINITIONS_Debug" : [ "QT_CORE_LIB", "QT_GUI_LIB", "QT_SQL_LIB", "QT_WIDGETS_LIB", "WIN32" ],
+	"MOC_DEFINITIONS_RelWithDebInfo" : 
+	[
+		"QT_CORE_LIB",
+		"QT_GUI_LIB",
+		"QT_NO_DEBUG",
+		"QT_SQL_LIB",
+		"QT_WIDGETS_LIB",
+		"WIN32"
+	],
+	"MOC_DEFINITIONS_Release" : 
+	[
+		"QT_CORE_LIB",
+		"QT_GUI_LIB",
+		"QT_NO_DEBUG",
+		"QT_SQL_LIB",
+		"QT_WIDGETS_LIB",
+		"WIN32"
+	],
 	"MOC_DEPEND_FILTERS" : 
 	[
 		[
@@ -145,7 +167,8 @@
 		"C:/Qt/5.15.2/msvc2019/mkspecs/win32-msvc",
 		"C:/Qt/5.15.2/msvc2019/include/QtWidgets",
 		"C:/Qt/5.15.2/msvc2019/include/QtGui",
-		"C:/Qt/5.15.2/msvc2019/include/QtANGLE"
+		"C:/Qt/5.15.2/msvc2019/include/QtANGLE",
+		"C:/Qt/5.15.2/msvc2019/include/QtSql"
 	],
 	"MOC_INCLUDES_RelWithDebInfo" : 
 	[
@@ -156,7 +179,8 @@
 		"C:/Qt/5.15.2/msvc2019/mkspecs/win32-msvc",
 		"C:/Qt/5.15.2/msvc2019/include/QtWidgets",
 		"C:/Qt/5.15.2/msvc2019/include/QtGui",
-		"C:/Qt/5.15.2/msvc2019/include/QtANGLE"
+		"C:/Qt/5.15.2/msvc2019/include/QtANGLE",
+		"C:/Qt/5.15.2/msvc2019/include/QtSql"
 	],
 	"MOC_INCLUDES_Release" : 
 	[
@@ -167,7 +191,8 @@
 		"C:/Qt/5.15.2/msvc2019/mkspecs/win32-msvc",
 		"C:/Qt/5.15.2/msvc2019/include/QtWidgets",
 		"C:/Qt/5.15.2/msvc2019/include/QtGui",
-		"C:/Qt/5.15.2/msvc2019/include/QtANGLE"
+		"C:/Qt/5.15.2/msvc2019/include/QtANGLE",
+		"C:/Qt/5.15.2/msvc2019/include/QtSql"
 	],
 	"MOC_MACRO_NAMES" : [ "Q_OBJECT", "Q_GADGET", "Q_NAMESPACE", "Q_NAMESPACE_EXPORT" ],
 	"MOC_OPTIONS" : [],
@@ -213,7 +238,12 @@
 			null
 		],
 		[
-			"D:/3_Source Code/31_QT/MediatorMVAQt/core/mediator/TopicRegistry.cpp",
+			"D:/3_Source Code/31_QT/MediatorMVAQt/core/model/BaseModel.cpp",
+			"MU",
+			null
+		],
+		[
+			"D:/3_Source Code/31_QT/MediatorMVAQt/core/model/LogModel.cpp",
 			"MU",
 			null
 		]

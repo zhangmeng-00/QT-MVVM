@@ -1,0 +1,158 @@
+MediatorCore_autogen/timestamp: \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/QAbstractItemModel \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/QDebug \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/QList \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/QMap \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/QMetaObject \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/QMetaProperty \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/QMetaType \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/QMutex \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/QObject \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/QPointer \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/QString \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/QThread \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/QVariant \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/QVariantList \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qabstractitemmodel.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qalgorithms.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qarraydata.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qatomic.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qbasicatomic.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qbytearray.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qbytearraylist.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qchar.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qcompilerdetection.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qconfig.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qcontainerfwd.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qcontainertools_impl.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qcontiguouscache.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qdatastream.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qdeadlinetimer.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qdebug.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qelapsedtimer.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qflags.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qglobal.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qglobalstatic.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qhash.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qhashfunctions.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qiodevice.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qitemselectionmodel.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qiterator.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qline.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qlist.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qlocale.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qlogging.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qmap.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qmargins.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qmetaobject.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qmetatype.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qmutex.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qnamespace.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qnumeric.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qobject.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qobject_impl.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qobjectdefs.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qobjectdefs_impl.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qpair.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qpoint.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qpointer.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qprocessordetection.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qrect.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qrefcount.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qregexp.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qregularexpression.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qscopedpointer.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qset.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qshareddata.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qsharedpointer.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qsharedpointer_impl.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qsize.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qstring.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qstringalgorithms.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qstringlist.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qstringliteral.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qstringmatcher.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qstringview.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qsysinfo.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qsystemdetection.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qtcore-config.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qtextstream.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qthread.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qtypeinfo.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qvariant.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qvarlengtharray.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qvector.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qversiontagging.h \
+	C:/Qt/5.15.2/msvc2019/include/QtGui/qbrush.h \
+	C:/Qt/5.15.2/msvc2019/include/QtGui/qcolor.h \
+	C:/Qt/5.15.2/msvc2019/include/QtGui/qcursor.h \
+	C:/Qt/5.15.2/msvc2019/include/QtGui/qfont.h \
+	C:/Qt/5.15.2/msvc2019/include/QtGui/qfontinfo.h \
+	C:/Qt/5.15.2/msvc2019/include/QtGui/qfontmetrics.h \
+	C:/Qt/5.15.2/msvc2019/include/QtGui/qicon.h \
+	C:/Qt/5.15.2/msvc2019/include/QtGui/qimage.h \
+	C:/Qt/5.15.2/msvc2019/include/QtGui/qkeysequence.h \
+	C:/Qt/5.15.2/msvc2019/include/QtGui/qmatrix.h \
+	C:/Qt/5.15.2/msvc2019/include/QtGui/qpaintdevice.h \
+	C:/Qt/5.15.2/msvc2019/include/QtGui/qpalette.h \
+	C:/Qt/5.15.2/msvc2019/include/QtGui/qpixelformat.h \
+	C:/Qt/5.15.2/msvc2019/include/QtGui/qpixmap.h \
+	C:/Qt/5.15.2/msvc2019/include/QtGui/qpolygon.h \
+	C:/Qt/5.15.2/msvc2019/include/QtGui/qregion.h \
+	C:/Qt/5.15.2/msvc2019/include/QtGui/qrgb.h \
+	C:/Qt/5.15.2/msvc2019/include/QtGui/qrgba64.h \
+	C:/Qt/5.15.2/msvc2019/include/QtGui/qtgui-config.h \
+	C:/Qt/5.15.2/msvc2019/include/QtGui/qtguiglobal.h \
+	C:/Qt/5.15.2/msvc2019/include/QtGui/qtransform.h \
+	C:/Qt/5.15.2/msvc2019/include/QtGui/qvalidator.h \
+	C:/Qt/5.15.2/msvc2019/include/QtGui/qwindowdefs.h \
+	C:/Qt/5.15.2/msvc2019/include/QtGui/qwindowdefs_win.h \
+	C:/Qt/5.15.2/msvc2019/include/QtSql/QSqlDatabase \
+	C:/Qt/5.15.2/msvc2019/include/QtSql/QSqlQuery \
+	C:/Qt/5.15.2/msvc2019/include/QtSql/qsqldatabase.h \
+	C:/Qt/5.15.2/msvc2019/include/QtSql/qsqlquery.h \
+	C:/Qt/5.15.2/msvc2019/include/QtSql/qtsql-config.h \
+	C:/Qt/5.15.2/msvc2019/include/QtSql/qtsqlglobal.h \
+	C:/Qt/5.15.2/msvc2019/include/QtWidgets/QAbstractItemView \
+	C:/Qt/5.15.2/msvc2019/include/QtWidgets/qabstractitemdelegate.h \
+	C:/Qt/5.15.2/msvc2019/include/QtWidgets/qabstractitemview.h \
+	C:/Qt/5.15.2/msvc2019/include/QtWidgets/qabstractscrollarea.h \
+	C:/Qt/5.15.2/msvc2019/include/QtWidgets/qabstractslider.h \
+	C:/Qt/5.15.2/msvc2019/include/QtWidgets/qabstractspinbox.h \
+	C:/Qt/5.15.2/msvc2019/include/QtWidgets/qframe.h \
+	C:/Qt/5.15.2/msvc2019/include/QtWidgets/qrubberband.h \
+	C:/Qt/5.15.2/msvc2019/include/QtWidgets/qsizepolicy.h \
+	C:/Qt/5.15.2/msvc2019/include/QtWidgets/qslider.h \
+	C:/Qt/5.15.2/msvc2019/include/QtWidgets/qstyle.h \
+	C:/Qt/5.15.2/msvc2019/include/QtWidgets/qstyleoption.h \
+	C:/Qt/5.15.2/msvc2019/include/QtWidgets/qtabbar.h \
+	C:/Qt/5.15.2/msvc2019/include/QtWidgets/qtabwidget.h \
+	C:/Qt/5.15.2/msvc2019/include/QtWidgets/qtwidgets-config.h \
+	C:/Qt/5.15.2/msvc2019/include/QtWidgets/qtwidgetsglobal.h \
+	C:/Qt/5.15.2/msvc2019/include/QtWidgets/qwidget.h \
+	D:/3_Source\ Code/31_QT/MediatorMVAQt/core/CMakeLists.txt \
+	D:/3_Source\ Code/31_QT/MediatorMVAQt/core/actor/ActorObserve.cpp \
+	D:/3_Source\ Code/31_QT/MediatorMVAQt/core/actor/ActorObserve.h \
+	D:/3_Source\ Code/31_QT/MediatorMVAQt/core/binding/Binding.h \
+	D:/3_Source\ Code/31_QT/MediatorMVAQt/core/binding/BindingEvents.h \
+	D:/3_Source\ Code/31_QT/MediatorMVAQt/core/binding/BindingEventsHelpers.h \
+	D:/3_Source\ Code/31_QT/MediatorMVAQt/core/binding/BindingHelper.h \
+	D:/3_Source\ Code/31_QT/MediatorMVAQt/core/command/DispatcherCommand.h \
+	D:/3_Source\ Code/31_QT/MediatorMVAQt/core/command/ICommand.h \
+	D:/3_Source\ Code/31_QT/MediatorMVAQt/core/command/SimpleCommand.h \
+	D:/3_Source\ Code/31_QT/MediatorMVAQt/core/mediator/Mediator.cpp \
+	D:/3_Source\ Code/31_QT/MediatorMVAQt/core/mediator/Mediator.h \
+	D:/3_Source\ Code/31_QT/MediatorMVAQt/core/mediator/Observe.cpp \
+	D:/3_Source\ Code/31_QT/MediatorMVAQt/core/mediator/Observe.h \
+	D:/3_Source\ Code/31_QT/MediatorMVAQt/core/mediator/Topic.cpp \
+	D:/3_Source\ Code/31_QT/MediatorMVAQt/core/mediator/Topic.h \
+	D:/3_Source\ Code/31_QT/MediatorMVAQt/core/model/BaseModel.cpp \
+	D:/3_Source\ Code/31_QT/MediatorMVAQt/core/model/BaseModel.h \
+	D:/3_Source\ Code/31_QT/MediatorMVAQt/core/model/LogEntry.h \
+	D:/3_Source\ Code/31_QT/MediatorMVAQt/core/model/LogModel.cpp \
+	D:/3_Source\ Code/31_QT/MediatorMVAQt/core/model/LogModel.h \
+	D:/3_Source\ Code/31_QT/MediatorMVAQt/core/policy/AlwaysPolicy.h \
+	D:/3_Source\ Code/31_QT/MediatorMVAQt/core/policy/ISubscriptionPolicy.h \
+	D:/3_Source\ Code/31_QT/MediatorMVAQt/core/policy/StickyPolicy.h \
+	D:/3_Source\ Code/31_QT/MediatorMVAQt/core/policy/ValueChangedPolicy.h \
+	C:/Program\ Files/CMake/bin/cmake.exe

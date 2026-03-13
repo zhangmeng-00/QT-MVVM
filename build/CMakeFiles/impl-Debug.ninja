@@ -123,16 +123,6 @@ build CMakeFiles\MediatorMVAQt.dir\Debug\viewmodel\LogListViewModel.cpp.obj: CXX
   TARGET_COMPILE_PDB = CMakeFiles\MediatorMVAQt.dir\Debug\
   TARGET_PDB = Debug\MediatorMVAQt.pdb
 
-build CMakeFiles\MediatorMVAQt.dir\Debug\model\BaseModel.cpp.obj: CXX_COMPILER__MediatorMVAQt_unscanned_Debug D$:\3_Source$ Code\31_QT\MediatorMVAQt\model\BaseModel.cpp || cmake_object_order_depends_target_MediatorMVAQt_DEBUG
-  CONFIG = Debug
-  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_SERIALBUS_LIB -DQT_SQL_LIB -DQT_WIDGETS_LIB -DCMAKE_INTDIR=\"Debug\"
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd /utf-8
-  INCLUDES = -I"D:\3_Source Code\31_QT\MediatorMVAQt\build\MediatorMVAQt_autogen\include_Debug" -I"D:\3_Source Code\31_QT\MediatorMVAQt" -I"D:\3_Source Code\31_QT\MediatorMVAQt\core" -I"D:\3_Source Code\31_QT\MediatorMVAQt\core\.." -external:IC:\Qt\5.15.2\msvc2019\include -external:IC:\Qt\5.15.2\msvc2019\include\QtCore -external:IC:\Qt\5.15.2\msvc2019\.\mkspecs\win32-msvc -external:IC:\Qt\5.15.2\msvc2019\include\QtWidgets -external:IC:\Qt\5.15.2\msvc2019\include\QtGui -external:IC:\Qt\5.15.2\msvc2019\include\QtANGLE -external:IC:\Qt\5.15.2\msvc2019\include\QtSql -external:IC:\Qt\5.15.2\msvc2019\include\QtNetwork -external:IC:\Qt\5.15.2\msvc2019\include\QtSerialBus -external:W0
-  OBJECT_DIR = CMakeFiles\MediatorMVAQt.dir\Debug
-  OBJECT_FILE_DIR = CMakeFiles\MediatorMVAQt.dir\Debug\model
-  TARGET_COMPILE_PDB = CMakeFiles\MediatorMVAQt.dir\Debug\
-  TARGET_PDB = Debug\MediatorMVAQt.pdb
-
 build CMakeFiles\MediatorMVAQt.dir\Debug\model\SensorModel.cpp.obj: CXX_COMPILER__MediatorMVAQt_unscanned_Debug D$:\3_Source$ Code\31_QT\MediatorMVAQt\model\SensorModel.cpp || cmake_object_order_depends_target_MediatorMVAQt_DEBUG
   CONFIG = Debug
   DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_SERIALBUS_LIB -DQT_SQL_LIB -DQT_WIDGETS_LIB -DCMAKE_INTDIR=\"Debug\"
@@ -144,26 +134,6 @@ build CMakeFiles\MediatorMVAQt.dir\Debug\model\SensorModel.cpp.obj: CXX_COMPILER
   TARGET_PDB = Debug\MediatorMVAQt.pdb
 
 build CMakeFiles\MediatorMVAQt.dir\Debug\model\UserModel.cpp.obj: CXX_COMPILER__MediatorMVAQt_unscanned_Debug D$:\3_Source$ Code\31_QT\MediatorMVAQt\model\UserModel.cpp || cmake_object_order_depends_target_MediatorMVAQt_DEBUG
-  CONFIG = Debug
-  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_SERIALBUS_LIB -DQT_SQL_LIB -DQT_WIDGETS_LIB -DCMAKE_INTDIR=\"Debug\"
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd /utf-8
-  INCLUDES = -I"D:\3_Source Code\31_QT\MediatorMVAQt\build\MediatorMVAQt_autogen\include_Debug" -I"D:\3_Source Code\31_QT\MediatorMVAQt" -I"D:\3_Source Code\31_QT\MediatorMVAQt\core" -I"D:\3_Source Code\31_QT\MediatorMVAQt\core\.." -external:IC:\Qt\5.15.2\msvc2019\include -external:IC:\Qt\5.15.2\msvc2019\include\QtCore -external:IC:\Qt\5.15.2\msvc2019\.\mkspecs\win32-msvc -external:IC:\Qt\5.15.2\msvc2019\include\QtWidgets -external:IC:\Qt\5.15.2\msvc2019\include\QtGui -external:IC:\Qt\5.15.2\msvc2019\include\QtANGLE -external:IC:\Qt\5.15.2\msvc2019\include\QtSql -external:IC:\Qt\5.15.2\msvc2019\include\QtNetwork -external:IC:\Qt\5.15.2\msvc2019\include\QtSerialBus -external:W0
-  OBJECT_DIR = CMakeFiles\MediatorMVAQt.dir\Debug
-  OBJECT_FILE_DIR = CMakeFiles\MediatorMVAQt.dir\Debug\model
-  TARGET_COMPILE_PDB = CMakeFiles\MediatorMVAQt.dir\Debug\
-  TARGET_PDB = Debug\MediatorMVAQt.pdb
-
-build CMakeFiles\MediatorMVAQt.dir\Debug\model\SQLiteRecorderActor.cpp.obj: CXX_COMPILER__MediatorMVAQt_unscanned_Debug D$:\3_Source$ Code\31_QT\MediatorMVAQt\model\SQLiteRecorderActor.cpp || cmake_object_order_depends_target_MediatorMVAQt_DEBUG
-  CONFIG = Debug
-  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_SERIALBUS_LIB -DQT_SQL_LIB -DQT_WIDGETS_LIB -DCMAKE_INTDIR=\"Debug\"
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd /utf-8
-  INCLUDES = -I"D:\3_Source Code\31_QT\MediatorMVAQt\build\MediatorMVAQt_autogen\include_Debug" -I"D:\3_Source Code\31_QT\MediatorMVAQt" -I"D:\3_Source Code\31_QT\MediatorMVAQt\core" -I"D:\3_Source Code\31_QT\MediatorMVAQt\core\.." -external:IC:\Qt\5.15.2\msvc2019\include -external:IC:\Qt\5.15.2\msvc2019\include\QtCore -external:IC:\Qt\5.15.2\msvc2019\.\mkspecs\win32-msvc -external:IC:\Qt\5.15.2\msvc2019\include\QtWidgets -external:IC:\Qt\5.15.2\msvc2019\include\QtGui -external:IC:\Qt\5.15.2\msvc2019\include\QtANGLE -external:IC:\Qt\5.15.2\msvc2019\include\QtSql -external:IC:\Qt\5.15.2\msvc2019\include\QtNetwork -external:IC:\Qt\5.15.2\msvc2019\include\QtSerialBus -external:W0
-  OBJECT_DIR = CMakeFiles\MediatorMVAQt.dir\Debug
-  OBJECT_FILE_DIR = CMakeFiles\MediatorMVAQt.dir\Debug\model
-  TARGET_COMPILE_PDB = CMakeFiles\MediatorMVAQt.dir\Debug\
-  TARGET_PDB = Debug\MediatorMVAQt.pdb
-
-build CMakeFiles\MediatorMVAQt.dir\Debug\model\LogModel.cpp.obj: CXX_COMPILER__MediatorMVAQt_unscanned_Debug D$:\3_Source$ Code\31_QT\MediatorMVAQt\model\LogModel.cpp || cmake_object_order_depends_target_MediatorMVAQt_DEBUG
   CONFIG = Debug
   DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_SERIALBUS_LIB -DQT_SQL_LIB -DQT_WIDGETS_LIB -DCMAKE_INTDIR=\"Debug\"
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd /utf-8
@@ -231,7 +201,7 @@ build CMakeFiles\MediatorMVAQt.dir\Debug\app\Bootstrap.cpp.obj: CXX_COMPILER__Me
 #############################################
 # Link the executable Debug\MediatorMVAQt.exe
 
-build Debug\MediatorMVAQt.exe: CXX_EXECUTABLE_LINKER__MediatorMVAQt_Debug CMakeFiles\MediatorMVAQt.dir\Debug\MediatorMVAQt_autogen\mocs_compilation_Debug.cpp.obj CMakeFiles\MediatorMVAQt.dir\Debug\main.cpp.obj CMakeFiles\MediatorMVAQt.dir\Debug\MainWindow.cpp.obj CMakeFiles\MediatorMVAQt.dir\Debug\view\TraceViewer.cpp.obj CMakeFiles\MediatorMVAQt.dir\Debug\view\LogListView.cpp.obj CMakeFiles\MediatorMVAQt.dir\Debug\viewmodel\UserViewModel.cpp.obj CMakeFiles\MediatorMVAQt.dir\Debug\viewmodel\SensorViewModel.cpp.obj CMakeFiles\MediatorMVAQt.dir\Debug\viewmodel\LogListViewModel.cpp.obj CMakeFiles\MediatorMVAQt.dir\Debug\model\BaseModel.cpp.obj CMakeFiles\MediatorMVAQt.dir\Debug\model\SensorModel.cpp.obj CMakeFiles\MediatorMVAQt.dir\Debug\model\UserModel.cpp.obj CMakeFiles\MediatorMVAQt.dir\Debug\model\SQLiteRecorderActor.cpp.obj CMakeFiles\MediatorMVAQt.dir\Debug\model\LogModel.cpp.obj CMakeFiles\MediatorMVAQt.dir\Debug\model\modbus\ModbusMasterModel.cpp.obj CMakeFiles\MediatorMVAQt.dir\Debug\model\modbus\ModbusModuleBase.cpp.obj CMakeFiles\MediatorMVAQt.dir\Debug\model\modbus\PidPressureModule.cpp.obj CMakeFiles\MediatorMVAQt.dir\Debug\app\AppContext.cpp.obj CMakeFiles\MediatorMVAQt.dir\Debug\app\Bootstrap.cpp.obj | core\Debug\MediatorCore.lib C$:\Qt\5.15.2\msvc2019\lib\Qt5Widgetsd.lib C$:\Qt\5.15.2\msvc2019\lib\Qt5Sqld.lib C$:\Qt\5.15.2\msvc2019\lib\Qt5Networkd.lib C$:\Qt\5.15.2\msvc2019\lib\Qt5SerialBusd.lib C$:\Qt\5.15.2\msvc2019\lib\Qt5Guid.lib C$:\Qt\5.15.2\msvc2019\lib\Qt5Cored.lib || MediatorMVAQt_autogen$:Debug MediatorMVAQt_autogen_timestamp_deps$:Debug core\Debug\MediatorCore.lib
+build Debug\MediatorMVAQt.exe: CXX_EXECUTABLE_LINKER__MediatorMVAQt_Debug CMakeFiles\MediatorMVAQt.dir\Debug\MediatorMVAQt_autogen\mocs_compilation_Debug.cpp.obj CMakeFiles\MediatorMVAQt.dir\Debug\main.cpp.obj CMakeFiles\MediatorMVAQt.dir\Debug\MainWindow.cpp.obj CMakeFiles\MediatorMVAQt.dir\Debug\view\TraceViewer.cpp.obj CMakeFiles\MediatorMVAQt.dir\Debug\view\LogListView.cpp.obj CMakeFiles\MediatorMVAQt.dir\Debug\viewmodel\UserViewModel.cpp.obj CMakeFiles\MediatorMVAQt.dir\Debug\viewmodel\SensorViewModel.cpp.obj CMakeFiles\MediatorMVAQt.dir\Debug\viewmodel\LogListViewModel.cpp.obj CMakeFiles\MediatorMVAQt.dir\Debug\model\SensorModel.cpp.obj CMakeFiles\MediatorMVAQt.dir\Debug\model\UserModel.cpp.obj CMakeFiles\MediatorMVAQt.dir\Debug\model\modbus\ModbusMasterModel.cpp.obj CMakeFiles\MediatorMVAQt.dir\Debug\model\modbus\ModbusModuleBase.cpp.obj CMakeFiles\MediatorMVAQt.dir\Debug\model\modbus\PidPressureModule.cpp.obj CMakeFiles\MediatorMVAQt.dir\Debug\app\AppContext.cpp.obj CMakeFiles\MediatorMVAQt.dir\Debug\app\Bootstrap.cpp.obj | core\Debug\MediatorCore.lib C$:\Qt\5.15.2\msvc2019\lib\Qt5Widgetsd.lib C$:\Qt\5.15.2\msvc2019\lib\Qt5Sqld.lib C$:\Qt\5.15.2\msvc2019\lib\Qt5Networkd.lib C$:\Qt\5.15.2\msvc2019\lib\Qt5SerialBusd.lib C$:\Qt\5.15.2\msvc2019\lib\Qt5Guid.lib C$:\Qt\5.15.2\msvc2019\lib\Qt5Cored.lib || MediatorMVAQt_autogen$:Debug MediatorMVAQt_autogen_timestamp_deps$:Debug core\Debug\MediatorCore.lib
   CONFIG = Debug
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
   LINK_FLAGS = /machine:X86 /debug /INCREMENTAL /subsystem:console
@@ -289,9 +259,9 @@ build cmake_object_order_depends_target_MediatorCore_DEBUG: phony || core\Mediat
 
 build core\CMakeFiles\MediatorCore.dir\Debug\MediatorCore_autogen\mocs_compilation_Debug.cpp.obj: CXX_COMPILER__MediatorCore_unscanned_Debug D$:\3_Source$ Code\31_QT\MediatorMVAQt\build\core\MediatorCore_autogen\mocs_compilation_Debug.cpp || cmake_object_order_depends_target_MediatorCore_DEBUG
   CONFIG = Debug
-  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -DCMAKE_INTDIR=\"Debug\"
+  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_WIDGETS_LIB -DCMAKE_INTDIR=\"Debug\"
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd /utf-8
-  INCLUDES = -I"D:\3_Source Code\31_QT\MediatorMVAQt\build\core\MediatorCore_autogen\include_Debug" -I"D:\3_Source Code\31_QT\MediatorMVAQt\core" -I"D:\3_Source Code\31_QT\MediatorMVAQt\core\.." -external:IC:\Qt\5.15.2\msvc2019\include -external:IC:\Qt\5.15.2\msvc2019\include\QtCore -external:IC:\Qt\5.15.2\msvc2019\.\mkspecs\win32-msvc -external:IC:\Qt\5.15.2\msvc2019\include\QtWidgets -external:IC:\Qt\5.15.2\msvc2019\include\QtGui -external:IC:\Qt\5.15.2\msvc2019\include\QtANGLE -external:W0
+  INCLUDES = -I"D:\3_Source Code\31_QT\MediatorMVAQt\build\core\MediatorCore_autogen\include_Debug" -I"D:\3_Source Code\31_QT\MediatorMVAQt\core" -I"D:\3_Source Code\31_QT\MediatorMVAQt\core\.." -external:IC:\Qt\5.15.2\msvc2019\include -external:IC:\Qt\5.15.2\msvc2019\include\QtCore -external:IC:\Qt\5.15.2\msvc2019\.\mkspecs\win32-msvc -external:IC:\Qt\5.15.2\msvc2019\include\QtWidgets -external:IC:\Qt\5.15.2\msvc2019\include\QtGui -external:IC:\Qt\5.15.2\msvc2019\include\QtANGLE -external:IC:\Qt\5.15.2\msvc2019\include\QtSql -external:W0
   OBJECT_DIR = core\CMakeFiles\MediatorCore.dir\Debug
   OBJECT_FILE_DIR = core\CMakeFiles\MediatorCore.dir\Debug\MediatorCore_autogen
   TARGET_COMPILE_PDB = core\CMakeFiles\MediatorCore.dir\Debug\MediatorCore.pdb
@@ -299,9 +269,9 @@ build core\CMakeFiles\MediatorCore.dir\Debug\MediatorCore_autogen\mocs_compilati
 
 build core\CMakeFiles\MediatorCore.dir\Debug\mediator\Observe.cpp.obj: CXX_COMPILER__MediatorCore_unscanned_Debug D$:\3_Source$ Code\31_QT\MediatorMVAQt\core\mediator\Observe.cpp || cmake_object_order_depends_target_MediatorCore_DEBUG
   CONFIG = Debug
-  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -DCMAKE_INTDIR=\"Debug\"
+  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_WIDGETS_LIB -DCMAKE_INTDIR=\"Debug\"
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd /utf-8
-  INCLUDES = -I"D:\3_Source Code\31_QT\MediatorMVAQt\build\core\MediatorCore_autogen\include_Debug" -I"D:\3_Source Code\31_QT\MediatorMVAQt\core" -I"D:\3_Source Code\31_QT\MediatorMVAQt\core\.." -external:IC:\Qt\5.15.2\msvc2019\include -external:IC:\Qt\5.15.2\msvc2019\include\QtCore -external:IC:\Qt\5.15.2\msvc2019\.\mkspecs\win32-msvc -external:IC:\Qt\5.15.2\msvc2019\include\QtWidgets -external:IC:\Qt\5.15.2\msvc2019\include\QtGui -external:IC:\Qt\5.15.2\msvc2019\include\QtANGLE -external:W0
+  INCLUDES = -I"D:\3_Source Code\31_QT\MediatorMVAQt\build\core\MediatorCore_autogen\include_Debug" -I"D:\3_Source Code\31_QT\MediatorMVAQt\core" -I"D:\3_Source Code\31_QT\MediatorMVAQt\core\.." -external:IC:\Qt\5.15.2\msvc2019\include -external:IC:\Qt\5.15.2\msvc2019\include\QtCore -external:IC:\Qt\5.15.2\msvc2019\.\mkspecs\win32-msvc -external:IC:\Qt\5.15.2\msvc2019\include\QtWidgets -external:IC:\Qt\5.15.2\msvc2019\include\QtGui -external:IC:\Qt\5.15.2\msvc2019\include\QtANGLE -external:IC:\Qt\5.15.2\msvc2019\include\QtSql -external:W0
   OBJECT_DIR = core\CMakeFiles\MediatorCore.dir\Debug
   OBJECT_FILE_DIR = core\CMakeFiles\MediatorCore.dir\Debug\mediator
   TARGET_COMPILE_PDB = core\CMakeFiles\MediatorCore.dir\Debug\MediatorCore.pdb
@@ -309,9 +279,9 @@ build core\CMakeFiles\MediatorCore.dir\Debug\mediator\Observe.cpp.obj: CXX_COMPI
 
 build core\CMakeFiles\MediatorCore.dir\Debug\mediator\Topic.cpp.obj: CXX_COMPILER__MediatorCore_unscanned_Debug D$:\3_Source$ Code\31_QT\MediatorMVAQt\core\mediator\Topic.cpp || cmake_object_order_depends_target_MediatorCore_DEBUG
   CONFIG = Debug
-  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -DCMAKE_INTDIR=\"Debug\"
+  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_WIDGETS_LIB -DCMAKE_INTDIR=\"Debug\"
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd /utf-8
-  INCLUDES = -I"D:\3_Source Code\31_QT\MediatorMVAQt\build\core\MediatorCore_autogen\include_Debug" -I"D:\3_Source Code\31_QT\MediatorMVAQt\core" -I"D:\3_Source Code\31_QT\MediatorMVAQt\core\.." -external:IC:\Qt\5.15.2\msvc2019\include -external:IC:\Qt\5.15.2\msvc2019\include\QtCore -external:IC:\Qt\5.15.2\msvc2019\.\mkspecs\win32-msvc -external:IC:\Qt\5.15.2\msvc2019\include\QtWidgets -external:IC:\Qt\5.15.2\msvc2019\include\QtGui -external:IC:\Qt\5.15.2\msvc2019\include\QtANGLE -external:W0
+  INCLUDES = -I"D:\3_Source Code\31_QT\MediatorMVAQt\build\core\MediatorCore_autogen\include_Debug" -I"D:\3_Source Code\31_QT\MediatorMVAQt\core" -I"D:\3_Source Code\31_QT\MediatorMVAQt\core\.." -external:IC:\Qt\5.15.2\msvc2019\include -external:IC:\Qt\5.15.2\msvc2019\include\QtCore -external:IC:\Qt\5.15.2\msvc2019\.\mkspecs\win32-msvc -external:IC:\Qt\5.15.2\msvc2019\include\QtWidgets -external:IC:\Qt\5.15.2\msvc2019\include\QtGui -external:IC:\Qt\5.15.2\msvc2019\include\QtANGLE -external:IC:\Qt\5.15.2\msvc2019\include\QtSql -external:W0
   OBJECT_DIR = core\CMakeFiles\MediatorCore.dir\Debug
   OBJECT_FILE_DIR = core\CMakeFiles\MediatorCore.dir\Debug\mediator
   TARGET_COMPILE_PDB = core\CMakeFiles\MediatorCore.dir\Debug\MediatorCore.pdb
@@ -319,19 +289,9 @@ build core\CMakeFiles\MediatorCore.dir\Debug\mediator\Topic.cpp.obj: CXX_COMPILE
 
 build core\CMakeFiles\MediatorCore.dir\Debug\mediator\Mediator.cpp.obj: CXX_COMPILER__MediatorCore_unscanned_Debug D$:\3_Source$ Code\31_QT\MediatorMVAQt\core\mediator\Mediator.cpp || cmake_object_order_depends_target_MediatorCore_DEBUG
   CONFIG = Debug
-  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -DCMAKE_INTDIR=\"Debug\"
+  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_WIDGETS_LIB -DCMAKE_INTDIR=\"Debug\"
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd /utf-8
-  INCLUDES = -I"D:\3_Source Code\31_QT\MediatorMVAQt\build\core\MediatorCore_autogen\include_Debug" -I"D:\3_Source Code\31_QT\MediatorMVAQt\core" -I"D:\3_Source Code\31_QT\MediatorMVAQt\core\.." -external:IC:\Qt\5.15.2\msvc2019\include -external:IC:\Qt\5.15.2\msvc2019\include\QtCore -external:IC:\Qt\5.15.2\msvc2019\.\mkspecs\win32-msvc -external:IC:\Qt\5.15.2\msvc2019\include\QtWidgets -external:IC:\Qt\5.15.2\msvc2019\include\QtGui -external:IC:\Qt\5.15.2\msvc2019\include\QtANGLE -external:W0
-  OBJECT_DIR = core\CMakeFiles\MediatorCore.dir\Debug
-  OBJECT_FILE_DIR = core\CMakeFiles\MediatorCore.dir\Debug\mediator
-  TARGET_COMPILE_PDB = core\CMakeFiles\MediatorCore.dir\Debug\MediatorCore.pdb
-  TARGET_PDB = core\Debug\MediatorCore.pdb
-
-build core\CMakeFiles\MediatorCore.dir\Debug\mediator\TopicRegistry.cpp.obj: CXX_COMPILER__MediatorCore_unscanned_Debug D$:\3_Source$ Code\31_QT\MediatorMVAQt\core\mediator\TopicRegistry.cpp || cmake_object_order_depends_target_MediatorCore_DEBUG
-  CONFIG = Debug
-  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -DCMAKE_INTDIR=\"Debug\"
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd /utf-8
-  INCLUDES = -I"D:\3_Source Code\31_QT\MediatorMVAQt\build\core\MediatorCore_autogen\include_Debug" -I"D:\3_Source Code\31_QT\MediatorMVAQt\core" -I"D:\3_Source Code\31_QT\MediatorMVAQt\core\.." -external:IC:\Qt\5.15.2\msvc2019\include -external:IC:\Qt\5.15.2\msvc2019\include\QtCore -external:IC:\Qt\5.15.2\msvc2019\.\mkspecs\win32-msvc -external:IC:\Qt\5.15.2\msvc2019\include\QtWidgets -external:IC:\Qt\5.15.2\msvc2019\include\QtGui -external:IC:\Qt\5.15.2\msvc2019\include\QtANGLE -external:W0
+  INCLUDES = -I"D:\3_Source Code\31_QT\MediatorMVAQt\build\core\MediatorCore_autogen\include_Debug" -I"D:\3_Source Code\31_QT\MediatorMVAQt\core" -I"D:\3_Source Code\31_QT\MediatorMVAQt\core\.." -external:IC:\Qt\5.15.2\msvc2019\include -external:IC:\Qt\5.15.2\msvc2019\include\QtCore -external:IC:\Qt\5.15.2\msvc2019\.\mkspecs\win32-msvc -external:IC:\Qt\5.15.2\msvc2019\include\QtWidgets -external:IC:\Qt\5.15.2\msvc2019\include\QtGui -external:IC:\Qt\5.15.2\msvc2019\include\QtANGLE -external:IC:\Qt\5.15.2\msvc2019\include\QtSql -external:W0
   OBJECT_DIR = core\CMakeFiles\MediatorCore.dir\Debug
   OBJECT_FILE_DIR = core\CMakeFiles\MediatorCore.dir\Debug\mediator
   TARGET_COMPILE_PDB = core\CMakeFiles\MediatorCore.dir\Debug\MediatorCore.pdb
@@ -339,11 +299,31 @@ build core\CMakeFiles\MediatorCore.dir\Debug\mediator\TopicRegistry.cpp.obj: CXX
 
 build core\CMakeFiles\MediatorCore.dir\Debug\actor\ActorObserve.cpp.obj: CXX_COMPILER__MediatorCore_unscanned_Debug D$:\3_Source$ Code\31_QT\MediatorMVAQt\core\actor\ActorObserve.cpp || cmake_object_order_depends_target_MediatorCore_DEBUG
   CONFIG = Debug
-  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -DCMAKE_INTDIR=\"Debug\"
+  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_WIDGETS_LIB -DCMAKE_INTDIR=\"Debug\"
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd /utf-8
-  INCLUDES = -I"D:\3_Source Code\31_QT\MediatorMVAQt\build\core\MediatorCore_autogen\include_Debug" -I"D:\3_Source Code\31_QT\MediatorMVAQt\core" -I"D:\3_Source Code\31_QT\MediatorMVAQt\core\.." -external:IC:\Qt\5.15.2\msvc2019\include -external:IC:\Qt\5.15.2\msvc2019\include\QtCore -external:IC:\Qt\5.15.2\msvc2019\.\mkspecs\win32-msvc -external:IC:\Qt\5.15.2\msvc2019\include\QtWidgets -external:IC:\Qt\5.15.2\msvc2019\include\QtGui -external:IC:\Qt\5.15.2\msvc2019\include\QtANGLE -external:W0
+  INCLUDES = -I"D:\3_Source Code\31_QT\MediatorMVAQt\build\core\MediatorCore_autogen\include_Debug" -I"D:\3_Source Code\31_QT\MediatorMVAQt\core" -I"D:\3_Source Code\31_QT\MediatorMVAQt\core\.." -external:IC:\Qt\5.15.2\msvc2019\include -external:IC:\Qt\5.15.2\msvc2019\include\QtCore -external:IC:\Qt\5.15.2\msvc2019\.\mkspecs\win32-msvc -external:IC:\Qt\5.15.2\msvc2019\include\QtWidgets -external:IC:\Qt\5.15.2\msvc2019\include\QtGui -external:IC:\Qt\5.15.2\msvc2019\include\QtANGLE -external:IC:\Qt\5.15.2\msvc2019\include\QtSql -external:W0
   OBJECT_DIR = core\CMakeFiles\MediatorCore.dir\Debug
   OBJECT_FILE_DIR = core\CMakeFiles\MediatorCore.dir\Debug\actor
+  TARGET_COMPILE_PDB = core\CMakeFiles\MediatorCore.dir\Debug\MediatorCore.pdb
+  TARGET_PDB = core\Debug\MediatorCore.pdb
+
+build core\CMakeFiles\MediatorCore.dir\Debug\model\BaseModel.cpp.obj: CXX_COMPILER__MediatorCore_unscanned_Debug D$:\3_Source$ Code\31_QT\MediatorMVAQt\core\model\BaseModel.cpp || cmake_object_order_depends_target_MediatorCore_DEBUG
+  CONFIG = Debug
+  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_WIDGETS_LIB -DCMAKE_INTDIR=\"Debug\"
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd /utf-8
+  INCLUDES = -I"D:\3_Source Code\31_QT\MediatorMVAQt\build\core\MediatorCore_autogen\include_Debug" -I"D:\3_Source Code\31_QT\MediatorMVAQt\core" -I"D:\3_Source Code\31_QT\MediatorMVAQt\core\.." -external:IC:\Qt\5.15.2\msvc2019\include -external:IC:\Qt\5.15.2\msvc2019\include\QtCore -external:IC:\Qt\5.15.2\msvc2019\.\mkspecs\win32-msvc -external:IC:\Qt\5.15.2\msvc2019\include\QtWidgets -external:IC:\Qt\5.15.2\msvc2019\include\QtGui -external:IC:\Qt\5.15.2\msvc2019\include\QtANGLE -external:IC:\Qt\5.15.2\msvc2019\include\QtSql -external:W0
+  OBJECT_DIR = core\CMakeFiles\MediatorCore.dir\Debug
+  OBJECT_FILE_DIR = core\CMakeFiles\MediatorCore.dir\Debug\model
+  TARGET_COMPILE_PDB = core\CMakeFiles\MediatorCore.dir\Debug\MediatorCore.pdb
+  TARGET_PDB = core\Debug\MediatorCore.pdb
+
+build core\CMakeFiles\MediatorCore.dir\Debug\model\LogModel.cpp.obj: CXX_COMPILER__MediatorCore_unscanned_Debug D$:\3_Source$ Code\31_QT\MediatorMVAQt\core\model\LogModel.cpp || cmake_object_order_depends_target_MediatorCore_DEBUG
+  CONFIG = Debug
+  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_WIDGETS_LIB -DCMAKE_INTDIR=\"Debug\"
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd /utf-8
+  INCLUDES = -I"D:\3_Source Code\31_QT\MediatorMVAQt\build\core\MediatorCore_autogen\include_Debug" -I"D:\3_Source Code\31_QT\MediatorMVAQt\core" -I"D:\3_Source Code\31_QT\MediatorMVAQt\core\.." -external:IC:\Qt\5.15.2\msvc2019\include -external:IC:\Qt\5.15.2\msvc2019\include\QtCore -external:IC:\Qt\5.15.2\msvc2019\.\mkspecs\win32-msvc -external:IC:\Qt\5.15.2\msvc2019\include\QtWidgets -external:IC:\Qt\5.15.2\msvc2019\include\QtGui -external:IC:\Qt\5.15.2\msvc2019\include\QtANGLE -external:IC:\Qt\5.15.2\msvc2019\include\QtSql -external:W0
+  OBJECT_DIR = core\CMakeFiles\MediatorCore.dir\Debug
+  OBJECT_FILE_DIR = core\CMakeFiles\MediatorCore.dir\Debug\model
   TARGET_COMPILE_PDB = core\CMakeFiles\MediatorCore.dir\Debug\MediatorCore.pdb
   TARGET_PDB = core\Debug\MediatorCore.pdb
 
@@ -355,7 +335,7 @@ build core\CMakeFiles\MediatorCore.dir\Debug\actor\ActorObserve.cpp.obj: CXX_COM
 #############################################
 # Link the static library core\Debug\MediatorCore.lib
 
-build core\Debug\MediatorCore.lib: CXX_STATIC_LIBRARY_LINKER__MediatorCore_Debug core\CMakeFiles\MediatorCore.dir\Debug\MediatorCore_autogen\mocs_compilation_Debug.cpp.obj core\CMakeFiles\MediatorCore.dir\Debug\mediator\Observe.cpp.obj core\CMakeFiles\MediatorCore.dir\Debug\mediator\Topic.cpp.obj core\CMakeFiles\MediatorCore.dir\Debug\mediator\Mediator.cpp.obj core\CMakeFiles\MediatorCore.dir\Debug\mediator\TopicRegistry.cpp.obj core\CMakeFiles\MediatorCore.dir\Debug\actor\ActorObserve.cpp.obj || core\MediatorCore_autogen$:Debug core\MediatorCore_autogen_timestamp_deps$:Debug
+build core\Debug\MediatorCore.lib: CXX_STATIC_LIBRARY_LINKER__MediatorCore_Debug core\CMakeFiles\MediatorCore.dir\Debug\MediatorCore_autogen\mocs_compilation_Debug.cpp.obj core\CMakeFiles\MediatorCore.dir\Debug\mediator\Observe.cpp.obj core\CMakeFiles\MediatorCore.dir\Debug\mediator\Topic.cpp.obj core\CMakeFiles\MediatorCore.dir\Debug\mediator\Mediator.cpp.obj core\CMakeFiles\MediatorCore.dir\Debug\actor\ActorObserve.cpp.obj core\CMakeFiles\MediatorCore.dir\Debug\model\BaseModel.cpp.obj core\CMakeFiles\MediatorCore.dir\Debug\model\LogModel.cpp.obj || core\MediatorCore_autogen$:Debug core\MediatorCore_autogen_timestamp_deps$:Debug
   CONFIG = Debug
   LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
   LINK_FLAGS = /machine:X86

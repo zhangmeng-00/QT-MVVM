@@ -126,42 +126,6 @@
 			null
 		],
 		[
-			"D:/3_Source Code/31_QT/MediatorMVAQt/model/BaseModel.h",
-			"MU",
-			"NLOY5YBGEN/moc_BaseModel.cpp",
-			null
-		],
-		[
-			"D:/3_Source Code/31_QT/MediatorMVAQt/model/LogEntry.h",
-			"MU",
-			"NLOY5YBGEN/moc_LogEntry.cpp",
-			null
-		],
-		[
-			"D:/3_Source Code/31_QT/MediatorMVAQt/model/LogModel.h",
-			"MU",
-			"NLOY5YBGEN/moc_LogModel.cpp",
-			null
-		],
-		[
-			"D:/3_Source Code/31_QT/MediatorMVAQt/model/LoggerActor.h",
-			"MU",
-			"NLOY5YBGEN/moc_LoggerActor.cpp",
-			null
-		],
-		[
-			"D:/3_Source Code/31_QT/MediatorMVAQt/model/RecorderActor.h",
-			"MU",
-			"NLOY5YBGEN/moc_RecorderActor.cpp",
-			null
-		],
-		[
-			"D:/3_Source Code/31_QT/MediatorMVAQt/model/SQLiteRecorderActor.h",
-			"MU",
-			"NLOY5YBGEN/moc_SQLiteRecorderActor.cpp",
-			null
-		],
-		[
 			"D:/3_Source Code/31_QT/MediatorMVAQt/model/SensorModel.h",
 			"MU",
 			"NLOY5YBGEN/moc_SensorModel.cpp",
@@ -356,17 +320,6 @@
 		[ "D:/3_Source Code/31_QT/MediatorMVAQt/app/AppContext.cpp", "MU", null ],
 		[ "D:/3_Source Code/31_QT/MediatorMVAQt/app/Bootstrap.cpp", "MU", null ],
 		[ "D:/3_Source Code/31_QT/MediatorMVAQt/main.cpp", "MU", null ],
-		[
-			"D:/3_Source Code/31_QT/MediatorMVAQt/model/BaseModel.cpp",
-			"MU",
-			null
-		],
-		[ "D:/3_Source Code/31_QT/MediatorMVAQt/model/LogModel.cpp", "MU", null ],
-		[
-			"D:/3_Source Code/31_QT/MediatorMVAQt/model/SQLiteRecorderActor.cpp",
-			"MU",
-			null
-		],
 		[
 			"D:/3_Source Code/31_QT/MediatorMVAQt/model/SensorModel.cpp",
 			"MU",
