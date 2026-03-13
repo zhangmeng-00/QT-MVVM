@@ -71,6 +71,11 @@ void MainWindow::setupBindings()
     // LogListView model 绑定
     Binding::BindProperty(ui->logListView, "model", m_logListVM, "tableModel");
 
+    // ========== 按钮启用状态绑定 ==========
+    Binding::BindProperty(ui->btnPublishScore, "enabled", m_userVM, "canPublish");
+    Binding::BindProperty(ui->btnLogin, "enabled", m_userVM, "loggedIn");
+    Binding::BindProperty(ui->btnLogout, "enabled", m_userVM, "loggedIn");
+
     // =========================================================
     // Event Binding（View → VM → Mediator）
     // 新架构：控件事件直接绑定到 ViewModel::Publish

@@ -27,6 +27,9 @@ class UserViewModel : public BaseViewModel {
     Q_PROPERTY(QString loginStateText READ loginStateText NOTIFY loginStateTextChanged)
     Q_PROPERTY(QString modeText       READ modeText       NOTIFY modeTextChanged)
     Q_PROPERTY(QString countText      READ countText      NOTIFY countTextChanged)
+    // 新增：按钮启用状态属性
+    Q_PROPERTY(bool canPublish READ canPublish NOTIFY canPublishChanged)
+    Q_PROPERTY(bool loggedIn READ loggedIn NOTIFY loggedInChanged)
 
 public:
     explicit UserViewModel(QObject* parent = nullptr);
@@ -37,6 +40,9 @@ public:
     QString loginStateText() const { return m_loginStateText; }
     QString modeText() const { return m_modeText; }
     QString countText() const { return m_countText; }
+
+    bool canPublish() const { return m_canPublish; }
+    bool loggedIn() const { return m_loggedIn; }
 
 
     // ✅ UI 唯一入口：一个命令解决所有控件事件
@@ -49,8 +55,8 @@ signals:
     void loginStateTextChanged();
     void modeTextChanged();
     void countTextChanged();
-    // 可选：如果你 UI 需要显示登录状态/联动其它控件
-    void LoginStateChanged(bool loggedIn);
+    void canPublishChanged();
+    void loggedInChanged();
 
 protected:
     // Mediator → ViewModel 的唯一入口

@@ -232,7 +232,7 @@ void UserViewModel::ObserveData(const QString& tag, const QVariant& value)
         // 例：收到 level 后才允许 publish_score
         if (!m_canPublish) {
             m_canPublish = true;
-            RefreshCommandStates();
+            emit canPublishChanged();
         }
         return;
     }
@@ -249,6 +249,7 @@ void UserViewModel::ObserveData(const QString& tag, const QVariant& value)
         m_loggedIn = true;
         m_loginStateText = "LoggedIn";
         emit loginStateTextChanged();
+        emit loggedInChanged();
         return;
     }
 
@@ -256,6 +257,7 @@ void UserViewModel::ObserveData(const QString& tag, const QVariant& value)
         m_loggedIn = false;
         m_loginStateText = "LoggedOut";
         emit loginStateTextChanged();
+        emit loggedInChanged();
         return;
     }
 
@@ -263,6 +265,7 @@ void UserViewModel::ObserveData(const QString& tag, const QVariant& value)
         m_loggedIn = value.toBool();
         m_loginStateText = m_loggedIn ? "LoggedIn" : "LoggedOut";
         emit loginStateTextChanged();
+        emit loggedInChanged();
         return;
     }
 
