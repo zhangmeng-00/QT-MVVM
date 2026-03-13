@@ -18,6 +18,12 @@ public:
         : ActorObserve(parent)
     {}
 
+    // 公开的 Publish 槽，供 Binding 层调用
+    // 通过元对象系统调用时需要是 slot 或 Q_INVOKABLE
+    Q_INVOKABLE void Publish(const QString& tag, const QVariant& value) {
+        Observe::Publish(tag, value);
+    }
+
 protected:
     /*
      * log

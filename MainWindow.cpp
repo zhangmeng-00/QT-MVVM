@@ -6,7 +6,8 @@
 
 #include "view/TraceViewer.h"
 #include "view/LogListView.h"
-#include "core/binding/BindingCommandHelpers.h"
+#include "core/binding/BindingEvents.h"
+#include "core/binding/BindingEventsHelpers.h"
 
 #include <QAbstractButton>
 #include <QComboBox>
@@ -45,12 +46,18 @@ void MainWindow::setupViewModels()
 
 void MainWindow::setupBindings()
 {
-    // ---------- Property Binding（VM -> View）----------
+    using namespace BindingEvents;
+    using namespace BindingEventsHelpers;
+
+    // =========================================================
+    // Property Binding（VM → View）- 保留原有单向绑定
+    // =========================================================
     Binding::BindProperty(ui->labelScore, "text", m_userVM, "scoreText");
     Binding::BindProperty(ui->labelLevel, "text", m_userVM, "levelText");
     Binding::BindProperty(ui->labelTemperature, "text", m_sensorVM, "temperatureText");
 
-    Binding::BindProperty(ui->lineEdit, "text", m_userVM, "userName"); // 单向 VM->View（输入回写靠命令）
+    // LineEdit 初始值从 VM 获取（但不反向绑定，使用下面的事件绑定）
+    Binding::BindProperty(ui->lineEdit, "text", m_userVM, "userName");
 
     Binding::BindProperty(ui->labelLoginState, "text", m_userVM, "loginStateText");
     Binding::BindProperty(ui->labelModeValue,  "text", m_userVM, "modeText");
@@ -60,121 +67,54 @@ void MainWindow::setupBindings()
     Binding::BindProperty(ui->labelGainValue,  "text", m_sensorVM, "gainText");
 
     // =========================================================
-    // Command Binding
-    // 约定：UserViewModel::uiCommand 接收 args = [tag, payload]
+    // Event Binding（View → VM → Mediator）
+    // 新架构：控件事件直接绑定到 ViewModel::Publish
     // =========================================================
 
+    // ---------- 用户相关 ----------
 
-    // ---------- 用户相关：统一走 m_userVM->uiCommand() ----------
-    // 1) 发布随机积分
-    using namespace BindingCommandHelpers;
-    BindingCommand::BindCommand(
-        ui->btnPublishScore,
-        &QAbstractButton::clicked,
-        m_userVM->uiCommand(),
-        ui->btnPublishScore,
-        CanArgsConst("user/publish_score", true),
-        ToTagConst("user/publish_score", true)
-        );
+    // 1) 发布随机积分 - 点击按钮直接发布
+    BindEventToPublish(ui->btnPublishScore, &QAbstractButton::clicked,
+        m_userVM, "user/publish_score", ConstPayload(true));
 
-    // 2) 登录
-    BindingCommand::BindCommand(
-        ui->btnLogin,
-        &QAbstractButton::clicked,
-        m_userVM->uiCommand(),
-        ui->btnLogin,
-        CanArgsConst("user/login", true),
-        ToTagConst("user/login", true)
-        );
+    // 2) 登录 - 点击按钮发布
+    BindEventToPublish(ui->btnLogin, &QAbstractButton::clicked,
+        m_userVM, "user/login", ConstPayload(true));
 
-    // 3) 登出
-    BindingCommand::BindCommand(
-        ui->btnLogout,
-        &QAbstractButton::clicked,
-        m_userVM->uiCommand(),
-        ui->btnLogout,
-        CanArgsConst("user/logout", true),
-        ToTagConst("user/logout", true)
-        );
+    // 3) 登出 - 点击按钮发布
+    BindEventToPublish(ui->btnLogout, &QAbstractButton::clicked,
+        m_userVM, "user/logout", ConstPayload(true));
 
     // 4) CheckBox：toggled(bool) -> user/logged_in
-    BindingCommand::BindCommand(
-        ui->checkBoxLoggedIn,
-        &QCheckBox::toggled,
-        m_userVM->uiCommand(),
-        ui->checkBoxLoggedIn,
-        //[this](){ return QVariantList{ "user/logged_in", ui->checkBoxLoggedIn->isChecked() }; },
-        CanArgsDynamic("user/logged_in", [this]()->bool { return ui->checkBoxLoggedIn->isChecked(); }),
-        ToTagPayload("user/logged_in")
-        );
+    BindEventToPublish(ui->checkBoxLoggedIn, &QCheckBox::toggled,
+        m_userVM, "user/logged_in", FromBool());
 
     // 5) ComboBox：currentIndexChanged(int) -> user/mode
-    BindingCommand::BindCommand(
-        ui->comboBoxMode,
-        QOverload<int>::of(&QComboBox::currentIndexChanged),
-        m_userVM->uiCommand(),
-        ui->comboBoxMode,
-        //[this](){ return QVariantList{ "user/mode", ui->comboBoxMode->currentIndex() }; },
-        CanArgsDynamic("user/mode",      [this]()->int  { return ui->comboBoxMode->currentIndex(); }),
-        ToTagPayload("user/mode")
-        );
+    BindEventToPublish(ui->comboBoxMode, QOverload<int>::of(&QComboBox::currentIndexChanged),
+        m_userVM, "user/mode", FromInt());
 
     // 6) SpinBox：valueChanged(int) -> user/count
-    BindingCommand::BindCommand(
-        ui->spinBoxCount,
-        QOverload<int>::of(&QSpinBox::valueChanged),
-        m_userVM->uiCommand(),
-        ui->spinBoxCount,
-        CanArgsDynamic("user/count",     [this]()->int  { return ui->spinBoxCount->value(); }),
-        ToTagPayload("user/count")
-        );
+    BindEventToPublish(ui->spinBoxCount, QOverload<int>::of(&QSpinBox::valueChanged),
+        m_userVM, "user/count", FromInt());
 
     // 7) LineEdit：textEdited(QString) -> user/name
-    // 说明：用 textEdited（用户输入才触发），避免 BindProperty VM->View 写回导致环路
-    BindingCommand::BindCommand(
-        ui->lineEdit,
-        &QLineEdit::textEdited,
-        m_userVM->uiCommand(),
-        ui->lineEdit,
-        CanArgsDynamic("user/name",      [this]()->QString { return ui->lineEdit->text(); }),
-        ToTagPayload("user/name")
-        );
+    // 用 textEdited（用户输入才触发），避免和上面的 BindProperty 形成环路
+    BindEventToPublish(ui->lineEdit, &QLineEdit::textEdited,
+        m_userVM, "user/name", FromString());
 
-    // ---------- 传感器相关：你原来命令写法保留 ----------
+    // ---------- 传感器相关 ----------
+
     // 发布温度（按钮）
-    BindingCommand::BindCommand(
-        ui->btnPublishTemperature,
-        &QAbstractButton::clicked,
-        m_sensorVM->publishTemperatureCommand()
-        );
+    BindEventToPublish(ui->btnPublishTemperature, &QAbstractButton::clicked,
+        m_sensorVM, "sensor/publish_temperature", ConstPayload(true));
 
-    // Slider：valueChanged(int) -> setTargetTemperatureCommand（它自己解析 args[0] 即可）
-    BindingCommand::BindCommand(
-        ui->horizontalSliderTemp,
-        &QSlider::valueChanged,
-        m_sensorVM->setTargetTemperatureCommand()
-        );
+    // Slider：valueChanged(int) -> sensor/target_temperature
+    BindEventToPublish(ui->horizontalSliderTemp, &QSlider::valueChanged,
+        m_sensorVM, "sensor/target_temperature", FromInt());
 
-    // DoubleSpinBox：valueChanged(double) -> gainChangedCommand（它自己解析 args[0] 即可）
-    BindingCommand::BindCommand(
-        ui->doubleSpinBoxGain,
-        QOverload<double>::of(&QDoubleSpinBox::valueChanged),
-        m_sensorVM->gainChangedCommand()
-        );
-
-    // ---------- Apply 示例（如果你 UserVM 还没实现 user/apply，就先别绑）----------
-    // 如果你想做：点击 Apply 把 slider 当前值发布出去
-    // 那就用下面这段（前提：UserViewModel 注册了 "user/apply" action）
-    /*
-    BindingCommand::BindCommand(
-        ui->btnApply,
-        &QAbstractButton::clicked,
-        m_userVM->uiCommand(),
-        ui->btnApply,
-        [this](){ return QVariantList{ "user/apply", ui->horizontalSliderTemp->value() }; },
-        [this](const QVariantList&){ return QVariantList{ "user/apply", ui->horizontalSliderTemp->value() }; }
-    );
-    */
+    // DoubleSpinBox：valueChanged(double) -> sensor/gain
+    BindEventToPublish(ui->doubleSpinBoxGain, QOverload<double>::of(&QDoubleSpinBox::valueChanged),
+        m_sensorVM, "sensor/gain", FromDouble());
 }
 
 void MainWindow::on_pushButton_clicked()

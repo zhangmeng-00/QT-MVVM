@@ -15,7 +15,10 @@ namespace Binding {
 /*
  * BindProperty
  * ------------------------------------------------------------
- * View.Q_PROPERTY ← ViewModel.Q_PROPERTY
+ * View.Q_PROPERTY ← ViewModel.Q_PROPERTY (单向：VM → View)
+ *
+ * 使用方式：
+ *   Binding::BindProperty(ui->label, "text", viewModel, "title");
  */
 inline void BindProperty(QObject* view,
                          const char* viewProperty,
@@ -80,12 +83,36 @@ inline void BindProperty(QObject* view,
 }
 
 } // namespace Binding
+
+/*
+ * BindPropertyReverse
+ * ------------------------------------------------------------
+ * View → ViewModel 反向绑定
+ * 当 View 的属性变化时，发布到 Mediator
+ *
+ * 注意：请使用 BindingEvents::BindEventToPublish 代替
+ * 示例：
+ *   using namespace BindingEventsHelpers;
+ *   BindingEvents::BindEventToPublish(ui->lineEdit, &QLineEdit::textChanged,
+ *       viewModel, "user/name", FromString());
+ */
+
+/*
+ * BindPropertyTwoWay
+ * ------------------------------------------------------------
+ * 双向绑定：View ←→ ViewModel
+ *
+ * 注意：请分开使用：
+ *   Binding::BindProperty(ui->label, "text", vm, "title");  // VM → View
+ *   BindingEvents::BindEventToPublish(ui->lineEdit, &QLineEdit::textChanged, vm, "user/name"); // View → VM
+ */
+
 /*
 | 控件           | 可绑定的 viewProperty                   |
 | ------------ | ----------------------------------- |
 | QLabel       | `"text"`, `"enabled"`, `"visible"`  |
 | QLineEdit    | `"text"`, `"enabled"`, `"readOnly"` |
-| QPushButton  | `"text"`, `"enabled"`, `"visible"`  |
+| QPushButton  | `"text"`, `"enabled"`, `"visible"` |
 | QWidget      | `"enabled"`, `"visible"`            |
 | QProgressBar | `"value"`, `"minimum"`, `"maximum"` |
 | QSlider      | `"value"`, `"minimum"`, `"maximum"` |

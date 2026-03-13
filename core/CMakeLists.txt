@@ -25,11 +25,10 @@ add_library(MediatorCore
     command/DispatcherCommand.h
 
     # binding (依赖 QtWidgets)
-    binding/BindingCommand.h
-    binding/BindingCommandHelpers.h
     binding/Binding.h
     binding/BindingHelper.h
-    binding/EventCommandFilter.h
+    binding/BindingEvents.h
+    binding/BindingEventsHelpers.h
 
     # model
     model/BaseModel.h
