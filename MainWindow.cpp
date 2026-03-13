@@ -68,6 +68,9 @@ void MainWindow::setupBindings()
     Binding::BindProperty(ui->labelSliderValue,"text", m_sensorVM, "targetTempText");
     Binding::BindProperty(ui->labelGainValue,  "text", m_sensorVM, "gainText");
 
+    // LogListView model 绑定
+    Binding::BindProperty(ui->logListView, "model", m_logListVM, "tableModel");
+
     // =========================================================
     // Event Binding（View → VM → Mediator）
     // 新架构：控件事件直接绑定到 ViewModel::Publish
