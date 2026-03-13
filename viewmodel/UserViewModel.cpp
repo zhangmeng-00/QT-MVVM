@@ -204,6 +204,15 @@ void UserViewModel::SetupSubscriptions()
     // 使用带QVariant的订阅，明确指定数据类型
     Subscribe("user/score", QVariant(0), std::make_shared<AlwaysPolicy>());
     Subscribe("user/level", QVariant(0), std::make_shared<AlwaysPolicy>());
+
+    // 新增：UI事件发布的tag
+    Subscribe("user/publish_score", QVariant(false), std::make_shared<AlwaysPolicy>());
+    Subscribe("user/login", QVariant(false), std::make_shared<AlwaysPolicy>());
+    Subscribe("user/logout", QVariant(false), std::make_shared<AlwaysPolicy>());
+    Subscribe("user/logged_in", QVariant(false), std::make_shared<AlwaysPolicy>());
+    Subscribe("user/mode", QVariant(0), std::make_shared<AlwaysPolicy>());
+    Subscribe("user/count", QVariant(0), std::make_shared<AlwaysPolicy>());
+    Subscribe("user/name", QString(), std::make_shared<AlwaysPolicy>());
 }
 
 // ObserveData：用于接收来自 Model / 其它模块发布的状态，更新显示用 Q_PROPERTY
@@ -225,6 +234,53 @@ void UserViewModel::ObserveData(const QString& tag, const QVariant& value)
             m_canPublish = true;
             RefreshCommandStates();
         }
+        return;
+    }
+
+    // 处理UI事件发布的tag
+    if (tag == "user/publish_score") {
+        // 收到按钮点击，随机生成积分
+        int score = QRandomGenerator::global()->bounded(100);
+        Publish("user/score", QVariant(score));
+        return;
+    }
+
+    if (tag == "user/login") {
+        m_loggedIn = true;
+        m_loginStateText = "LoggedIn";
+        emit loginStateTextChanged();
+        return;
+    }
+
+    if (tag == "user/logout") {
+        m_loggedIn = false;
+        m_loginStateText = "LoggedOut";
+        emit loginStateTextChanged();
+        return;
+    }
+
+    if (tag == "user/logged_in") {
+        m_loggedIn = value.toBool();
+        m_loginStateText = m_loggedIn ? "LoggedIn" : "LoggedOut";
+        emit loginStateTextChanged();
+        return;
+    }
+
+    if (tag == "user/mode") {
+        m_modeText = QString::number(value.toInt());
+        emit modeTextChanged();
+        return;
+    }
+
+    if (tag == "user/count") {
+        m_countText = QString::number(value.toInt());
+        emit countTextChanged();
+        return;
+    }
+
+    if (tag == "user/name") {
+        m_userName = value.toString();
+        emit userNameChanged();
         return;
     }
 }

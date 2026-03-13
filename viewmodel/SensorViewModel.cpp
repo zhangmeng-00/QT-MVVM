@@ -71,6 +71,11 @@ void SensorViewModel::SetupSubscriptions()
 {
     // 使用带QVariant的订阅，明确指定数据类型
     Subscribe("sensor/temperature", QVariant(0), std::make_shared<AlwaysPolicy>());
+
+    // 新增：UI事件发布的tag
+    Subscribe("sensor/publish_temperature", QVariant(false), std::make_shared<AlwaysPolicy>());
+    Subscribe("sensor/target_temperature", QVariant(0), std::make_shared<AlwaysPolicy>());
+    Subscribe("sensor/gain", QVariant(0.0), std::make_shared<AlwaysPolicy>());
 }
 
 void SensorViewModel::ObserveData(const QString& tag, const QVariant& value)
@@ -88,6 +93,26 @@ void SensorViewModel::ObserveData(const QString& tag, const QVariant& value)
 
     if (tag == "user/level") {
         qDebug() << "user/level" << value;
+        return;
+    }
+
+    // 处理UI事件发布的tag
+    if (tag == "sensor/publish_temperature") {
+        // 收到按钮点击，随机生成温度
+        int temp = QRandomGenerator::global()->bounded(20, 40);
+        Publish("sensor/temperature", QVariant(temp));
+        return;
+    }
+
+    if (tag == "sensor/target_temperature") {
+        m_targetTempText = QString::number(value.toInt());
+        emit targetTempTextChanged();
+        return;
+    }
+
+    if (tag == "sensor/gain") {
+        m_gainText = QString::number(value.toDouble(), 'f', 2);
+        emit gainTextChanged();
         return;
     }
 }
