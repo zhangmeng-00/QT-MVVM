@@ -1,70 +1,49 @@
 #include "SensorViewModel.h"
 #include "core/policy/AlwaysPolicy.h"
-#include "common/TestStruct.h"
-#include <cmath>
 
 SensorViewModel::SensorViewModel(QObject* parent)
     : BaseViewModel(parent)
 {
-    m_publishTemperatureCommand = new SimpleCommand(
-        [this] { this->publishCommand(); },
-        [] { return true; },
-        this
-        );
-
-    // ✅ slider::valueChanged(int) —— args[0] 是 int
-    m_setTargetTemperatureCommand = new SimpleCommand(
-        [this](const QVariantList& args) {
-            const int v = args.value(0).toInt();
-            m_targetTemp = v;
-            const QString text = QString::number(v);
-            if (m_targetTempText != text) {
-                m_targetTempText = text;
-                emit targetTempTextChanged();
-            }
-
-            // 需要的话也可以 Publish 给下游模块
-            Publish("sensor/target_temp", m_targetTemp);
-        },
-        nullptr,
-        this
-        );
-
-    // ✅ doubleSpinBox::valueChanged(double) —— args[0] 是 double
-    m_gainChangedCommand = new SimpleCommand(
-        [this](const QVariantList& args) {
-            const double g = args.value(0).toDouble();
-            m_gain = g;
-
-            const QString text = QString::number(g, 'f', 3);
-            if (m_gainText != text) {
-                m_gainText = text;
-                emit gainTextChanged();
-            }
-
-            Publish("sensor/gain", m_gain);
-            log("SensorViewModel", LogLevel::INFO,
-                        QString("Gain changed to %1").arg(m_gain));
-        },
-        nullptr,
-        this
-        );
 }
 
-void SensorViewModel::publishCommand()
+// ========== 事件虚函数实现 ==========
+
+void SensorViewModel::onClicked(const QString& senderId)
 {
-    int temperature = QRandomGenerator::global()->bounded(20, 80);
-    qDebug() << "[VM] publish temperature =" << temperature;
-    Publish("sensor/temperature", temperature);
-    log("SensorViewModel", LogLevel::ERROR,
-                QString("Target temperature set to %1").arg(m_targetTemp));
-    SensorSample sample("S1", 36.5, 101.3);
+    qDebug() << "[SensorVM] onClicked:" << senderId;
 
-    // ✅ 关键：结构体塞进 QVariant
-    QVariant payload = QVariant::fromValue(sample);
+    if (senderId == "btnPublishTemperature") {
+        int temp = QRandomGenerator::global()->bounded(20, 40);
+        Publish("sensor/temperature", temp);
+        log("SensorViewModel", LogLevel::INFO,
+            QString("Publishing temperature %1").arg(temp));
+    }
+}
 
-    Publish("sensor/sample", payload);   // 你框架里 Publish(tag, QVariant)
+void SensorViewModel::onValueChanged(int value, const QString& senderId)
+{
+    qDebug() << "[SensorVM] onValueChanged int:" << senderId << value;
 
+    if (senderId == "horizontalSliderTemp") {
+        m_targetTemp = value;
+        m_targetTempText = QString::number(value);
+        emit targetTempTextChanged();
+        Publish("sensor/target_temperature", value);
+    }
+}
+
+void SensorViewModel::onValueChangedDouble(double value, const QString& senderId)
+{
+    qDebug() << "[SensorVM] onValueChangedDouble:" << senderId << value;
+
+    if (senderId == "doubleSpinBoxGain") {
+        m_gain = value;
+        m_gainText = QString::number(value, 'f', 3);
+        emit gainTextChanged();
+        Publish("sensor/gain", value);
+        log("SensorViewModel", LogLevel::INFO,
+            QString("Gain changed to %1").arg(value));
+    }
 }
 
 void SensorViewModel::SetupSubscriptions()

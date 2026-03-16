@@ -1,6 +1,5 @@
 #include "UserModel.h"
 #include "core/policy/AlwaysPolicy.h"
-#include "common/TestStruct.h"
 #include <memory>
 #include <QVariant>
 
@@ -8,7 +7,6 @@ void UserModel::SetupSubscriptions()
 {
   // 使用带QVariant的订阅，明确指定数据类型
   Subscribe("user/score", QVariant(0), std::make_shared<AlwaysPolicy>());
-  Subscribe("sensor/sample", QVariant::fromValue(SensorSample()), std::make_shared<AlwaysPolicy>());
 }
 
 void UserModel::ObserveData(const QString &tag, const QVariant &value)
@@ -25,13 +23,5 @@ void UserModel::ObserveData(const QString &tag, const QVariant &value)
                 LogLevel::WARN,
                 QString("User level updated to %1").arg(m_level));
         }
-    }
-    if (tag == "sensor/sample") {
-        SensorSample sample = value.value<SensorSample>();
-        qDebug() << "[SomeModel] sample:"
-                 << sample.sensorId
-                 << sample.temperature
-                 << sample.pressure
-                 << sample.timestamp;
     }
 }

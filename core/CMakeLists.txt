@@ -19,16 +19,19 @@ add_library(MediatorCore
     actor/ActorObserve.h
     actor/ActorObserve.cpp
 
-    # command
-    command/ICommand.h
-    command/SimpleCommand.h
-    command/DispatcherCommand.h
-
     # binding (依赖 QtWidgets)
     binding/Binding.h
     binding/BindingHelper.h
-    binding/BindingEvents.h
-    binding/BindingEventsHelpers.h
+
+    # view
+    view/LogListView.h
+    view/LogListView.cpp
+    view/LogListView.ui
+
+    # viewmodel
+    viewmodel/BaseViewModel.h
+    viewmodel/LogListViewModel.h
+    viewmodel/LogListViewModel.cpp
 
     # model
     model/BaseModel.h

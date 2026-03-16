@@ -3,7 +3,7 @@
 
 #include "app/AppContext.h"
 #include "core/binding/Binding.h"
-#include "viewmodel/LogListViewModel.h"
+#include "core/viewmodel/LogListViewModel.h"
 
 #include <QHeaderView>
 

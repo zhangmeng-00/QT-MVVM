@@ -28,21 +28,13 @@ add_executable(${PROJECT_NAME}
     MainWindow.cpp
     MainWindow.ui
 
-    common/TypeKey.h
-
     view/TraceViewer.h
     view/TraceViewer.cpp
-    view/LogListView.h
-    view/LogListView.cpp
-    view/LogListView.ui
 
-    viewmodel/BaseViewModel.h
     viewmodel/UserViewModel.h
     viewmodel/UserViewModel.cpp
     viewmodel/SensorViewModel.h
     viewmodel/SensorViewModel.cpp
-    viewmodel/LogListViewModel.h
-    viewmodel/LogListViewModel.cpp
 
     model/SensorModel.h
     model/SensorModel.cpp
@@ -60,7 +52,6 @@ add_executable(${PROJECT_NAME}
     app/AppContext.cpp
     app/Bootstrap.h
     app/Bootstrap.cpp
-    common/TestStruct.h
 )
 
 target_include_directories(${PROJECT_NAME}

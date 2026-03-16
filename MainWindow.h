@@ -13,12 +13,13 @@
 // ViewModels
 #include "viewmodel/UserViewModel.h"
 #include "viewmodel/SensorViewModel.h"
-#include "viewmodel/LogListViewModel.h"
+#include "core/viewmodel/LogListViewModel.h"
 
 // Binding helpers
 #include "core/binding/Binding.h"
-#include "core/binding/BindingEvents.h"
-#include "core/binding/BindingEventsHelpers.h"
+
+// ViewModel base
+#include "core/viewmodel/BaseViewModel.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

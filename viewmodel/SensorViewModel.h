@@ -6,9 +6,7 @@
 #include <QRandomGenerator>
 #include <QDebug>
 
-#include "viewmodel/BaseViewModel.h"
-#include "core/command/ICommand.h"
-#include "core/command/SimpleCommand.h"
+#include "core/viewmodel/BaseViewModel.h"
 
 class SensorViewModel : public BaseViewModel {
     Q_OBJECT
@@ -25,19 +23,18 @@ public:
     QString targetTempText() const { return m_targetTempText; }
     QString gainText() const { return m_gainText; }
 
-    ICommand* publishTemperatureCommand() const { return m_publishTemperatureCommand; }
-
-    // ✅ 新增：参数命令
-    ICommand* setTargetTemperatureCommand() const { return m_setTargetTemperatureCommand; }
-    ICommand* gainChangedCommand() const { return m_gainChangedCommand; }
-
 signals:
     void temperatureTextChanged();
     void targetTempTextChanged();
     void gainTextChanged();
 
+public:
+    // 事件虚函数重写
+    Q_INVOKABLE void onClicked(const QString& senderId) override;
+    Q_INVOKABLE void onValueChanged(int value, const QString& senderId) override;
+    Q_INVOKABLE void onValueChangedDouble(double value, const QString& senderId) override;
+
 public slots:
-    void publishCommand();
     void SetupSubscriptions() override;
 
 protected:
@@ -53,10 +50,4 @@ private:
 
     QString m_targetTempText = "30";
     QString m_gainText = "1.000";
-
-    SimpleCommand* m_publishTemperatureCommand = nullptr;
-
-    // ✅ 新增：参数命令
-    SimpleCommand* m_setTargetTemperatureCommand = nullptr;
-    SimpleCommand* m_gainChangedCommand = nullptr;
 };

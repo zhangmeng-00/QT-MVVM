@@ -5,19 +5,15 @@
 #include <QVariant>
 #include <QRandomGenerator>
 #include <QDebug>
-#include <QHash>
-#include <functional>
 
-#include "viewmodel/BaseViewModel.h"
-#include "core/command/ICommand.h"
-#include "core/command/DispatcherCommand.h"
+#include "core/viewmodel/BaseViewModel.h"
 
 /*
  * UserViewModel
  * ============================================================
- * - UI 逻辑层：Q_PROPERTY + 一个统一 ICommand
- * - 所有 UI 事件（按钮/编辑/选择变化）都通过 uiCommand() 进入 OnUICommand()
- * - Publish 永远只写在 ViewModel（符合你的要求）
+ * - UI 逻辑层：Q_PROPERTY + 事件虚函数
+ * - 使用 BaseViewModel 的事件虚函数处理 UI 事件
+ * - Publish 永远只写在 ViewModel
  */
 class UserViewModel : public BaseViewModel {
     Q_OBJECT
@@ -44,10 +40,6 @@ public:
     bool canPublish() const { return m_canPublish; }
     bool loggedIn() const { return m_loggedIn; }
 
-
-    // ✅ UI 唯一入口：一个命令解决所有控件事件
-    ICommand* uiCommand() const { return m_uiCommand; }
-
 signals:
     void scoreTextChanged();
     void levelTextChanged();
@@ -58,22 +50,20 @@ signals:
     void canPublishChanged();
     void loggedInChanged();
 
+public:
+    // 事件虚函数重写
+    Q_INVOKABLE void onClicked(const QString& senderId) override;
+    Q_INVOKABLE void onToggled(bool checked, const QString& senderId) override;
+    Q_INVOKABLE void onCurrentIndexChanged(int index, const QString& senderId) override;
+    Q_INVOKABLE void onValueChanged(int value, const QString& senderId) override;
+    Q_INVOKABLE void onTextChanged(const QString& text, const QString& senderId) override;
+    Q_INVOKABLE void onTextEdited(const QString& text, const QString& senderId) override;
+
 protected:
     // Mediator → ViewModel 的唯一入口
     void ObserveData(const QString& tag, const QVariant& value) override;
 
 private:
-    // 统一入口：由 DispatcherCommand 调用
-    void OnUICommand(const QVariantList& args);
-
-    // 统一可执行判断：由 DispatcherCommand 调用（用于 enable/disable）
-    bool CanUICommand(const QVariantList& args) const;
-
-    // 注册所有 UI action（tag → handler）
-    void RegisterActions();
-
-    // 当内部状态变化时，通知 UI 刷新 enabled
-    void RefreshCommandStates();
     void SetupSubscriptions() override;
 
 private:
@@ -88,14 +78,4 @@ private:
     // ===== 业务状态（用于 CanExecute）=====
     bool m_canPublish = false;
     bool m_loggedIn = false;
-
-    // ===== 统一命令 =====
-    DispatcherCommand* m_uiCommand = nullptr;
-
-    // ===== Action 表：tag → 执行/可执行 =====
-    struct Action {
-        std::function<void(const QVariantList& args)> exec;
-        std::function<bool(const QVariantList& args)> can;
-    };
-    QHash<QString, Action> m_actions;
 };

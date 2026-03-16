@@ -5,9 +5,8 @@
 #include "app/Bootstrap.h"
 
 #include "view/TraceViewer.h"
-#include "view/LogListView.h"
-#include "core/binding/BindingEvents.h"
-#include "core/binding/BindingEventsHelpers.h"
+#include "core/view/LogListView.h"
+#include "core/binding/Binding.h"
 
 #include <QAbstractButton>
 #include <QComboBox>
@@ -49,11 +48,8 @@ void MainWindow::setupViewModels()
 
 void MainWindow::setupBindings()
 {
-    using namespace BindingEvents;
-    using namespace BindingEventsHelpers;
-
     // =========================================================
-    // Property Binding（VM → View）- 保留原有单向绑定
+    // Property Binding（VM → View）- 单向绑定
     // =========================================================
     Binding::BindProperty(ui->labelScore, "text", m_userVM, "scoreText");
     Binding::BindProperty(ui->labelLevel, "text", m_userVM, "levelText");
@@ -77,54 +73,49 @@ void MainWindow::setupBindings()
     Binding::BindProperty(ui->btnLogout, "enabled", m_userVM, "loggedIn");
 
     // =========================================================
-    // Event Binding（View → VM → Mediator）
-    // 新架构：控件事件直接绑定到 ViewModel::Publish
+    // Event Binding（View → VM）
+    // 直接绑定控件信号到 ViewModel 的虚函数
     // =========================================================
 
     // ---------- 用户相关 ----------
 
-    // 1) 发布随机积分 - 点击按钮直接发布
-    BindEventToPublish(ui->btnPublishScore, &QAbstractButton::clicked,
-        m_userVM, "user/publish_score", ConstPayload(true));
+    // 按钮点击 - 使用 lambda 传递 senderId
+    QObject::connect(ui->btnPublishScore, &QAbstractButton::clicked,
+        m_userVM, [=]() { m_userVM->onClicked("btnPublishScore"); });
+    QObject::connect(ui->btnLogin, &QAbstractButton::clicked,
+        m_userVM, [=]() { m_userVM->onClicked("btnLogin"); });
+    QObject::connect(ui->btnLogout, &QAbstractButton::clicked,
+        m_userVM, [=]() { m_userVM->onClicked("btnLogout"); });
 
-    // 2) 登录 - 点击按钮发布
-    BindEventToPublish(ui->btnLogin, &QAbstractButton::clicked,
-        m_userVM, "user/login", ConstPayload(true));
+    // CheckBox toggled
+    QObject::connect(ui->checkBoxLoggedIn, &QCheckBox::toggled,
+        m_userVM, [=](bool checked) { m_userVM->onToggled(checked, "checkBoxLoggedIn"); });
 
-    // 3) 登出 - 点击按钮发布
-    BindEventToPublish(ui->btnLogout, &QAbstractButton::clicked,
-        m_userVM, "user/logout", ConstPayload(true));
+    // ComboBox currentIndexChanged
+    QObject::connect(ui->comboBoxMode, QOverload<int>::of(&QComboBox::currentIndexChanged),
+        m_userVM, [=](int index) { m_userVM->onCurrentIndexChanged(index, "comboBoxMode"); });
 
-    // 4) CheckBox：toggled(bool) -> user/logged_in
-    BindEventToPublish(ui->checkBoxLoggedIn, &QCheckBox::toggled,
-        m_userVM, "user/logged_in", FromBool());
+    // SpinBox valueChanged
+    QObject::connect(ui->spinBoxCount, QOverload<int>::of(&QSpinBox::valueChanged),
+        m_userVM, [=](int value) { m_userVM->onValueChanged(value, "spinBoxCount"); });
 
-    // 5) ComboBox：currentIndexChanged(int) -> user/mode
-    BindEventToPublish(ui->comboBoxMode, QOverload<int>::of(&QComboBox::currentIndexChanged),
-        m_userVM, "user/mode", FromInt());
-
-    // 6) SpinBox：valueChanged(int) -> user/count
-    BindEventToPublish(ui->spinBoxCount, QOverload<int>::of(&QSpinBox::valueChanged),
-        m_userVM, "user/count", FromInt());
-
-    // 7) LineEdit：textEdited(QString) -> user/name
-    // 用 textEdited（用户输入才触发），避免和上面的 BindProperty 形成环路
-    BindEventToPublish(ui->lineEdit, &QLineEdit::textEdited,
-        m_userVM, "user/name", FromString());
+    // LineEdit textEdited
+    QObject::connect(ui->lineEdit, &QLineEdit::textEdited,
+        m_userVM, [=](const QString& text) { m_userVM->onTextEdited(text, "lineEdit"); });
 
     // ---------- 传感器相关 ----------
 
-    // 发布温度（按钮）
-    BindEventToPublish(ui->btnPublishTemperature, &QAbstractButton::clicked,
-        m_sensorVM, "sensor/publish_temperature", ConstPayload(true));
+    // 按钮点击
+    QObject::connect(ui->btnPublishTemperature, &QAbstractButton::clicked,
+        m_sensorVM, [=]() { m_sensorVM->onClicked("btnPublishTemperature"); });
 
-    // Slider：valueChanged(int) -> sensor/target_temperature
-    BindEventToPublish(ui->horizontalSliderTemp, &QSlider::valueChanged,
-        m_sensorVM, "sensor/target_temperature", FromInt());
+    // Slider valueChanged
+    QObject::connect(ui->horizontalSliderTemp, &QSlider::valueChanged,
+        m_sensorVM, [=](int value) { m_sensorVM->onValueChanged(value, "horizontalSliderTemp"); });
 
-    // DoubleSpinBox：valueChanged(double) -> sensor/gain
-    BindEventToPublish(ui->doubleSpinBoxGain, QOverload<double>::of(&QDoubleSpinBox::valueChanged),
-        m_sensorVM, "sensor/gain", FromDouble());
+    // DoubleSpinBox valueChanged
+    QObject::connect(ui->doubleSpinBoxGain, QOverload<double>::of(&QDoubleSpinBox::valueChanged),
+        m_sensorVM, [=](double value) { m_sensorVM->onValueChangedDouble(value, "doubleSpinBoxGain"); });
 }
 
 void MainWindow::on_pushButton_clicked()
