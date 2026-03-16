@@ -1,6 +1,6 @@
 #include "LogListViewModel.h"
 
-#include "core/policy/AlwaysPolicy.h"
+#include "core/policy/StickyPolicy.h"
 
 #include <QBrush>
 #include <QFont>
@@ -114,8 +114,8 @@ LogListViewModel::LogListViewModel(QObject* parent)
 
 void LogListViewModel::SetupSubscriptions()
 {
-    // 使用带QVariant的订阅，明确指定数据类型
-    Subscribe("user/logList", QVariant::fromValue(QList<LogEntry>()), std::make_shared<AlwaysPolicy>());
+    // 使用 StickyPolicy 以便新订阅者能收到之前的日志列表
+    Subscribe("user/logList", QVariant::fromValue(QList<LogEntry>()), std::make_shared<StickyPolicy>());
 }
 
 void LogListViewModel::ObserveData(const QString& tag, const QVariant& value)

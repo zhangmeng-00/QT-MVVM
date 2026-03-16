@@ -39,7 +39,8 @@ void MainWindow::setupViewModels()
 {
     m_userVM     = new UserViewModel(this);
     m_sensorVM   = new SensorViewModel(this);
-    m_logListVM  = new LogListViewModel(this);
+    // LogListView 内部已经创建了 ViewModel，这里直接获取
+    m_logListVM  = ui->logListView->viewModel();
 
     AppContext::instance().ConnectObserve(m_userVM);
     AppContext::instance().ConnectObserve(m_sensorVM);
@@ -68,8 +69,7 @@ void MainWindow::setupBindings()
     Binding::BindProperty(ui->labelSliderValue,"text", m_sensorVM, "targetTempText");
     Binding::BindProperty(ui->labelGainValue,  "text", m_sensorVM, "gainText");
 
-    // LogListView model 绑定
-    Binding::BindProperty(ui->logListView, "model", m_logListVM, "tableModel");
+    // 注意：LogListView 内部的 tableView model 绑定已在 LogListView 构造函数中完成
 
     // ========== 按钮启用状态绑定 ==========
     Binding::BindProperty(ui->btnPublishScore, "enabled", m_userVM, "canPublish");

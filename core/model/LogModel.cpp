@@ -18,7 +18,20 @@ LogModel::LogModel(QObject* parent, bool useSeparateThread)
     if (!initDatabase()) {
         qCritical() << "Failed to initialize database";
     } else {
-        publishLogList();
+        // 如果数据库为空，插入一条初始日志
+        QSqlQuery query(m_db);
+        query.exec("SELECT COUNT(*) FROM log_entries");
+        if (query.next() && query.value(0).toInt() == 0) {
+            // 插入初始日志
+            LogEntry initEntry;
+            initEntry.timestamp = QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss");
+            initEntry.modelName = "System";
+            initEntry.logLevel = LogLevel::INFO;
+            initEntry.logMessage = "Application started";
+            insertLog(initEntry);
+        }
+        // 注意：不在这里调用 publishLogList()，因为订阅还没建立
+        // 订阅建立后会在 SetupSubscriptions 中发布
     }
 }
 
@@ -33,6 +46,9 @@ void LogModel::SetupSubscriptions()
 {
     // 使用带QVariant的订阅，明确指定数据类型
     Subscribe("user/logging", QVariant::fromValue(LogEntry()), std::make_shared<AlwaysPolicy>());
+
+    // 订阅建立后，发布当前日志列表
+    publishLogList();
 }
 
 void LogModel::ObserveData(const QString& tag, const QVariant& value)

@@ -101,6 +101,8 @@ void SensorViewModel::ObserveData(const QString& tag, const QVariant& value)
         // 收到按钮点击，随机生成温度
         int temp = QRandomGenerator::global()->bounded(20, 40);
         Publish("sensor/temperature", QVariant(temp));
+        log("SensorViewModel", LogLevel::INFO,
+                    QString("Publishing temperature %1").arg(temp));
         return;
     }
 
