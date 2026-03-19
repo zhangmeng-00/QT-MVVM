@@ -39,12 +39,7 @@ private slots:
      * ✅ policy 直接由信号传入，杜绝异步串台
      */
 
-    // 3参数版本（向后兼容）
-    void OnSubscribe(Observe* observer,
-                     const QString& tag,
-                     PolicyPtr policy);
-
-    // 4参数版本（带value，用于类型索引）
+    // 带value参数的订阅处理（用于类型索引）
     void OnSubscribe(Observe* observer,
                      const QString& tag,
                      const QVariant& value,

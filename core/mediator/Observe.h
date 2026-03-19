@@ -33,10 +33,7 @@ public:
      * ✅ 关键点：policy 直接作为信号参数发送，避免异步串台
      */
 
-    // 原有签名（向后兼容）
-    void Subscribe(const QString& tag, PolicyPtr policy);
-
-    // 新增：带value参数的订阅（用于类型索引）
+    // 带value参数的订阅（用于类型索引）
     void Subscribe(const QString& tag, const QVariant& value, PolicyPtr policy);
 
     void Unsubscribe(const QString& tag);
@@ -58,12 +55,7 @@ signals:
      * 使用 QueuedConnection 时，policy 仍然正确对应本次订阅
      */
 
-    // 原有信号（向后兼容）
-    void RequestSubscribe(Observe* observer,
-                          const QString& tag,
-                          PolicyPtr policy);
-
-    // 新增：带value的订阅信号
+    // 带value的订阅信号
     void RequestSubscribe(Observe* observer,
                           const QString& tag,
                           const QVariant& value,

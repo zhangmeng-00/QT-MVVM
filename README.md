@@ -148,8 +148,8 @@ virtual void SetupSubscriptions() {}
 #### Model 重写：
 
 void UserModel::SetupSubscriptions() override {
-  Subscribe("user/score", std::make_shared<AlwaysPolicy>());
-  Subscribe("user/level", std::make_shared<ValueChangedPolicy>());
+  Subscribe("user/score", QVariant(0), std::make_shared<AlwaysPolicy>());
+  Subscribe("user/level", QVariant(0), std::make_shared<ValueChangedPolicy>());
 }
 
 

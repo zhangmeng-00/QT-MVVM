@@ -35,11 +35,6 @@ void Mediator::ConnectObserve(Observe* obs)
             this, SLOT(OnSubscribe(Observe*,QString,QVariant,PolicyPtr)),
             Qt::QueuedConnection);
 
-    // 连接旧版3参数信号（向后兼容）
-    connect(obs, SIGNAL(RequestSubscribe(Observe*,QString,PolicyPtr)),
-            this, SLOT(OnSubscribe(Observe*,QString,PolicyPtr)),
-            Qt::QueuedConnection);
-
     connect(obs, &Observe::RequestPublish,
             this, &Mediator::OnPublish,
             Qt::QueuedConnection);
@@ -47,16 +42,6 @@ void Mediator::ConnectObserve(Observe* obs)
             this, &Mediator::OnUnsubscribe,
             Qt::QueuedConnection);
 
-}
-/*
- * OnSubscribe - 3参数版本（向后兼容）
- */
-void Mediator::OnSubscribe(Observe* observer,
-                           const QString& tag,
-                           PolicyPtr policy)
-{
-    // 转发给4参数版本，传入空QVariant
-    OnSubscribe(observer, tag, QVariant(), policy);
 }
 
 /*
