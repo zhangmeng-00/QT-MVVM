@@ -1,6 +1,7 @@
 #pragma once
 
 #include "core/actor/ActorObserve.h"
+#include "IModel.h"
 #include "LogEntry.h"
 
 /*
@@ -12,8 +13,9 @@
  * ------------------------------------------------------------
  * - 已经具备 Actor（串行、线程安全）
  * - 只需要实现 ObserveData
+ * - 实现 IModel 接口，支持依赖注入
  */
-class BaseModel : public ActorObserve {
+class BaseModel : public ActorObserve, public IModel {
     Q_OBJECT
 public:
     /*
@@ -25,6 +27,28 @@ public:
     explicit BaseModel(QObject* parent = nullptr,
                       bool useSeparateThread = false);
 
+    // ===== IModel 接口实现 =====
+
+    // 模型标识（默认使用类名，子类可重写）
+    QString modelName() const override {
+        return metaObject()->className();
+    }
+
+    // 初始化（子类可重写）
+    void initialize() override {
+        SetupSubscriptions();
+    }
+
+    // 关闭（子类可重写）
+    void shutdown() override {
+        // 默认实现：取消所有订阅
+    }
+
+    // 调试信息（子类可重写）
+    QString debugInfo() const override {
+        return QString("BaseModel: %1").arg(modelName());
+    }
+
 protected:
     /*
      * log
@@ -35,6 +59,12 @@ protected:
     virtual void log(const QString& modelName,
                      LogLevel level,
                      const QString& message);
+
+    // ===== 便捷日志方法 =====
+    void logDebug(const QString& message) { log(modelName(), LogLevel::Debug, message); }
+    void logInfo(const QString& message) { log(modelName(), LogLevel::INFO, message); }
+    void logWarn(const QString& message) { log(modelName(), LogLevel::WARN, message); }
+    void logError(const QString& message) { log(modelName(), LogLevel::ERROR, message); }
 
     /*
      * ObserveData

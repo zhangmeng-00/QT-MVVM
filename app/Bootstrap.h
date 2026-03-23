@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QObject>
+#include "config/AppConfig.h"
 
 class AppContext;
 
@@ -19,7 +20,11 @@ struct CoreObjects {
 };
 
 // 安装/装配（幂等，多次调用只会创建一次）
+// 使用默认配置
 CoreObjects InstallAll(AppContext& ctx);
+
+// 使用自定义配置
+CoreObjects InstallAll(AppContext& ctx, const AppConfig& config);
 
 // 可选：如果你将来有 Stop/Close 逻辑，可以在这里统一做
 void Shutdown(AppContext& ctx);

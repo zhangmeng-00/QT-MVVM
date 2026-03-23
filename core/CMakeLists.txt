@@ -39,6 +39,7 @@ add_library(MediatorCore
     model/LogModel.h
     model/LogModel.cpp
     model/LogEntry.h
+    model/IModel.h
 )
 
 target_include_directories(MediatorCore

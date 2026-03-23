@@ -1,6 +1,7 @@
 #include "Bootstrap.h"
 
 #include "AppContext.h"
+#include "config/AppConfig.h"
 
 // 这些 include 根据你的实际路径调整
 #include "model/UserModel.h"
@@ -12,6 +13,7 @@
 // ========== 内部静态存储（应用级单例对象） ==========
 static Bootstrap::CoreObjects g_core;
 static bool g_installed = false;
+static AppConfig g_config;  // 保存配置副本
 
 namespace Bootstrap {
 
@@ -23,12 +25,20 @@ static void SetParentIfQObject(QObject* obj, QObject* parent)
 
 CoreObjects InstallAll(AppContext& ctx)
 {
+    // 使用默认配置
+    AppConfig defaultConfig;
+    return InstallAll(ctx, defaultConfig);
+}
+
+CoreObjects InstallAll(AppContext& ctx, const AppConfig& config)
+{
     if (g_installed) {
         return g_core;
     }
     g_installed = true;
+    g_config = config;  // 保存配置
 
-    qDebug() << "[Bootstrap] InstallAll";
+    qDebug() << "[Bootstrap] InstallAll with config:" << config.appName << config.version;
 
     // 1) 创建 Model（业务层，全局共享）
     g_core.userModel   = new UserModel(&ctx);
@@ -60,5 +70,8 @@ void Shutdown(AppContext& ctx)
 UserModel* userModel() { return g_core.userModel; }
 SensorModel* sensorModel() { return g_core.sensorModel; }
 LogModel* logModel() { return g_core.logModel; }
+
+// 获取当前配置
+const AppConfig& currentConfig() { return g_config; }
 
 } // namespace Bootstrap
