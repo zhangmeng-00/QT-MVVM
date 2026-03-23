@@ -29,19 +29,19 @@ public:
     // --------- 线程安全：所有 mediator 调用都走这里 ----------
     void ConnectObserve(Observe* obs);
 
-    // 如果你后面还有 Publish / Subscribe，也建议都做成这种“线程安全 wrapper”
-    template<typename Fn>
-    void InvokeOnMediator(Fn&& fn)
-    {
-        if (!m_mediator) return;
+    // // 如果你后面还有 Publish / Subscribe，也建议都做成这种“线程安全 wrapper”
+    // template<typename Fn>
+    // void InvokeOnMediator(Fn&& fn)
+    // {
+    //     if (!m_mediator) return;
 
-        // Qt5.15 支持 functor invoke
-        QMetaObject::invokeMethod(
-            m_mediator,
-            [f = std::forward<Fn>(fn)]() mutable { f(); },
-            Qt::QueuedConnection
-            );
-    }
+    //     // Qt5.15 支持 functor invoke
+    //     QMetaObject::invokeMethod(
+    //         m_mediator,
+    //         [f = std::forward<Fn>(fn)]() mutable { f(); },
+    //         Qt::QueuedConnection
+    //         );
+    // }
 
     // --------- 组件容器：统一创建/托管 QObject（Model/Actor/Service/Driver…） ----------
     template<typename T, typename... Args>
