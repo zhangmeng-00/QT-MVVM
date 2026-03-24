@@ -1,6 +1,7 @@
 #include "LogListViewModel.h"
 
 #include "AlwaysPolicy.h"
+#include "Tags.h"
 
 #include <QBrush>
 #include <QFont>
@@ -115,12 +116,12 @@ LogListViewModel::LogListViewModel(QObject* parent)
 void LogListViewModel::SetupSubscriptions()
 {
     // 使用 AlwaysPolicy(true) 实现 Sticky 功能（新订阅者能收到之前的值）
-    Subscribe("user/logList", QVariant::fromValue(QList<LogEntry>()), std::make_shared<AlwaysPolicy>(true));
+    Subscribe(TAG_LOG_LIST, QVariant::fromValue(QList<LogEntry>()), std::make_shared<AlwaysPolicy>(true));
 }
 
 void LogListViewModel::ObserveData(const QString& tag, const QVariant& value)
 {
-    if (tag != "user/logList") {
+    if (tag != TAG_LOG_LIST) {
         return;
     }
 

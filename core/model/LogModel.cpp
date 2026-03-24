@@ -1,5 +1,6 @@
 #include "LogModel.h"
 #include "AlwaysPolicy.h"
+#include "Tags.h"
 #include <QSqlError>
 #include <QDebug>
 #include <QDateTime>
@@ -45,7 +46,7 @@ LogModel::~LogModel()
 void LogModel::SetupSubscriptions()
 {
     // 使用带QVariant的订阅，明确指定数据类型
-    Subscribe("user/logging", QVariant::fromValue(LogEntry()), std::make_shared<AlwaysPolicy>());
+    Subscribe(TAG_LOGGING, QVariant::fromValue(LogEntry()), std::make_shared<AlwaysPolicy>());
 
     // 订阅建立后，发布当前日志列表
     publishLogList();
@@ -55,7 +56,7 @@ void LogModel::ObserveData(const QString& tag, const QVariant& value)
 {
     qDebug() << "LogModel::ObserveData 线程ID:" << QThread::currentThreadId();
 
-    if (tag == "user/logging") {
+    if (tag == TAG_LOGGING) {
         // 从 QVariant 中提取 LogEntry 结构体
         LogEntry logEntry = value.value<LogEntry>();
         // 插入日志到数据库
@@ -274,5 +275,5 @@ void LogModel::publishLogList()
     QList<LogEntry> logs = queryLatestLogs();
     // 将日志列表转换为 QVariant 并发布
     QVariant logListVariant = QVariant::fromValue(logs);
-    Publish("user/logList", logListVariant);
+    Publish(TAG_LOG_LIST, logListVariant);
 }

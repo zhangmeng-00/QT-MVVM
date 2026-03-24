@@ -1,4 +1,5 @@
 #include "Logger.h"
+#include "Tags.h"
 #include <QDateTime>
 #include <QDebug>
 
@@ -47,7 +48,7 @@ void Logger::emitLog(LogLevel level, const QString& module, const QString& messa
     entry.logMessage = message;
 
     // 通过继承的 Publish 发布到 Mediator
-    Publish("user/logging", QVariant::fromValue(entry));
+    Publish(TAG_LOGGING, QVariant::fromValue(entry));
 
     // 发送信号（用于 UI 实时显示）
     emit logEmitted(entry);

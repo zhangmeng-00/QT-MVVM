@@ -8,7 +8,7 @@
 #include <vector>
 #include <memory>
 
-#include "../policy/ISubscriptionPolicy.h"
+#include "ISubscriptionPolicy.h"
 
 class Observe;
 

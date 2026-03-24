@@ -55,6 +55,7 @@ add_executable(${PROJECT_NAME}
 
     app/log/Logger.h
     app/log/Logger.cpp
+    app/Tags.h
 )
 
 target_include_directories(${PROJECT_NAME}

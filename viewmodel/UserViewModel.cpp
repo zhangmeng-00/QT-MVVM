@@ -1,6 +1,7 @@
 #include "UserViewModel.h"
 #include "AlwaysPolicy.h"
 #include "Logger.h"
+#include "Tags.h"
 
 // 构造函数
 UserViewModel::UserViewModel(QObject* parent)
@@ -16,20 +17,20 @@ void UserViewModel::onClicked(const QString& senderId)
 
     if (senderId == "btnPublishScore") {
         int score = QRandomGenerator::global()->bounded(0, 500);
-        Publish("user/score", score);
+        Publish(TAG_USER_SCORE, score);
         LOG_INFO("UserViewModel", QString("Published random score %1").arg(score));
     } else if (senderId == "btnLogin") {
         m_loggedIn = true;
         m_loginStateText = "LoggedIn";
         emit loginStateTextChanged();
         emit loggedInChanged();
-        Publish("user/logged_in", true);
+        Publish(TAG_USER_LOGGED_IN, true);
     } else if (senderId == "btnLogout") {
         m_loggedIn = false;
         m_loginStateText = "LoggedOut";
         emit loginStateTextChanged();
         emit loggedInChanged();
-        Publish("user/logged_in", false);
+        Publish(TAG_USER_LOGGED_IN, false);
     }
 }
 
@@ -42,7 +43,7 @@ void UserViewModel::onToggled(bool checked, const QString& senderId)
         m_loginStateText = checked ? "LoggedIn" : "LoggedOut";
         emit loginStateTextChanged();
         emit loggedInChanged();
-        Publish("user/logged_in", checked);
+        Publish(TAG_USER_LOGGED_IN, checked);
     }
 }
 
@@ -53,7 +54,7 @@ void UserViewModel::onCurrentIndexChanged(int index, const QString& senderId)
     if (senderId == "comboBoxMode") {
         m_modeText = QString::number(index);
         emit modeTextChanged();
-        Publish("user/mode", index);
+        Publish(TAG_USER_MODE, index);
     }
 }
 
@@ -64,7 +65,7 @@ void UserViewModel::onValueChanged(int value, const QString& senderId)
     if (senderId == "spinBoxCount") {
         m_countText = QString::number(value);
         emit countTextChanged();
-        Publish("user/count", value);
+        Publish(TAG_USER_COUNT, value);
     }
 }
 
@@ -76,7 +77,7 @@ void UserViewModel::onTextChanged(const QString& text, const QString& senderId)
         if (text == m_userName) return;
         m_userName = text;
         emit userNameChanged();
-        Publish("user/name", text);
+        Publish(TAG_USER_NAME, text);
     }
 }
 
@@ -89,29 +90,29 @@ void UserViewModel::onTextEdited(const QString& text, const QString& senderId)
 void UserViewModel::SetupSubscriptions()
 {
     // 使用带QVariant的订阅，明确指定数据类型
-    Subscribe("user/score", QVariant(0), std::make_shared<AlwaysPolicy>());
-    Subscribe("user/level", QVariant(0), std::make_shared<AlwaysPolicy>());
+    Subscribe(TAG_USER_SCORE, QVariant(0), std::make_shared<AlwaysPolicy>());
+    Subscribe(TAG_USER_LEVEL, QVariant(0), std::make_shared<AlwaysPolicy>());
 
     // 新增：UI事件发布的tag
-    Subscribe("user/publish_score", QVariant(false), std::make_shared<AlwaysPolicy>());
-    Subscribe("user/login", QVariant(false), std::make_shared<AlwaysPolicy>());
-    Subscribe("user/logout", QVariant(false), std::make_shared<AlwaysPolicy>());
-    Subscribe("user/logged_in", QVariant(false), std::make_shared<AlwaysPolicy>());
-    Subscribe("user/mode", QVariant(0), std::make_shared<AlwaysPolicy>());
-    Subscribe("user/count", QVariant(0), std::make_shared<AlwaysPolicy>());
-    Subscribe("user/name", QString(), std::make_shared<AlwaysPolicy>());
+    Subscribe(TAG_USER_PUBLISH_SCORE, QVariant(false), std::make_shared<AlwaysPolicy>());
+    Subscribe(TAG_USER_LOGIN, QVariant(false), std::make_shared<AlwaysPolicy>());
+    Subscribe(TAG_USER_LOGOUT, QVariant(false), std::make_shared<AlwaysPolicy>());
+    Subscribe(TAG_USER_LOGGED_IN, QVariant(false), std::make_shared<AlwaysPolicy>());
+    Subscribe(TAG_USER_MODE, QVariant(0), std::make_shared<AlwaysPolicy>());
+    Subscribe(TAG_USER_COUNT, QVariant(0), std::make_shared<AlwaysPolicy>());
+    Subscribe(TAG_USER_NAME, QString(), std::make_shared<AlwaysPolicy>());
 }
 
 // ObserveData：用于接收来自 Model / 其它模块发布的状态，更新显示用 Q_PROPERTY
 void UserViewModel::ObserveData(const QString& tag, const QVariant& value)
 {
-    if (tag == "user/score") {
+    if (tag == TAG_USER_SCORE) {
         m_scoreText = QString::number(value.toInt());
         emit scoreTextChanged();
         return;
     }
 
-    if (tag == "user/level") {
+    if (tag == TAG_USER_LEVEL) {
         const int lv = value.toInt();
         m_levelText = QString("Lv.%1").arg(lv);
         emit levelTextChanged();
@@ -125,14 +126,14 @@ void UserViewModel::ObserveData(const QString& tag, const QVariant& value)
     }
 
     // 处理UI事件发布的tag
-    if (tag == "user/publish_score") {
+    if (tag == TAG_USER_PUBLISH_SCORE) {
         // 收到按钮点击，随机生成积分
         int score = QRandomGenerator::global()->bounded(100);
-        Publish("user/score", QVariant(score));
+        Publish(TAG_USER_SCORE, QVariant(score));
         return;
     }
 
-    if (tag == "user/login") {
+    if (tag == TAG_USER_LOGIN) {
         m_loggedIn = true;
         m_loginStateText = "LoggedIn";
         emit loginStateTextChanged();
@@ -140,7 +141,7 @@ void UserViewModel::ObserveData(const QString& tag, const QVariant& value)
         return;
     }
 
-    if (tag == "user/logout") {
+    if (tag == TAG_USER_LOGOUT) {
         m_loggedIn = false;
         m_loginStateText = "LoggedOut";
         emit loginStateTextChanged();
@@ -148,7 +149,7 @@ void UserViewModel::ObserveData(const QString& tag, const QVariant& value)
         return;
     }
 
-    if (tag == "user/logged_in") {
+    if (tag == TAG_USER_LOGGED_IN) {
         m_loggedIn = value.toBool();
         m_loginStateText = m_loggedIn ? "LoggedIn" : "LoggedOut";
         emit loginStateTextChanged();
@@ -156,19 +157,19 @@ void UserViewModel::ObserveData(const QString& tag, const QVariant& value)
         return;
     }
 
-    if (tag == "user/mode") {
+    if (tag == TAG_USER_MODE) {
         m_modeText = QString::number(value.toInt());
         emit modeTextChanged();
         return;
     }
 
-    if (tag == "user/count") {
+    if (tag == TAG_USER_COUNT) {
         m_countText = QString::number(value.toInt());
         emit countTextChanged();
         return;
     }
 
-    if (tag == "user/name") {
+    if (tag == TAG_USER_NAME) {
         m_userName = value.toString();
         emit userNameChanged();
         return;

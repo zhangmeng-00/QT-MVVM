@@ -1,6 +1,6 @@
 #pragma once
 
-#include "mediator/Observe.h"
+#include "Observe.h"
 #include <QString>
 #include <QVariant>
 

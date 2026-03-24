@@ -5,7 +5,7 @@
 #include <memory>
 #include <QString>
 
-#include "../policy/ISubscriptionPolicy.h"
+#include "ISubscriptionPolicy.h"
 
 /*
  * Observe

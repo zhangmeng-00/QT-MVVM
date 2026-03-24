@@ -69,7 +69,7 @@ void Mediator::OnSubscribe(Observe* observer,
         bool has = false;
 
         {
-            QMutexLocker locker(&m_mutex);
+            // QMutexLocker locker(&m_mutex);
             auto typeIt = m_stateCache.find(typeName);
             if (typeIt != m_stateCache.end()) {
                 auto it = typeIt.value().find(tag);
@@ -102,7 +102,7 @@ void Mediator::OnSubscribe(Observe* observer,
  */
 void Mediator::OnUnsubscribe(Observe* obs, const QString& tag)
 {
-    QMutexLocker locker(&m_mutex);
+    // QMutexLocker locker(&m_mutex);
 
     // 遍历所有typeName查找匹配的topic
     for (auto typeIt = m_topics.begin(); typeIt != m_topics.end(); ++typeIt) {
@@ -161,7 +161,7 @@ void Mediator::OnPublish(const QString& tag,
 
     // ⭐ 如果有 Sticky 订阅者，则缓存最后一次状态
     if (topic->HasStickySubscriber()) {
-        QMutexLocker locker(&m_mutex);
+        // QMutexLocker locker(&m_mutex);
         m_stateCache[typeName][tag] = value;
     }
 
@@ -176,7 +176,7 @@ void Mediator::OnPublish(const QString& tag,
 std::shared_ptr<Topic> Mediator::findTopic(const QString& typeName,
                                             const QString& tag)
 {
-    QMutexLocker locker(&m_mutex);
+    // QMutexLocker locker(&m_mutex);
 
     auto typeIt = m_topics.find(typeName);
     if (typeIt != m_topics.end()) {
@@ -195,7 +195,7 @@ std::shared_ptr<Topic> Mediator::findTopic(const QString& typeName,
 std::shared_ptr<Topic> Mediator::getOrCreateTopic(const QString& typeName,
                                                    const QString& tag)
 {
-    QMutexLocker locker(&m_mutex);
+    // QMutexLocker locker(&m_mutex);
 
     // 第一层：查找typeName
     auto typeIt = m_topics.find(typeName);
