@@ -1,6 +1,6 @@
 #pragma once
 
-#include "core/model/LogEntry.h"
+#include "LogEntry.h"
 #include <QString>
 #include <QObject>
 #include <memory>

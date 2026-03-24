@@ -6,7 +6,7 @@
 #include <QRandomGenerator>
 #include <QDebug>
 
-#include "core/viewmodel/BaseViewModel.h"
+#include "BaseViewModel.h"
 
 /*
  * UserViewModel

@@ -5,8 +5,8 @@
 #include "app/Bootstrap.h"
 
 #include "view/TraceViewer.h"
-#include "core/view/LogListView.h"
-#include "core/binding/Binding.h"
+#include "LogListView.h"
+#include "Binding.h"
 
 #include <QAbstractButton>
 #include <QComboBox>

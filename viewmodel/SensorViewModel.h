@@ -6,7 +6,7 @@
 #include <QRandomGenerator>
 #include <QDebug>
 
-#include "core/viewmodel/BaseViewModel.h"
+#include "BaseViewModel.h"
 
 class SensorViewModel : public BaseViewModel {
     Q_OBJECT

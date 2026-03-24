@@ -1,5 +1,5 @@
 #include "UserViewModel.h"
-#include "core/policy/AlwaysPolicy.h"
+#include "AlwaysPolicy.h"
 
 // 构造函数
 UserViewModel::UserViewModel(QObject* parent)

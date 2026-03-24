@@ -3,23 +3,23 @@
 #include <QMainWindow>
 
 // Core
-#include "core/policy/AlwaysPolicy.h"
-#include "core/policy/ValueChangedPolicy.h"
+#include "AlwaysPolicy.h"
+#include "ValueChangedPolicy.h"
 
 // Models
-#include "model/UserModel.h"
-#include "model/SensorModel.h"
+#include "UserModel.h"
+#include "SensorModel.h"
 
 // ViewModels
-#include "viewmodel/UserViewModel.h"
-#include "viewmodel/SensorViewModel.h"
-#include "core/viewmodel/LogListViewModel.h"
+#include "UserViewModel.h"
+#include "SensorViewModel.h"
+#include "LogListViewModel.h"
 
 // Binding helpers
-#include "core/binding/Binding.h"
+#include "Binding.h"
 
 // ViewModel base
-#include "core/viewmodel/BaseViewModel.h"
+#include "BaseViewModel.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

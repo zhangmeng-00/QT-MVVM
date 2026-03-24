@@ -1,7 +1,7 @@
 #include "AppContext.h"
 
-#include "core/mediator/Mediator.h"
-#include "core/mediator/Observe.h"
+#include "Mediator.h"
+#include "Observe.h"
 #include <QMetaObject>
 
 

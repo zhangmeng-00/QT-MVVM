@@ -1,5 +1,5 @@
 #include "SensorViewModel.h"
-#include "core/policy/AlwaysPolicy.h"
+#include "AlwaysPolicy.h"
 
 SensorViewModel::SensorViewModel(QObject* parent)
     : BaseViewModel(parent)

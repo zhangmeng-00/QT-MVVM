@@ -1,5 +1,5 @@
 #include "MainWindow.h"
-#include "core/model/LogEntry.h"
+#include "LogEntry.h"
 
 #include <QApplication>
 #include <QThread>

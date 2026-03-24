@@ -1,6 +1,6 @@
 #pragma once
 
-#include "core/model/IModel.h"
+#include "IModel.h"
 #include <QString>
 #include <functional>
 #include <memory>

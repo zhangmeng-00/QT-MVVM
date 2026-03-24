@@ -6,7 +6,7 @@
 // 这些 include 根据你的实际路径调整
 #include "model/UserModel.h"
 #include "model/SensorModel.h"
-#include "core/model/LogModel.h"
+#include "LogModel.h"
 
 #include <QDebug>
 

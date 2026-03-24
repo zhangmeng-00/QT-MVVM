@@ -1,5 +1,5 @@
 #pragma once
-#include "core/actor/ActorObserve.h"
+#include "ActorObserve.h"
 #include <QModbusDataUnit>
 
 /*

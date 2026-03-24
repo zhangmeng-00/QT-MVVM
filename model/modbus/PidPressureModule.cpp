@@ -1,7 +1,7 @@
 #include "PidPressureModule.h"
 #include "ModbusMasterModel.h"
 #include <cstring>
-#include "core/policy/AlwaysPolicy.h"
+#include "AlwaysPolicy.h"
 
 PidPressureModule::PidPressureModule(int instanceId,
                                      int unitId,
