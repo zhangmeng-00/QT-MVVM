@@ -1,10 +1,10 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 
-#include "app/AppContext.h"
-#include "app/Bootstrap.h"
+#include "AppContext.h"
+#include "Bootstrap.h"
 
-#include "view/TraceViewer.h"
+#include "TraceViewer.h"
 #include "LogListView.h"
 #include "Binding.h"
 

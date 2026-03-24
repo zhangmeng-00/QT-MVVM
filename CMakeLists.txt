@@ -52,6 +52,9 @@ add_executable(${PROJECT_NAME}
     app/AppContext.cpp
     app/Bootstrap.h
     app/Bootstrap.cpp
+
+    app/log/Logger.h
+    app/log/Logger.cpp
 )
 
 target_include_directories(${PROJECT_NAME}
@@ -59,6 +62,9 @@ target_include_directories(${PROJECT_NAME}
         ${CMAKE_CURRENT_SOURCE_DIR}            # 项目根目录
         ${CMAKE_CURRENT_SOURCE_DIR}/core       # core 目录
         ${CMAKE_CURRENT_SOURCE_DIR}/app        # app 目录
+        ${CMAKE_CURRENT_SOURCE_DIR}/app/config # app/config 目录
+        ${CMAKE_CURRENT_SOURCE_DIR}/app/di     # app/di 目录
+        ${CMAKE_CURRENT_SOURCE_DIR}/app/log    # app/log 目录
         ${CMAKE_CURRENT_SOURCE_DIR}/view       # view 目录
         ${CMAKE_CURRENT_SOURCE_DIR}/viewmodel # viewmodel 目录
         ${CMAKE_CURRENT_SOURCE_DIR}/model     # model 目录

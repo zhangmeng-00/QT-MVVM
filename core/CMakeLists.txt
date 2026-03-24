@@ -5,7 +5,6 @@ add_library(MediatorCore
     policy/ISubscriptionPolicy.h
     policy/AlwaysPolicy.h
     policy/ValueChangedPolicy.h
-    policy/StickyPolicy.h
 
     # mediator
     mediator/Observe.h
@@ -46,6 +45,14 @@ target_include_directories(MediatorCore
     PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}      # core/
         ${CMAKE_CURRENT_SOURCE_DIR}/..   # 项目根（兼容 include "core/..."）
+        ${CMAKE_CURRENT_SOURCE_DIR}/../app  # app/ 目录
+        ${CMAKE_CURRENT_SOURCE_DIR}/actor
+        ${CMAKE_CURRENT_SOURCE_DIR}/binding
+        ${CMAKE_CURRENT_SOURCE_DIR}/mediator
+        ${CMAKE_CURRENT_SOURCE_DIR}/model
+        ${CMAKE_CURRENT_SOURCE_DIR}/policy
+        ${CMAKE_CURRENT_SOURCE_DIR}/view
+        ${CMAKE_CURRENT_SOURCE_DIR}/viewmodel
 )
 
 target_link_libraries(MediatorCore

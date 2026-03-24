@@ -1,7 +1,7 @@
 #pragma once
 
 #include <QObject>
-#include "config/AppConfig.h"
+#include "AppConfig.h"
 
 class AppContext;
 

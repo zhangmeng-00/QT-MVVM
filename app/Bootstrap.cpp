@@ -4,9 +4,10 @@
 #include "config/AppConfig.h"
 
 // 这些 include 根据你的实际路径调整
-#include "model/UserModel.h"
-#include "model/SensorModel.h"
+#include "UserModel.h"
+#include "SensorModel.h"
 #include "LogModel.h"
+#include "Logger.h"
 
 #include <QDebug>
 
@@ -54,6 +55,10 @@ CoreObjects InstallAll(AppContext& ctx, const AppConfig& config)
     ctx.ConnectObserve(g_core.userModel);
     ctx.ConnectObserve(g_core.sensorModel);
     ctx.ConnectObserve(g_core.logModel);
+
+    // 4) Logger 也需要接入 Mediator（单例，父对象设为 ctx）
+    Logger::instance()->setParent(&ctx);
+    ctx.ConnectObserve(Logger::instance());
 
     return g_core;
 }

@@ -2,7 +2,7 @@
 
 #include "BaseModel.h"
 #include "LogEntry.h"
-#include "core/actor/ActorObserve.h"
+#include "ActorObserve.h"
 #include <QObject>
 #include <QString>
 #include <QVariant>

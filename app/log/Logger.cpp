@@ -1,35 +1,6 @@
 #include "Logger.h"
 #include <QDateTime>
-#include <QMetaObject>
 #include <QDebug>
-
-// 静态成员初始化
-QObject* Logger::s_mediator = nullptr;
-LogLevel Logger::s_minLevel = LogLevel::INFO;
-bool Logger::s_initialized = false;
-
-void Logger::initialize(QObject* mediator) {
-    s_mediator = mediator;
-    s_initialized = true;
-    qDebug() << "Logger initialized";
-}
-
-void Logger::shutdown() {
-    s_mediator = nullptr;
-    s_initialized = false;
-}
-
-void Logger::setMinLevel(LogLevel level) {
-    s_minLevel = level;
-}
-
-LogLevel Logger::minLevel() {
-    return s_minLevel;
-}
-
-bool Logger::shouldLog(LogLevel level) {
-    return static_cast<int>(level) >= static_cast<int>(s_minLevel);
-}
 
 void Logger::debug(const QString& module, const QString& message) {
     emitLog(LogLevel::Debug, module, message);
@@ -54,6 +25,14 @@ void Logger::logIf(bool condition, LogLevel level,
     }
 }
 
+void Logger::setMinLevel(LogLevel level) {
+    m_minLevel = level;
+}
+
+bool Logger::shouldLog(LogLevel level) const {
+    return static_cast<int>(level) >= static_cast<int>(m_minLevel);
+}
+
 void Logger::emitLog(LogLevel level, const QString& module, const QString& message) {
     // 级别过滤
     if (!shouldLog(level)) {
@@ -67,12 +46,11 @@ void Logger::emitLog(LogLevel level, const QString& module, const QString& messa
     entry.logLevel = level;
     entry.logMessage = message;
 
-    // 通过 Mediator 发布（如果已初始化）
-    if (s_mediator) {
-        QMetaObject::invokeMethod(s_mediator, "Publish",
-            Q_ARG(QString, "user/logging"),
-            Q_ARG(QVariant, QVariant::fromValue(entry)));
-    }
+    // 通过继承的 Publish 发布到 Mediator
+    Publish("user/logging", QVariant::fromValue(entry));
+
+    // 发送信号（用于 UI 实时显示）
+    emit logEmitted(entry);
 
     // 同时输出到控制台（调试用）
     QString levelStr;

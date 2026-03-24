@@ -1,5 +1,6 @@
 #include "UserViewModel.h"
 #include "AlwaysPolicy.h"
+#include "Logger.h"
 
 // 构造函数
 UserViewModel::UserViewModel(QObject* parent)
@@ -16,8 +17,7 @@ void UserViewModel::onClicked(const QString& senderId)
     if (senderId == "btnPublishScore") {
         int score = QRandomGenerator::global()->bounded(0, 500);
         Publish("user/score", score);
-        log("UserViewModel", LogLevel::INFO,
-            QString("Published random score %1").arg(score));
+        LOG_INFO("UserViewModel", QString("Published random score %1").arg(score));
     } else if (senderId == "btnLogin") {
         m_loggedIn = true;
         m_loginStateText = "LoggedIn";

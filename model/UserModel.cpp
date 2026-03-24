@@ -1,5 +1,6 @@
 #include "UserModel.h"
 #include "AlwaysPolicy.h"
+#include "Logger.h"
 #include <memory>
 #include <QVariant>
 
@@ -19,7 +20,7 @@ void UserModel::ObserveData(const QString &tag, const QVariant &value)
         if (newLevel != m_level) {
             m_level = newLevel;
             Publish("user/level", QVariant::fromValue(m_level));
-            logWarn(QString("User level updated to %1").arg(m_level));
+            LOG_WARN("UserModel", QString("User level updated to %1").arg(m_level));
         }
     }
 }

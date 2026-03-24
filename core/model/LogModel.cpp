@@ -1,5 +1,5 @@
 #include "LogModel.h"
-#include "core/policy/AlwaysPolicy.h"
+#include "AlwaysPolicy.h"
 #include <QSqlError>
 #include <QDebug>
 #include <QDateTime>

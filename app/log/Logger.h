@@ -1,20 +1,16 @@
 #pragma once
 
+#include "ActorObserve.h"
 #include "LogEntry.h"
 #include <QString>
-#include <QObject>
-#include <memory>
 
 /*
  * Logger - 全局日志服务
  * ============================================================
- * 统一日志记录入口，支持：
- * - 日志级别过滤
- * - 多输出目标（Mediator、文件、控制台）
+ * 继承 ActorObserve，通过 Publish 发布日志
  *
  * 使用方式：
- *   Logger::initialize(mediator);
- *   Logger::info("ModuleName", "message");
+ *   Logger::instance().info("ModuleName", "message");
  *   Logger::error("Modbus", "Connection failed");
  *
  * 便捷宏（推荐）：
@@ -23,47 +19,52 @@
  *   LOG_WARN("Module", "message")
  *   LOG_ERROR("Module", "message")
  */
-class Logger : public QObject {
+class Logger : public ActorObserve {
     Q_OBJECT
 public:
-    // 初始化（连接 Mediator）
-    static void initialize(QObject* mediator);
+    // 单例访问
+    static Logger* instance() {
+        static Logger inst;
+        return &inst;
+    }
 
-    // 静态便捷方法
-    static void debug(const QString& module, const QString& message);
-    static void info(const QString& module, const QString& message);
-    static void warn(const QString& module, const QString& message);
-    static void error(const QString& module, const QString& message);
+    // 便捷方法
+    Q_INVOKABLE void debug(const QString& module, const QString& message);
+    Q_INVOKABLE void info(const QString& module, const QString& message);
+    Q_INVOKABLE void warn(const QString& module, const QString& message);
+    Q_INVOKABLE void error(const QString& module, const QString& message);
 
     // 条件日志
-    static void logIf(bool condition, LogLevel level,
-                      const QString& module, const QString& message);
+    Q_INVOKABLE void logIf(bool condition, LogLevel level,
+                           const QString& module, const QString& message);
 
     // 设置最小日志级别
-    static void setMinLevel(LogLevel level);
-    static LogLevel minLevel();
+    void setMinLevel(LogLevel level);
+    LogLevel minLevel() const { return m_minLevel; }
 
     // 检查是否应该记录
-    static bool shouldLog(LogLevel level);
-
-    // 清理
-    static void shutdown();
+    bool shouldLog(LogLevel level) const;
 
 signals:
     // 直接发送日志信号（用于 UI 实时显示）
     void logEmitted(const LogEntry& entry);
 
-private:
-    static void emitLog(LogLevel level, const QString& module, const QString& message);
+protected:
+    // 实现 ObserveData（Logger 不需要订阅任何内容）
+    void ObserveData(const QString& tag, const QVariant& value) override {
+        Q_UNUSED(tag);
+        Q_UNUSED(value);
+    }
 
 private:
-    static QObject* s_mediator;
-    static LogLevel s_minLevel;
-    static bool s_initialized;
+    void emitLog(LogLevel level, const QString& module, const QString& message);
+
+private:
+    LogLevel m_minLevel = LogLevel::INFO;
 };
 
 // 便捷宏
-#define LOG_DEBUG(module, message) Logger::debug(module, message)
-#define LOG_INFO(module, message) Logger::info(module, message)
-#define LOG_WARN(module, message) Logger::warn(module, message)
-#define LOG_ERROR(module, message) Logger::error(module, message)
+#define LOG_DEBUG(module, message) Logger::instance()->debug(module, message)
+#define LOG_INFO(module, message) Logger::instance()->info(module, message)
+#define LOG_WARN(module, message) Logger::instance()->warn(module, message)
+#define LOG_ERROR(module, message) Logger::instance()->error(module, message)

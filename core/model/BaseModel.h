@@ -1,8 +1,7 @@
 #pragma once
 
-#include "core/actor/ActorObserve.h"
+#include "ActorObserve.h"
 #include "IModel.h"
-#include "LogEntry.h"
 
 /*
  * BaseModel
@@ -50,22 +49,6 @@ public:
     }
 
 protected:
-    /*
-     * log
-     * --------------------------------------------------------
-     * 默认日志发布：user/logging
-     * 子类可重写
-     */
-    virtual void log(const QString& modelName,
-                     LogLevel level,
-                     const QString& message);
-
-    // ===== 便捷日志方法 =====
-    void logDebug(const QString& message) { log(modelName(), LogLevel::Debug, message); }
-    void logInfo(const QString& message) { log(modelName(), LogLevel::INFO, message); }
-    void logWarn(const QString& message) { log(modelName(), LogLevel::WARN, message); }
-    void logError(const QString& message) { log(modelName(), LogLevel::ERROR, message); }
-
     /*
      * ObserveData
      * --------------------------------------------------------

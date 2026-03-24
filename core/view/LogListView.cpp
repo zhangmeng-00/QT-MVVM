@@ -1,9 +1,9 @@
 #include "LogListView.h"
 #include "ui_LogListView.h"
 
-#include "app/AppContext.h"
-#include "core/binding/Binding.h"
-#include "core/viewmodel/LogListViewModel.h"
+#include "AppContext.h"
+#include "Binding.h"
+#include "LogListViewModel.h"
 
 #include <QHeaderView>
 

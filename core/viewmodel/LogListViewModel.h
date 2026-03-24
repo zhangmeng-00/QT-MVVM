@@ -5,8 +5,8 @@
 #include <QColor>
 #include <QList>
 
-#include "core/viewmodel/BaseViewModel.h"
-#include "core/model/LogEntry.h"
+#include "BaseViewModel.h"
+#include "LogEntry.h"
 
 class LogListTableModel : public QAbstractTableModel {
     Q_OBJECT

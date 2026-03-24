@@ -2,8 +2,7 @@
 #include <QObject>
 #include <QDateTime>
 
-#include "core/actor/ActorObserve.h"
-#include "core/model/LogEntry.h"
+#include "ActorObserve.h"
 
 /*
  * BaseViewModel
@@ -45,25 +44,6 @@ public:
     Q_INVOKABLE virtual void onTextChanged(const QString& text, const QString& senderId = QString()) {}
     Q_INVOKABLE virtual void onTextEdited(const QString& text, const QString& senderId = QString()) {}
     Q_INVOKABLE virtual void onReturnPressed(const QString& senderId = QString()) {}
-
-protected:
-    /*
-     * log
-     * --------------------------------------------------------
-     * 默认日志发布：user/logging（用于 ViewModel）
-     */
-    virtual void log(const QString& modelName,
-                     LogLevel level,
-                     const QString& message)
-    {
-        LogEntry logEntry;
-        logEntry.timestamp = QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss");
-        logEntry.modelName = modelName;
-        logEntry.logLevel = level;
-        logEntry.logMessage = message;
-
-        Publish("user/logging", QVariant::fromValue<LogEntry>(logEntry));
-    }
 
 protected:
            // 子类实现 ObserveData(tag, value)

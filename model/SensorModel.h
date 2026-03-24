@@ -1,6 +1,6 @@
 #pragma once
 
-#include "actor/ActorObserve.h"
+#include "ActorObserve.h"
 
 /*
  * SensorModel

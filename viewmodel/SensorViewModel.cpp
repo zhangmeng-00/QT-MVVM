@@ -1,5 +1,6 @@
 #include "SensorViewModel.h"
 #include "AlwaysPolicy.h"
+#include "Logger.h"
 
 SensorViewModel::SensorViewModel(QObject* parent)
     : BaseViewModel(parent)
@@ -15,8 +16,7 @@ void SensorViewModel::onClicked(const QString& senderId)
     if (senderId == "btnPublishTemperature") {
         int temp = QRandomGenerator::global()->bounded(20, 40);
         Publish("sensor/temperature", temp);
-        log("SensorViewModel", LogLevel::INFO,
-            QString("Publishing temperature %1").arg(temp));
+        LOG_INFO("SensorViewModel", QString("Publishing temperature %1").arg(temp));
     }
 }
 
@@ -41,8 +41,7 @@ void SensorViewModel::onValueChangedDouble(double value, const QString& senderId
         m_gainText = QString::number(value, 'f', 3);
         emit gainTextChanged();
         Publish("sensor/gain", value);
-        log("SensorViewModel", LogLevel::INFO,
-            QString("Gain changed to %1").arg(value));
+        LOG_INFO("SensorViewModel", QString("Gain changed to %1").arg(value));
     }
 }
 
@@ -80,8 +79,7 @@ void SensorViewModel::ObserveData(const QString& tag, const QVariant& value)
         // 收到按钮点击，随机生成温度
         int temp = QRandomGenerator::global()->bounded(20, 40);
         Publish("sensor/temperature", QVariant(temp));
-        log("SensorViewModel", LogLevel::INFO,
-                    QString("Publishing temperature %1").arg(temp));
+        LOG_INFO("SensorViewModel", QString("Publishing temperature %1").arg(temp));
         return;
     }
 
