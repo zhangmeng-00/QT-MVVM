@@ -63,15 +63,6 @@ void SensorViewModel::ObserveData(const QString& tag, const QVariant& value)
         m_temperatureText = QString("%1 °C").arg(value.toInt());
         emit temperatureTextChanged();
 
-        // 你原来这段我保留（演示用途）
-        Publish(TAG_USER_LEVEL, 3);
-        // 使用带QVariant的订阅，明确指定数据类型
-        Subscribe(TAG_USER_LEVEL, QVariant(0), std::make_shared<AlwaysPolicy>(true));
-        return;
-    }
-
-    if (tag == TAG_USER_LEVEL) {
-        qDebug() << TAG_USER_LEVEL << value;
         return;
     }
 

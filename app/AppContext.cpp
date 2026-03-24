@@ -1,9 +1,6 @@
 #include "AppContext.h"
 
-#include "Mediator.h"
-#include "Observe.h"
-#include <QMetaObject>
-
+#include <QMutexLocker>
 
 AppContext& AppContext::instance()
 {
@@ -14,31 +11,17 @@ AppContext& AppContext::instance()
 AppContext::AppContext(QObject* parent)
     : QObject(parent)
 {
-    qDebug() << "[AppContext] init";
-
-    // 1) Mediator + 线程
-    m_mediator = new Mediator;
+    m_mediator = new Mediator();
     m_mediatorThread = new QThread(this);
 
     m_mediator->moveToThread(m_mediatorThread);
-
-    // 确保线程结束时安全销毁 mediator（在其所在线程）
-    connect(m_mediatorThread, &QThread::finished,
-            m_mediator, &QObject::deleteLater);
+    connect(m_mediatorThread, &QThread::finished, m_mediator, &QObject::deleteLater);
 
     m_mediatorThread->start();
-
-    // 2) 模块系统（可选）
-    // m_moduleRegistry.reset(new ModuleRegistry());
 }
 
 AppContext::~AppContext()
 {
-    qDebug() << "[AppContext] shutdown";
-
-    // 可选：停止模块（如果你启用了模块系统）
-    // StopModules();
-
     shutdownMediatorThread();
 }
 
@@ -49,24 +32,81 @@ Mediator* AppContext::mediator() const
 
 void AppContext::ConnectObserve(Observe* obs)
 {
-    if (!obs || !m_mediator) return;
+    if (!obs || !m_mediator) {
+        return;
+    }
 
-    // ⚠️ 关键：不要跨线程直接调用 mediator
-    // 统一切到 mediator 线程执行
-    InvokeOnMediator([this, obs]() {
-        m_mediator->ConnectObserve(obs);
-        // ✅ 关键：连接后回自己线程订阅
-        QMetaObject::invokeMethod(obs, [obs]() {
-            obs->SetupSubscriptions();
-        }, Qt::QueuedConnection);
-    }); 
+    {
+        QMutexLocker locker(&m_observerMutex);
+        if (m_connectedObservers.contains(obs)) {
+            return;
+        }
+        m_connectedObservers.insert(obs);
+    }
+
+    connect(obs, &QObject::destroyed, this, [this, obs]() {
+        QMutexLocker locker(&m_observerMutex);
+        m_connectedObservers.remove(obs);
+    });
+
+    const auto connectTask = [this, obs]() {
+        if (m_mediator) {
+            m_mediator->ConnectObserve(obs);
+        }
+    };
+
+    bool connected = false;
+    if (QThread::currentThread() == m_mediator->thread()) {
+        connectTask();
+        connected = true;
+    } else {
+        connected = QMetaObject::invokeMethod(
+            m_mediator,
+            connectTask,
+            Qt::BlockingQueuedConnection);
+    }
+
+    if (!connected) {
+        QMutexLocker locker(&m_observerMutex);
+        m_connectedObservers.remove(obs);
+        return;
+    }
+
+    const auto setupTask = [obs]() {
+        obs->SetupSubscriptions();
+    };
+
+    if (QThread::currentThread() == obs->thread()) {
+        setupTask();
+    } else {
+        QMetaObject::invokeMethod(obs, setupTask, Qt::QueuedConnection);
+    }
 }
 
 void AppContext::shutdownMediatorThread()
 {
-    if (!m_mediatorThread) return;
+    {
+        QMutexLocker locker(&m_observerMutex);
+        m_connectedObservers.clear();
+    }
 
-    // 退出线程（mediator deleteLater 会在 finished 后触发）
-    m_mediatorThread->quit();
-    m_mediatorThread->wait();
+    if (!m_mediatorThread) {
+        m_mediator = nullptr;
+        return;
+    }
+
+    if (m_mediator) {
+        QMetaObject::invokeMethod(m_mediator, "deleteLater", Qt::QueuedConnection);
+    }
+
+    if (m_mediatorThread->isRunning()) {
+        m_mediatorThread->quit();
+        if (!m_mediatorThread->wait(3000)) {
+            qWarning() << "[AppContext] mediator thread quit timeout, waiting until stop";
+            m_mediatorThread->wait();
+        }
+    }
+
+    m_mediator = nullptr;
+    m_mediatorThread = nullptr;
 }

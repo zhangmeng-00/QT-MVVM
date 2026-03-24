@@ -1,80 +1,65 @@
 #include "ActorObserve.h"
+
+#include <QDebug>
 #include <QMetaObject>
 #include <QThread>
-#include <QDebug>
 
-/*
- * 构造函数
- */
 ActorObserve::ActorObserve(QObject* parent, bool useSeparateThread)
-    : Observe(nullptr)  // 暂时设置为空父对象，以便能移动到新线程
+    : Observe(nullptr)
 {
-    qDebug() << "ActorObserve 构造函数 - 原始线程ID:" << QThread::currentThreadId()
+    qDebug() << "ActorObserve ctor thread:" << QThread::currentThreadId()
              << "useSeparateThread:" << useSeparateThread;
 
     if (useSeparateThread) {
-        // 创建并启动单独的线程
-        m_thread = new QThread(nullptr);  // 线程没有父对象
-        // 将当前对象移到新线程
+        m_thread = new QThread(nullptr);
         moveToThread(m_thread);
 
-        // 连接线程启动信号，在线程启动后打印线程ID
         connect(m_thread, &QThread::started, [this]() {
-            qDebug() << "ActorObserve 新线程已启动，线程ID:" << QThread::currentThreadId();
-            qDebug() << "LogModel 对象现在所在线程ID:" << thread()->currentThreadId();
+            qDebug() << "ActorObserve worker thread started:" << QThread::currentThreadId();
+            qDebug() << "ActorObserve object thread:" << thread()->currentThreadId();
         });
 
-        // 启动线程
         m_thread->start();
     } else {
-        // 不使用单独线程时，设置正确的父对象
         setParent(parent);
     }
 }
 
 ActorObserve::~ActorObserve()
 {
-    if (m_thread && m_thread->isRunning()) {
-        // 请求线程退出
-        m_thread->quit();
-        // 等待线程结束
-        m_thread->wait();
-        // 线程会被父对象（this）销毁，所以不需要手动delete
+    if (!m_thread) {
+        return;
     }
+
+    if (m_thread->isRunning()) {
+        m_thread->quit();
+        m_thread->wait();
+    }
+
+    if (m_thread->thread() == QThread::currentThread()) {
+        delete m_thread;
+    } else {
+        m_thread->deleteLater();
+    }
+    m_thread = nullptr;
 }
 
-/*
- * OnDataReceived
- * ------------------------------------------------------------
- * 这里可能在 Mediator / 发布线程
- * 只负责投递，不做业务
- */
-void ActorObserve::handleData(const QString& tag,
-                                  const QVariant& value)
+void ActorObserve::handleData(const QString& tag, const QVariant& value)
 {
-    // 如果已经在对象线程，直接调用
     if (QThread::currentThread() == thread()) {
         ObserveData(tag, value);
-    } else {
-        // 否则，强制投递回对象线程
-        QMetaObject::invokeMethod(
-            this,
-            [this, tag, value]() {
-                ObserveData(tag, value);
-            },
-            Qt::QueuedConnection
-            );
+        return;
     }
+
+    QMetaObject::invokeMethod(
+        this,
+        [this, tag, value]() {
+            ObserveData(tag, value);
+        },
+        Qt::QueuedConnection);
 }
 
-/*
- * onActorInvoke
- * ------------------------------------------------------------
- * 一定在对象所属线程执行
- * 这里才调用真正的业务逻辑
- */
-void ActorObserve::onActorInvoke(QString tag,
-                                 QVariant value)
+void ActorObserve::onActorInvoke(QString tag, QVariant value)
 {
     ObserveData(tag, value);
 }

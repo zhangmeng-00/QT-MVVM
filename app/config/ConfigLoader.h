@@ -6,6 +6,8 @@
 #include <QJsonObject>
 #include <QFile>
 #include <QTextStream>
+#include <QSettings>
+#include <QDebug>
 
 /*
  * ConfigLoader - 配置文件加载器

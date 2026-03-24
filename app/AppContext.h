@@ -3,16 +3,17 @@
 #include <QObject>
 #include <QThread>
 #include <QVector>
-#include <QHash>
+#include <QSet>
 #include <QDebug>
 #include <QMetaObject>
+#include <QMutex>
 
 #include <functional>
 #include <memory>
 #include <type_traits>
 
-class Mediator;
-class Observe;
+#include "Mediator.h"
+#include "Observe.h"
 
 
 class AppContext : public QObject
@@ -50,7 +51,11 @@ public:
     {
         // 统一把 parent 设为 AppContext，这样生命周期由 AppContext 托管
         T* obj = new T(std::forward<Args>(args)...);
-        obj->setParent(this);
+        if (obj->thread() == thread()) {
+            obj->setParent(this);
+        } else {
+            qWarning() << "[AppContext] Skip setParent due to cross-thread component:" << obj;
+        }
         m_components.push_back(obj);
 
         // 如果它也是 Observe，就自动 ConnectObserve（线程安全）
@@ -69,5 +74,7 @@ private:
     QThread*   m_mediatorThread = nullptr;
 
     QVector<QObject*> m_components;
+    QSet<Observe*> m_connectedObservers;
+    QMutex m_observerMutex;
 
 };

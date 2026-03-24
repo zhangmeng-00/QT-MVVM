@@ -76,6 +76,6 @@ private:
     QString m_countText = "0";
 
     // ===== 业务状态（用于 CanExecute）=====
-    bool m_canPublish = false;
+    bool m_canPublish = true;
     bool m_loggedIn = false;
 };

@@ -69,8 +69,13 @@ void MainWindow::setupBindings()
 
     // ========== 按钮启用状态绑定 ==========
     Binding::BindProperty(ui->btnPublishScore, "enabled", m_userVM, "canPublish");
-    Binding::BindProperty(ui->btnLogin, "enabled", m_userVM, "loggedIn");
-    Binding::BindProperty(ui->btnLogout, "enabled", m_userVM, "loggedIn");
+    auto syncAuthButtons = [this]() {
+        const bool loggedIn = m_userVM->loggedIn();
+        ui->btnLogin->setEnabled(!loggedIn);
+        ui->btnLogout->setEnabled(loggedIn);
+    };
+    syncAuthButtons();
+    QObject::connect(m_userVM, &UserViewModel::loggedInChanged, this, syncAuthButtons);
 
     // =========================================================
     // Event Binding（View → VM）

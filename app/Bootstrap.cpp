@@ -21,6 +21,10 @@ namespace Bootstrap {
 static void SetParentIfQObject(QObject* obj, QObject* parent)
 {
     if (!obj || !parent) return;
+    if (obj->thread() != parent->thread()) {
+        qWarning() << "[Bootstrap] Skip setParent due to cross-thread object:" << obj;
+        return;
+    }
     if (!obj->parent()) obj->setParent(parent);
 }
 
@@ -57,7 +61,6 @@ CoreObjects InstallAll(AppContext& ctx, const AppConfig& config)
     ctx.ConnectObserve(g_core.logModel);
 
     // 4) Logger 也需要接入 Mediator（单例，父对象设为 ctx）
-    Logger::instance()->setParent(&ctx);
     ctx.ConnectObserve(Logger::instance());
 
     return g_core;
