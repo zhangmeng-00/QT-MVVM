@@ -1,13 +1,10 @@
 D:/3_Source\ Code/31_QT/MediatorMVAQt/build/MediatorMVAQt_autogen/include_Debug/7OCNMGYRF4/moc_SensorViewModel.cpp: D:/3_Source\ Code/31_QT/MediatorMVAQt/viewmodel/SensorViewModel.h \
   C:/Qt/5.15.2/msvc2019/include/QtCore/QDateTime \
   C:/Qt/5.15.2/msvc2019/include/QtCore/QDebug \
-  C:/Qt/5.15.2/msvc2019/include/QtCore/QList \
-  C:/Qt/5.15.2/msvc2019/include/QtCore/QMetaType \
   C:/Qt/5.15.2/msvc2019/include/QtCore/QObject \
   C:/Qt/5.15.2/msvc2019/include/QtCore/QRandomGenerator \
   C:/Qt/5.15.2/msvc2019/include/QtCore/QString \
   C:/Qt/5.15.2/msvc2019/include/QtCore/QVariant \
-  C:/Qt/5.15.2/msvc2019/include/QtCore/QVariantList \
   C:/Qt/5.15.2/msvc2019/include/QtCore/qalgorithms.h \
   C:/Qt/5.15.2/msvc2019/include/QtCore/qarraydata.h \
   C:/Qt/5.15.2/msvc2019/include/QtCore/qatomic.h \
@@ -67,9 +64,6 @@ D:/3_Source\ Code/31_QT/MediatorMVAQt/build/MediatorMVAQt_autogen/include_Debug/
   C:/Qt/5.15.2/msvc2019/include/QtCore/qvector.h \
   C:/Qt/5.15.2/msvc2019/include/QtCore/qversiontagging.h \
   D:/3_Source\ Code/31_QT/MediatorMVAQt/core/actor/ActorObserve.h \
-  D:/3_Source\ Code/31_QT/MediatorMVAQt/core/command/ICommand.h \
-  D:/3_Source\ Code/31_QT/MediatorMVAQt/core/command/SimpleCommand.h \
   D:/3_Source\ Code/31_QT/MediatorMVAQt/core/mediator/Observe.h \
-  D:/3_Source\ Code/31_QT/MediatorMVAQt/core/model/LogEntry.h \
   D:/3_Source\ Code/31_QT/MediatorMVAQt/core/policy/ISubscriptionPolicy.h \
-  D:/3_Source\ Code/31_QT/MediatorMVAQt/viewmodel/BaseViewModel.h
+  D:/3_Source\ Code/31_QT/MediatorMVAQt/core/viewmodel/BaseViewModel.h

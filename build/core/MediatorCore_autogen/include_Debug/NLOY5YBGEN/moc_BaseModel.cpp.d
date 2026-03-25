@@ -1,6 +1,4 @@
 D:/3_Source\ Code/31_QT/MediatorMVAQt/build/core/MediatorCore_autogen/include_Debug/NLOY5YBGEN/moc_BaseModel.cpp: D:/3_Source\ Code/31_QT/MediatorMVAQt/core/model/BaseModel.h \
-  C:/Qt/5.15.2/msvc2019/include/QtCore/QList \
-  C:/Qt/5.15.2/msvc2019/include/QtCore/QMetaType \
   C:/Qt/5.15.2/msvc2019/include/QtCore/QObject \
   C:/Qt/5.15.2/msvc2019/include/QtCore/QString \
   C:/Qt/5.15.2/msvc2019/include/QtCore/QVariant \
@@ -53,5 +51,5 @@ D:/3_Source\ Code/31_QT/MediatorMVAQt/build/core/MediatorCore_autogen/include_De
   C:/Qt/5.15.2/msvc2019/include/QtCore/qversiontagging.h \
   D:/3_Source\ Code/31_QT/MediatorMVAQt/core/actor/ActorObserve.h \
   D:/3_Source\ Code/31_QT/MediatorMVAQt/core/mediator/Observe.h \
-  D:/3_Source\ Code/31_QT/MediatorMVAQt/core/model/LogEntry.h \
+  D:/3_Source\ Code/31_QT/MediatorMVAQt/core/model/IModel.h \
   D:/3_Source\ Code/31_QT/MediatorMVAQt/core/policy/ISubscriptionPolicy.h

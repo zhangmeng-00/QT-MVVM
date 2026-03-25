@@ -83,6 +83,8 @@ void *BaseModel::qt_metacast(const char *_clname)
     if (!_clname) return nullptr;
     if (!strcmp(_clname, qt_meta_stringdata_BaseModel.stringdata0))
         return static_cast<void*>(this);
+    if (!strcmp(_clname, "IModel"))
+        return static_cast< IModel*>(this);
     return ActorObserve::qt_metacast(_clname);
 }
 

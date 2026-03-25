@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_UserViewModel_t {
-    QByteArrayData data[16];
-    char stringdata0[210];
+    QByteArrayData data[29];
+    char stringdata0[355];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -40,22 +40,39 @@ QT_MOC_LITERAL(4, 49, 15), // "userNameChanged"
 QT_MOC_LITERAL(5, 65, 21), // "loginStateTextChanged"
 QT_MOC_LITERAL(6, 87, 15), // "modeTextChanged"
 QT_MOC_LITERAL(7, 103, 16), // "countTextChanged"
-QT_MOC_LITERAL(8, 120, 17), // "LoginStateChanged"
-QT_MOC_LITERAL(9, 138, 8), // "loggedIn"
-QT_MOC_LITERAL(10, 147, 9), // "scoreText"
-QT_MOC_LITERAL(11, 157, 9), // "levelText"
-QT_MOC_LITERAL(12, 167, 8), // "userName"
-QT_MOC_LITERAL(13, 176, 14), // "loginStateText"
-QT_MOC_LITERAL(14, 191, 8), // "modeText"
-QT_MOC_LITERAL(15, 200, 9) // "countText"
+QT_MOC_LITERAL(8, 120, 17), // "canPublishChanged"
+QT_MOC_LITERAL(9, 138, 15), // "loggedInChanged"
+QT_MOC_LITERAL(10, 154, 9), // "onClicked"
+QT_MOC_LITERAL(11, 164, 8), // "senderId"
+QT_MOC_LITERAL(12, 173, 9), // "onToggled"
+QT_MOC_LITERAL(13, 183, 7), // "checked"
+QT_MOC_LITERAL(14, 191, 21), // "onCurrentIndexChanged"
+QT_MOC_LITERAL(15, 213, 5), // "index"
+QT_MOC_LITERAL(16, 219, 14), // "onValueChanged"
+QT_MOC_LITERAL(17, 234, 5), // "value"
+QT_MOC_LITERAL(18, 240, 13), // "onTextChanged"
+QT_MOC_LITERAL(19, 254, 4), // "text"
+QT_MOC_LITERAL(20, 259, 12), // "onTextEdited"
+QT_MOC_LITERAL(21, 272, 9), // "scoreText"
+QT_MOC_LITERAL(22, 282, 9), // "levelText"
+QT_MOC_LITERAL(23, 292, 8), // "userName"
+QT_MOC_LITERAL(24, 301, 14), // "loginStateText"
+QT_MOC_LITERAL(25, 316, 8), // "modeText"
+QT_MOC_LITERAL(26, 325, 9), // "countText"
+QT_MOC_LITERAL(27, 335, 10), // "canPublish"
+QT_MOC_LITERAL(28, 346, 8) // "loggedIn"
 
     },
     "UserViewModel\0scoreTextChanged\0\0"
     "levelTextChanged\0userNameChanged\0"
     "loginStateTextChanged\0modeTextChanged\0"
-    "countTextChanged\0LoginStateChanged\0"
-    "loggedIn\0scoreText\0levelText\0userName\0"
-    "loginStateText\0modeText\0countText"
+    "countTextChanged\0canPublishChanged\0"
+    "loggedInChanged\0onClicked\0senderId\0"
+    "onToggled\0checked\0onCurrentIndexChanged\0"
+    "index\0onValueChanged\0value\0onTextChanged\0"
+    "text\0onTextEdited\0scoreText\0levelText\0"
+    "userName\0loginStateText\0modeText\0"
+    "countText\0canPublish\0loggedIn"
 };
 #undef QT_MOC_LITERAL
 
@@ -65,21 +82,30 @@ static const uint qt_meta_data_UserViewModel[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-       7,   14, // methods
-       6,   58, // properties
+      14,   14, // methods
+       8,  120, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       7,       // signalCount
+       8,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    0,   49,    2, 0x06 /* Public */,
-       3,    0,   50,    2, 0x06 /* Public */,
-       4,    0,   51,    2, 0x06 /* Public */,
-       5,    0,   52,    2, 0x06 /* Public */,
-       6,    0,   53,    2, 0x06 /* Public */,
-       7,    0,   54,    2, 0x06 /* Public */,
-       8,    1,   55,    2, 0x06 /* Public */,
+       1,    0,   84,    2, 0x06 /* Public */,
+       3,    0,   85,    2, 0x06 /* Public */,
+       4,    0,   86,    2, 0x06 /* Public */,
+       5,    0,   87,    2, 0x06 /* Public */,
+       6,    0,   88,    2, 0x06 /* Public */,
+       7,    0,   89,    2, 0x06 /* Public */,
+       8,    0,   90,    2, 0x06 /* Public */,
+       9,    0,   91,    2, 0x06 /* Public */,
+
+ // methods: name, argc, parameters, tag, flags
+      10,    1,   92,    2, 0x02 /* Public */,
+      12,    2,   95,    2, 0x02 /* Public */,
+      14,    2,  100,    2, 0x02 /* Public */,
+      16,    2,  105,    2, 0x02 /* Public */,
+      18,    2,  110,    2, 0x02 /* Public */,
+      20,    2,  115,    2, 0x02 /* Public */,
 
  // signals: parameters
     QMetaType::Void,
@@ -88,15 +114,26 @@ static const uint qt_meta_data_UserViewModel[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Bool,    9,
+    QMetaType::Void,
+    QMetaType::Void,
+
+ // methods: parameters
+    QMetaType::Void, QMetaType::QString,   11,
+    QMetaType::Void, QMetaType::Bool, QMetaType::QString,   13,   11,
+    QMetaType::Void, QMetaType::Int, QMetaType::QString,   15,   11,
+    QMetaType::Void, QMetaType::Int, QMetaType::QString,   17,   11,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString,   19,   11,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString,   19,   11,
 
  // properties: name, type, flags
-      10, QMetaType::QString, 0x00495001,
-      11, QMetaType::QString, 0x00495001,
-      12, QMetaType::QString, 0x00495001,
-      13, QMetaType::QString, 0x00495001,
-      14, QMetaType::QString, 0x00495001,
-      15, QMetaType::QString, 0x00495001,
+      21, QMetaType::QString, 0x00495001,
+      22, QMetaType::QString, 0x00495001,
+      23, QMetaType::QString, 0x00495001,
+      24, QMetaType::QString, 0x00495001,
+      25, QMetaType::QString, 0x00495001,
+      26, QMetaType::QString, 0x00495001,
+      27, QMetaType::Bool, 0x00495001,
+      28, QMetaType::Bool, 0x00495001,
 
  // properties: notify_signal_id
        0,
@@ -105,6 +142,8 @@ static const uint qt_meta_data_UserViewModel[] = {
        3,
        4,
        5,
+       6,
+       7,
 
        0        // eod
 };
@@ -121,7 +160,14 @@ void UserViewModel::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         case 3: _t->loginStateTextChanged(); break;
         case 4: _t->modeTextChanged(); break;
         case 5: _t->countTextChanged(); break;
-        case 6: _t->LoginStateChanged((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 6: _t->canPublishChanged(); break;
+        case 7: _t->loggedInChanged(); break;
+        case 8: _t->onClicked((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 9: _t->onToggled((*reinterpret_cast< bool(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2]))); break;
+        case 10: _t->onCurrentIndexChanged((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2]))); break;
+        case 11: _t->onValueChanged((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2]))); break;
+        case 12: _t->onTextChanged((*reinterpret_cast< const QString(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2]))); break;
+        case 13: _t->onTextEdited((*reinterpret_cast< const QString(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -169,9 +215,16 @@ void UserViewModel::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
             }
         }
         {
-            using _t = void (UserViewModel::*)(bool );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&UserViewModel::LoginStateChanged)) {
+            using _t = void (UserViewModel::*)();
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&UserViewModel::canPublishChanged)) {
                 *result = 6;
+                return;
+            }
+        }
+        {
+            using _t = void (UserViewModel::*)();
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&UserViewModel::loggedInChanged)) {
+                *result = 7;
                 return;
             }
         }
@@ -188,6 +241,8 @@ void UserViewModel::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         case 3: *reinterpret_cast< QString*>(_v) = _t->loginStateText(); break;
         case 4: *reinterpret_cast< QString*>(_v) = _t->modeText(); break;
         case 5: *reinterpret_cast< QString*>(_v) = _t->countText(); break;
+        case 6: *reinterpret_cast< bool*>(_v) = _t->canPublish(); break;
+        case 7: *reinterpret_cast< bool*>(_v) = _t->loggedIn(); break;
         default: break;
         }
     } else if (_c == QMetaObject::WriteProperty) {
@@ -225,29 +280,29 @@ int UserViewModel::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 7)
+        if (_id < 14)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 7;
+        _id -= 14;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 7)
+        if (_id < 14)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 7;
+        _id -= 14;
     }
 #ifndef QT_NO_PROPERTIES
     else if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty
             || _c == QMetaObject::ResetProperty || _c == QMetaObject::RegisterPropertyMetaType) {
         qt_static_metacall(this, _c, _id, _a);
-        _id -= 6;
+        _id -= 8;
     } else if (_c == QMetaObject::QueryPropertyDesignable) {
-        _id -= 6;
+        _id -= 8;
     } else if (_c == QMetaObject::QueryPropertyScriptable) {
-        _id -= 6;
+        _id -= 8;
     } else if (_c == QMetaObject::QueryPropertyStored) {
-        _id -= 6;
+        _id -= 8;
     } else if (_c == QMetaObject::QueryPropertyEditable) {
-        _id -= 6;
+        _id -= 8;
     } else if (_c == QMetaObject::QueryPropertyUser) {
-        _id -= 6;
+        _id -= 8;
     }
 #endif // QT_NO_PROPERTIES
     return _id;
@@ -290,10 +345,15 @@ void UserViewModel::countTextChanged()
 }
 
 // SIGNAL 6
-void UserViewModel::LoginStateChanged(bool _t1)
+void UserViewModel::canPublishChanged()
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
-    QMetaObject::activate(this, &staticMetaObject, 6, _a);
+    QMetaObject::activate(this, &staticMetaObject, 6, nullptr);
+}
+
+// SIGNAL 7
+void UserViewModel::loggedInChanged()
+{
+    QMetaObject::activate(this, &staticMetaObject, 7, nullptr);
 }
 QT_WARNING_POP
 QT_END_MOC_NAMESPACE

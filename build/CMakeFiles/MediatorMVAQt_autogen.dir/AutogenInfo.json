@@ -114,15 +114,15 @@
 			null
 		],
 		[
-			"D:/3_Source Code/31_QT/MediatorMVAQt/common/TestStruct.h",
+			"D:/3_Source Code/31_QT/MediatorMVAQt/app/Tags.h",
 			"MU",
-			"P66WHCG54J/moc_TestStruct.cpp",
+			"VJIZ3MDCXP/moc_Tags.cpp",
 			null
 		],
 		[
-			"D:/3_Source Code/31_QT/MediatorMVAQt/common/TypeKey.h",
+			"D:/3_Source Code/31_QT/MediatorMVAQt/app/log/Logger.h",
 			"MU",
-			"P66WHCG54J/moc_TypeKey.cpp",
+			"IXMFAJKRRN/moc_Logger.cpp",
 			null
 		],
 		[
@@ -162,27 +162,9 @@
 			null
 		],
 		[
-			"D:/3_Source Code/31_QT/MediatorMVAQt/view/LogListView.h",
-			"MU",
-			"OTUN7GXZT4/moc_LogListView.cpp",
-			null
-		],
-		[
 			"D:/3_Source Code/31_QT/MediatorMVAQt/view/TraceViewer.h",
 			"MU",
 			"OTUN7GXZT4/moc_TraceViewer.cpp",
-			null
-		],
-		[
-			"D:/3_Source Code/31_QT/MediatorMVAQt/viewmodel/BaseViewModel.h",
-			"MU",
-			"7OCNMGYRF4/moc_BaseViewModel.cpp",
-			null
-		],
-		[
-			"D:/3_Source Code/31_QT/MediatorMVAQt/viewmodel/LogListViewModel.h",
-			"MU",
-			"7OCNMGYRF4/moc_LogListViewModel.cpp",
 			null
 		],
 		[
@@ -252,7 +234,22 @@
 	[
 		"D:/3_Source Code/31_QT/MediatorMVAQt",
 		"D:/3_Source Code/31_QT/MediatorMVAQt/core",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/app",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/app/config",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/app/di",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/app/log",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/view",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/viewmodel",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/model",
 		"D:/3_Source Code/31_QT/MediatorMVAQt",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/app",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/core/actor",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/core/binding",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/core/mediator",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/core/model",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/core/policy",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/core/view",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/core/viewmodel",
 		"C:/Qt/5.15.2/msvc2019/include",
 		"C:/Qt/5.15.2/msvc2019/include/QtCore",
 		"C:/Qt/5.15.2/msvc2019/mkspecs/win32-msvc",
@@ -267,7 +264,22 @@
 	[
 		"D:/3_Source Code/31_QT/MediatorMVAQt",
 		"D:/3_Source Code/31_QT/MediatorMVAQt/core",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/app",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/app/config",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/app/di",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/app/log",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/view",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/viewmodel",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/model",
 		"D:/3_Source Code/31_QT/MediatorMVAQt",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/app",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/core/actor",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/core/binding",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/core/mediator",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/core/model",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/core/policy",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/core/view",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/core/viewmodel",
 		"C:/Qt/5.15.2/msvc2019/include",
 		"C:/Qt/5.15.2/msvc2019/include/QtCore",
 		"C:/Qt/5.15.2/msvc2019/mkspecs/win32-msvc",
@@ -282,7 +294,22 @@
 	[
 		"D:/3_Source Code/31_QT/MediatorMVAQt",
 		"D:/3_Source Code/31_QT/MediatorMVAQt/core",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/app",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/app/config",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/app/di",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/app/log",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/view",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/viewmodel",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/model",
 		"D:/3_Source Code/31_QT/MediatorMVAQt",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/app",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/core/actor",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/core/binding",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/core/mediator",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/core/model",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/core/policy",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/core/view",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/core/viewmodel",
 		"C:/Qt/5.15.2/msvc2019/include",
 		"C:/Qt/5.15.2/msvc2019/include/QtCore",
 		"C:/Qt/5.15.2/msvc2019/mkspecs/win32-msvc",
@@ -319,6 +346,7 @@
 		[ "D:/3_Source Code/31_QT/MediatorMVAQt/MainWindow.cpp", "MU", null ],
 		[ "D:/3_Source Code/31_QT/MediatorMVAQt/app/AppContext.cpp", "MU", null ],
 		[ "D:/3_Source Code/31_QT/MediatorMVAQt/app/Bootstrap.cpp", "MU", null ],
+		[ "D:/3_Source Code/31_QT/MediatorMVAQt/app/log/Logger.cpp", "MU", null ],
 		[ "D:/3_Source Code/31_QT/MediatorMVAQt/main.cpp", "MU", null ],
 		[
 			"D:/3_Source Code/31_QT/MediatorMVAQt/model/SensorModel.cpp",
@@ -346,17 +374,7 @@
 			null
 		],
 		[
-			"D:/3_Source Code/31_QT/MediatorMVAQt/view/LogListView.cpp",
-			"MU",
-			null
-		],
-		[
 			"D:/3_Source Code/31_QT/MediatorMVAQt/view/TraceViewer.cpp",
-			"MU",
-			null
-		],
-		[
-			"D:/3_Source Code/31_QT/MediatorMVAQt/viewmodel/LogListViewModel.cpp",
 			"MU",
 			null
 		],

@@ -6,6 +6,14 @@
 
 include CMakeFiles/impl-Debug.ninja
 
+build install: phony install$:Debug
+
+build install\local: phony install\local$:Debug
+
+build core\install: phony core\install$:Debug
+
+build core\install\local: phony core\install\local$:Debug
+
 build MediatorCore: phony core\Debug\MediatorCore.lib
 
 build MediatorCore.lib: phony core\Debug\MediatorCore.lib

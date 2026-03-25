@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_SensorViewModel_t {
-    QByteArrayData data[10];
-    char stringdata0[152];
+    QByteArrayData data[14];
+    char stringdata0[198];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -37,16 +37,21 @@ QT_MOC_LITERAL(1, 16, 22), // "temperatureTextChanged"
 QT_MOC_LITERAL(2, 39, 0), // ""
 QT_MOC_LITERAL(3, 40, 21), // "targetTempTextChanged"
 QT_MOC_LITERAL(4, 62, 15), // "gainTextChanged"
-QT_MOC_LITERAL(5, 78, 14), // "publishCommand"
-QT_MOC_LITERAL(6, 93, 18), // "SetupSubscriptions"
-QT_MOC_LITERAL(7, 112, 15), // "temperatureText"
-QT_MOC_LITERAL(8, 128, 14), // "targetTempText"
-QT_MOC_LITERAL(9, 143, 8) // "gainText"
+QT_MOC_LITERAL(5, 78, 18), // "SetupSubscriptions"
+QT_MOC_LITERAL(6, 97, 9), // "onClicked"
+QT_MOC_LITERAL(7, 107, 8), // "senderId"
+QT_MOC_LITERAL(8, 116, 14), // "onValueChanged"
+QT_MOC_LITERAL(9, 131, 5), // "value"
+QT_MOC_LITERAL(10, 137, 20), // "onValueChangedDouble"
+QT_MOC_LITERAL(11, 158, 15), // "temperatureText"
+QT_MOC_LITERAL(12, 174, 14), // "targetTempText"
+QT_MOC_LITERAL(13, 189, 8) // "gainText"
 
     },
     "SensorViewModel\0temperatureTextChanged\0"
     "\0targetTempTextChanged\0gainTextChanged\0"
-    "publishCommand\0SetupSubscriptions\0"
+    "SetupSubscriptions\0onClicked\0senderId\0"
+    "onValueChanged\0value\0onValueChangedDouble\0"
     "temperatureText\0targetTempText\0gainText"
 };
 #undef QT_MOC_LITERAL
@@ -57,21 +62,25 @@ static const uint qt_meta_data_SensorViewModel[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-       5,   14, // methods
-       3,   44, // properties
+       7,   14, // methods
+       3,   66, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
        3,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    0,   39,    2, 0x06 /* Public */,
-       3,    0,   40,    2, 0x06 /* Public */,
-       4,    0,   41,    2, 0x06 /* Public */,
+       1,    0,   49,    2, 0x06 /* Public */,
+       3,    0,   50,    2, 0x06 /* Public */,
+       4,    0,   51,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       5,    0,   42,    2, 0x0a /* Public */,
-       6,    0,   43,    2, 0x0a /* Public */,
+       5,    0,   52,    2, 0x0a /* Public */,
+
+ // methods: name, argc, parameters, tag, flags
+       6,    1,   53,    2, 0x02 /* Public */,
+       8,    2,   56,    2, 0x02 /* Public */,
+      10,    2,   61,    2, 0x02 /* Public */,
 
  // signals: parameters
     QMetaType::Void,
@@ -80,12 +89,16 @@ static const uint qt_meta_data_SensorViewModel[] = {
 
  // slots: parameters
     QMetaType::Void,
-    QMetaType::Void,
+
+ // methods: parameters
+    QMetaType::Void, QMetaType::QString,    7,
+    QMetaType::Void, QMetaType::Int, QMetaType::QString,    9,    7,
+    QMetaType::Void, QMetaType::Double, QMetaType::QString,    9,    7,
 
  // properties: name, type, flags
-       7, QMetaType::QString, 0x00495001,
-       8, QMetaType::QString, 0x00495001,
-       9, QMetaType::QString, 0x00495001,
+      11, QMetaType::QString, 0x00495001,
+      12, QMetaType::QString, 0x00495001,
+      13, QMetaType::QString, 0x00495001,
 
  // properties: notify_signal_id
        0,
@@ -104,8 +117,10 @@ void SensorViewModel::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int 
         case 0: _t->temperatureTextChanged(); break;
         case 1: _t->targetTempTextChanged(); break;
         case 2: _t->gainTextChanged(); break;
-        case 3: _t->publishCommand(); break;
-        case 4: _t->SetupSubscriptions(); break;
+        case 3: _t->SetupSubscriptions(); break;
+        case 4: _t->onClicked((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 5: _t->onValueChanged((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2]))); break;
+        case 6: _t->onValueChangedDouble((*reinterpret_cast< double(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -147,7 +162,6 @@ void SensorViewModel::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int 
     } else if (_c == QMetaObject::ResetProperty) {
     }
 #endif // QT_NO_PROPERTIES
-    Q_UNUSED(_a);
 }
 
 QT_INIT_METAOBJECT const QMetaObject SensorViewModel::staticMetaObject = { {
@@ -179,13 +193,13 @@ int SensorViewModel::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 5)
+        if (_id < 7)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 5;
+        _id -= 7;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 5)
+        if (_id < 7)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 5;
+        _id -= 7;
     }
 #ifndef QT_NO_PROPERTIES
     else if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty

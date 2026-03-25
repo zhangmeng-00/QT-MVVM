@@ -1,9 +1,14 @@
 D:/3_Source\ Code/31_QT/MediatorMVAQt/build/MediatorMVAQt_autogen/include_Debug/VJIZ3MDCXP/moc_AppContext.cpp: D:/3_Source\ Code/31_QT/MediatorMVAQt/app/AppContext.h \
   C:/Qt/5.15.2/msvc2019/include/QtCore/QDebug \
-  C:/Qt/5.15.2/msvc2019/include/QtCore/QHash \
+  C:/Qt/5.15.2/msvc2019/include/QtCore/QMap \
   C:/Qt/5.15.2/msvc2019/include/QtCore/QMetaObject \
+  C:/Qt/5.15.2/msvc2019/include/QtCore/QMutex \
   C:/Qt/5.15.2/msvc2019/include/QtCore/QObject \
+  C:/Qt/5.15.2/msvc2019/include/QtCore/QPointer \
+  C:/Qt/5.15.2/msvc2019/include/QtCore/QSet \
+  C:/Qt/5.15.2/msvc2019/include/QtCore/QString \
   C:/Qt/5.15.2/msvc2019/include/QtCore/QThread \
+  C:/Qt/5.15.2/msvc2019/include/QtCore/QVariant \
   C:/Qt/5.15.2/msvc2019/include/QtCore/QVector \
   C:/Qt/5.15.2/msvc2019/include/QtCore/qalgorithms.h \
   C:/Qt/5.15.2/msvc2019/include/QtCore/qarraydata.h \
@@ -40,6 +45,7 @@ D:/3_Source\ Code/31_QT/MediatorMVAQt/build/MediatorMVAQt_autogen/include_Debug/
   C:/Qt/5.15.2/msvc2019/include/QtCore/qobjectdefs.h \
   C:/Qt/5.15.2/msvc2019/include/QtCore/qobjectdefs_impl.h \
   C:/Qt/5.15.2/msvc2019/include/QtCore/qpair.h \
+  C:/Qt/5.15.2/msvc2019/include/QtCore/qpointer.h \
   C:/Qt/5.15.2/msvc2019/include/QtCore/qprocessordetection.h \
   C:/Qt/5.15.2/msvc2019/include/QtCore/qrefcount.h \
   C:/Qt/5.15.2/msvc2019/include/QtCore/qregexp.h \
@@ -63,4 +69,8 @@ D:/3_Source\ Code/31_QT/MediatorMVAQt/build/MediatorMVAQt_autogen/include_Debug/
   C:/Qt/5.15.2/msvc2019/include/QtCore/qvariant.h \
   C:/Qt/5.15.2/msvc2019/include/QtCore/qvarlengtharray.h \
   C:/Qt/5.15.2/msvc2019/include/QtCore/qvector.h \
-  C:/Qt/5.15.2/msvc2019/include/QtCore/qversiontagging.h
+  C:/Qt/5.15.2/msvc2019/include/QtCore/qversiontagging.h \
+  D:/3_Source\ Code/31_QT/MediatorMVAQt/core/mediator/Mediator.h \
+  D:/3_Source\ Code/31_QT/MediatorMVAQt/core/mediator/Observe.h \
+  D:/3_Source\ Code/31_QT/MediatorMVAQt/core/mediator/Topic.h \
+  D:/3_Source\ Code/31_QT/MediatorMVAQt/core/policy/ISubscriptionPolicy.h

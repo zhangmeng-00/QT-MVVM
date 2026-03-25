@@ -28,17 +28,20 @@ MediatorMVAQt_autogen/timestamp: \
 	C:/Qt/5.15.2/msvc2019/include/QtCore/QDebug \
 	C:/Qt/5.15.2/msvc2019/include/QtCore/QHash \
 	C:/Qt/5.15.2/msvc2019/include/QtCore/QList \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/QMap \
 	C:/Qt/5.15.2/msvc2019/include/QtCore/QMetaMethod \
 	C:/Qt/5.15.2/msvc2019/include/QtCore/QMetaObject \
 	C:/Qt/5.15.2/msvc2019/include/QtCore/QMetaProperty \
 	C:/Qt/5.15.2/msvc2019/include/QtCore/QMetaType \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/QMutex \
 	C:/Qt/5.15.2/msvc2019/include/QtCore/QObject \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/QPointer \
 	C:/Qt/5.15.2/msvc2019/include/QtCore/QRandomGenerator \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/QSet \
 	C:/Qt/5.15.2/msvc2019/include/QtCore/QString \
 	C:/Qt/5.15.2/msvc2019/include/QtCore/QThread \
 	C:/Qt/5.15.2/msvc2019/include/QtCore/QTimer \
 	C:/Qt/5.15.2/msvc2019/include/QtCore/QVariant \
-	C:/Qt/5.15.2/msvc2019/include/QtCore/QVariantList \
 	C:/Qt/5.15.2/msvc2019/include/QtCore/QVector \
 	C:/Qt/5.15.2/msvc2019/include/QtCore/qabstractitemmodel.h \
 	C:/Qt/5.15.2/msvc2019/include/QtCore/qalgorithms.h \
@@ -84,6 +87,7 @@ MediatorMVAQt_autogen/timestamp: \
 	C:/Qt/5.15.2/msvc2019/include/QtCore/qobjectdefs_impl.h \
 	C:/Qt/5.15.2/msvc2019/include/QtCore/qpair.h \
 	C:/Qt/5.15.2/msvc2019/include/QtCore/qpoint.h \
+	C:/Qt/5.15.2/msvc2019/include/QtCore/qpointer.h \
 	C:/Qt/5.15.2/msvc2019/include/QtCore/qprocessordetection.h \
 	C:/Qt/5.15.2/msvc2019/include/QtCore/qrandom.h \
 	C:/Qt/5.15.2/msvc2019/include/QtCore/qrect.h \
@@ -234,25 +238,26 @@ MediatorMVAQt_autogen/timestamp: \
 	D:/3_Source\ Code/31_QT/MediatorMVAQt/app/AppContext.h \
 	D:/3_Source\ Code/31_QT/MediatorMVAQt/app/Bootstrap.cpp \
 	D:/3_Source\ Code/31_QT/MediatorMVAQt/app/Bootstrap.h \
+	D:/3_Source\ Code/31_QT/MediatorMVAQt/app/Tags.h \
+	D:/3_Source\ Code/31_QT/MediatorMVAQt/app/log/Logger.cpp \
+	D:/3_Source\ Code/31_QT/MediatorMVAQt/app/log/Logger.h \
 	D:/3_Source\ Code/31_QT/MediatorMVAQt/build/CMakeFiles/4.0.1/CMakeCXXCompiler.cmake \
 	D:/3_Source\ Code/31_QT/MediatorMVAQt/build/CMakeFiles/4.0.1/CMakeRCCompiler.cmake \
 	D:/3_Source\ Code/31_QT/MediatorMVAQt/build/CMakeFiles/4.0.1/CMakeSystem.cmake \
-	D:/3_Source\ Code/31_QT/MediatorMVAQt/common/TestStruct.h \
-	D:/3_Source\ Code/31_QT/MediatorMVAQt/common/TypeKey.h \
 	D:/3_Source\ Code/31_QT/MediatorMVAQt/core/actor/ActorObserve.h \
 	D:/3_Source\ Code/31_QT/MediatorMVAQt/core/binding/Binding.h \
-	D:/3_Source\ Code/31_QT/MediatorMVAQt/core/binding/BindingEvents.h \
-	D:/3_Source\ Code/31_QT/MediatorMVAQt/core/binding/BindingEventsHelpers.h \
 	D:/3_Source\ Code/31_QT/MediatorMVAQt/core/binding/BindingHelper.h \
-	D:/3_Source\ Code/31_QT/MediatorMVAQt/core/command/DispatcherCommand.h \
-	D:/3_Source\ Code/31_QT/MediatorMVAQt/core/command/ICommand.h \
-	D:/3_Source\ Code/31_QT/MediatorMVAQt/core/command/SimpleCommand.h \
+	D:/3_Source\ Code/31_QT/MediatorMVAQt/core/mediator/Mediator.h \
 	D:/3_Source\ Code/31_QT/MediatorMVAQt/core/mediator/Observe.h \
+	D:/3_Source\ Code/31_QT/MediatorMVAQt/core/mediator/Topic.h \
 	D:/3_Source\ Code/31_QT/MediatorMVAQt/core/model/BaseModel.h \
+	D:/3_Source\ Code/31_QT/MediatorMVAQt/core/model/IModel.h \
 	D:/3_Source\ Code/31_QT/MediatorMVAQt/core/model/LogEntry.h \
 	D:/3_Source\ Code/31_QT/MediatorMVAQt/core/policy/AlwaysPolicy.h \
 	D:/3_Source\ Code/31_QT/MediatorMVAQt/core/policy/ISubscriptionPolicy.h \
 	D:/3_Source\ Code/31_QT/MediatorMVAQt/core/policy/ValueChangedPolicy.h \
+	D:/3_Source\ Code/31_QT/MediatorMVAQt/core/viewmodel/BaseViewModel.h \
+	D:/3_Source\ Code/31_QT/MediatorMVAQt/core/viewmodel/LogListViewModel.h \
 	D:/3_Source\ Code/31_QT/MediatorMVAQt/main.cpp \
 	D:/3_Source\ Code/31_QT/MediatorMVAQt/model/SensorModel.cpp \
 	D:/3_Source\ Code/31_QT/MediatorMVAQt/model/SensorModel.h \
@@ -265,18 +270,12 @@ MediatorMVAQt_autogen/timestamp: \
 	D:/3_Source\ Code/31_QT/MediatorMVAQt/model/modbus/PidPressureModule.cpp \
 	D:/3_Source\ Code/31_QT/MediatorMVAQt/model/modbus/PidPressureModule.h \
 	D:/3_Source\ Code/31_QT/MediatorMVAQt/model/modbus/PointDef.h \
-	D:/3_Source\ Code/31_QT/MediatorMVAQt/view/LogListView.cpp \
-	D:/3_Source\ Code/31_QT/MediatorMVAQt/view/LogListView.h \
 	D:/3_Source\ Code/31_QT/MediatorMVAQt/view/TraceViewer.cpp \
 	D:/3_Source\ Code/31_QT/MediatorMVAQt/view/TraceViewer.h \
-	D:/3_Source\ Code/31_QT/MediatorMVAQt/viewmodel/BaseViewModel.h \
-	D:/3_Source\ Code/31_QT/MediatorMVAQt/viewmodel/LogListViewModel.cpp \
-	D:/3_Source\ Code/31_QT/MediatorMVAQt/viewmodel/LogListViewModel.h \
 	D:/3_Source\ Code/31_QT/MediatorMVAQt/viewmodel/SensorViewModel.cpp \
 	D:/3_Source\ Code/31_QT/MediatorMVAQt/viewmodel/SensorViewModel.h \
 	D:/3_Source\ Code/31_QT/MediatorMVAQt/viewmodel/UserViewModel.cpp \
 	D:/3_Source\ Code/31_QT/MediatorMVAQt/viewmodel/UserViewModel.h \
 	c:/qt/5.15.2/msvc2019/lib/cmake/Qt5/Qt5ConfigVersion.cmake \
 	D:/3_Source\ Code/31_QT/MediatorMVAQt/MainWindow.ui \
-	D:/3_Source\ Code/31_QT/MediatorMVAQt/view/LogListView.ui \
 	C:/Program\ Files/CMake/bin/cmake.exe

@@ -6,6 +6,14 @@
 
 include CMakeFiles/impl-Release.ninja
 
+build install: phony install$:Release
+
+build install\local: phony install\local$:Release
+
+build core\install: phony core\install$:Release
+
+build core\install\local: phony core\install\local$:Release
+
 build MediatorCore: phony core\Release\MediatorCore.lib
 
 build MediatorCore.lib: phony core\Release\MediatorCore.lib

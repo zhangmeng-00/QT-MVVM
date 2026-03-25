@@ -1,83 +1,56 @@
 # ninja log v5
-2789	8391	7950067700838103	CMakeFiles/MediatorMVAQt.dir/Debug/MainWindow.cpp.obj	1ad46b122bc24eb2
-15	273	7950064881588651	core/MediatorCore_autogen/timestamp	2cc2df908ce8f4bc
-15	273	7950064881588651	core/MediatorCore_autogen/mocs_compilation_Debug.cpp	2cc2df908ce8f4bc
+4107	9791	7960402206295265	CMakeFiles/MediatorMVAQt.dir/Debug/MainWindow.cpp.obj	56d140312907c18a
+28	502	7960404644767966	core/MediatorCore_autogen/timestamp	2cc2df908ce8f4bc
+28	502	7960404644767966	D:/3_Source Code/31_QT/MediatorMVAQt/build/core/MediatorCore_autogen/timestamp	2cc2df908ce8f4bc
+28	502	7960404644767966	D:/3_Source Code/31_QT/MediatorMVAQt/build/core/MediatorCore_autogen/mocs_compilation_Debug.cpp	2cc2df908ce8f4bc
+28	502	7960404644767966	core/MediatorCore_autogen/mocs_compilation_Debug.cpp	2cc2df908ce8f4bc
 894	4241	7949983792529743	core/CMakeFiles/MediatorCore.dir/Debug/mediator/TopicRegistry.cpp.obj	1667e862bc4df6d9
-15	273	7950064881588651	D:/3_Source Code/31_QT/MediatorMVAQt/build/core/MediatorCore_autogen/mocs_compilation_Debug.cpp	2cc2df908ce8f4bc
-15	273	7950064881588651	D:/3_Source Code/31_QT/MediatorMVAQt/build/core/MediatorCore_autogen/timestamp	2cc2df908ce8f4bc
-92	127	0	clean:Debug	374d8527791d7fdb
-33	3925	7950061583212164	core/CMakeFiles/MediatorCore.dir/Debug/model/BaseModel.cpp.obj	3b4c7b4034919f94
-8392	9061	7950067706337568	Debug/MediatorMVAQt.exe	899f57c96e2969b6
-43	4070	7950061584570577	core/CMakeFiles/MediatorCore.dir/Debug/mediator/Observe.cpp.obj	ce8edfc2925b5dc9
-10	846	7950660087005370	build-Release.ninja	ac89927e627433ea
-10	846	7950660086937389	build.ninja	ac89927e627433ea
-2778	7742	7950067694286640	CMakeFiles/MediatorMVAQt.dir/Debug/viewmodel/UserViewModel.cpp.obj	72e61d92e2e30b7
-19	4062	7950061584521555	core/CMakeFiles/MediatorCore.dir/Debug/mediator/Topic.cpp.obj	ecc7d6846040b2f7
-2499	2738	7950065326525542	MediatorMVAQt_autogen/mocs_compilation_Debug.cpp	a2bc20830502e5ca
-52	4112	7950061585095804	core/CMakeFiles/MediatorCore.dir/Debug/mediator/Mediator.cpp.obj	da7280d463242080
-25	4730	7950061591264556	core/CMakeFiles/MediatorCore.dir/Debug/actor/ActorObserve.cpp.obj	9df9c80c0dc64f3e
+41	60	0	clean:Debug	374d8527791d7fdb
+406	2208	7960203810798104	core/CMakeFiles/MediatorCore.dir/Debug/model/BaseModel.cpp.obj	9515dcce56773541
+7	703	7961120485659877	build.ninja	ac89927e627433ea
+7	703	7961120485710402	build-Release.ninja	ac89927e627433ea
+698	4115	7960182608917112	core/CMakeFiles/MediatorCore.dir/Debug/mediator/Observe.cpp.obj	b1fadc92169a337b
+5875	8570	7960414298826924	Debug/MediatorMVAQt.exe	6ac957ea5b2287a3
+712	4123	7960182609117559	core/CMakeFiles/MediatorCore.dir/Debug/mediator/Topic.cpp.obj	7f5100e608bcf694
+12	4631	7960392815041627	CMakeFiles/MediatorMVAQt.dir/Debug/viewmodel/UserViewModel.cpp.obj	7295340118f85f8c
+855	4148	7960385808900522	core/CMakeFiles/MediatorCore.dir/Debug/mediator/Mediator.cpp.obj	382aa472b6e3e14e
+3532	4097	7960402149108365	MediatorMVAQt_autogen/mocs_compilation_Debug.cpp	a2bc20830502e5ca
+206	3195	7960402140458409	core/CMakeFiles/MediatorCore.dir/Debug/actor/ActorObserve.cpp.obj	16607af2f18d2238
+444	5551	7960414269988559	core/CMakeFiles/MediatorCore.dir/Debug/model/LogModel.cpp.obj	8bbd0eec522360b1
 7057	12986	7949983879341132	CMakeFiles/MediatorMVAQt.dir/Debug/model/SQLiteRecorderActor.cpp.obj	2049bd1f4e4919a
-287	2393	7950067640859831	core/CMakeFiles/MediatorCore.dir/Debug/model/LogModel.cpp.obj	1ebc54e9681d03c0
-10	5266	7950061596590387	core/CMakeFiles/MediatorCore.dir/Debug/MediatorCore_autogen/mocs_compilation_Debug.cpp.obj	85a0b54fd901987c
-0	90	0	CMakeFiles/clean.additional:Debug	cee7e56548ea36fa
-2393	2499	7950067641946178	core/Debug/MediatorCore.lib	77cf593838002a97
-2499	2738	7950065326525542	MediatorMVAQt_autogen/timestamp	a2bc20830502e5ca
-2499	2738	7950065326525542	D:/3_Source Code/31_QT/MediatorMVAQt/build/MediatorMVAQt_autogen/timestamp	a2bc20830502e5ca
-2499	2738	7950065326525542	D:/3_Source Code/31_QT/MediatorMVAQt/build/MediatorMVAQt_autogen/mocs_compilation_Debug.cpp	a2bc20830502e5ca
-6780	15706	7950061700964057	CMakeFiles/MediatorMVAQt.dir/Debug/model/SensorModel.cpp.obj	e82198fda1527d5a
-6767	15262	7950061696471875	CMakeFiles/MediatorMVAQt.dir/Debug/model/modbus/ModbusMasterModel.cpp.obj	aba1a83289760c6e
-2811	6462	7950067681180819	CMakeFiles/MediatorMVAQt.dir/Debug/model/modbus/PidPressureModule.cpp.obj	25d8ae9d2eaa92f2
-2769	7281	7950067689307834	CMakeFiles/MediatorMVAQt.dir/Debug/viewmodel/LogListViewModel.cpp.obj	a7aa1dd82ed0b13
-6794	14839	7950061692383398	CMakeFiles/MediatorMVAQt.dir/Debug/model/modbus/ModbusModuleBase.cpp.obj	1139599e4bdc2ba9
-6641	15967	7950061703495089	CMakeFiles/MediatorMVAQt.dir/Debug/view/TraceViewer.cpp.obj	bb600031487d98d6
-2800	7284	7950067689297620	CMakeFiles/MediatorMVAQt.dir/Debug/model/UserModel.cpp.obj	b5048db233746779
-2759	7625	7950067693123236	CMakeFiles/MediatorMVAQt.dir/Debug/viewmodel/SensorViewModel.cpp.obj	29da420457bbf553
-6808	17067	7950061714645318	CMakeFiles/MediatorMVAQt.dir/Debug/app/Bootstrap.cpp.obj	feda51956b6ccc06
-6742	16388	7950061707724165	CMakeFiles/MediatorMVAQt.dir/Debug/app/AppContext.cpp.obj	829080fae5319081
-6628	17678	7950061720760594	CMakeFiles/MediatorMVAQt.dir/Debug/view/LogListView.cpp.obj	7fd96bb2405f03d9
-6715	17134	7950061715312516	CMakeFiles/MediatorMVAQt.dir/Debug/main.cpp.obj	2305e8e48a066512
-6705	17846	7950061722472854	CMakeFiles/MediatorMVAQt.dir/Debug/MediatorMVAQt_autogen/mocs_compilation_Debug.cpp.obj	310f79cf5a048cf3
-10	846	7950660086992336	CMakeFiles/impl-Release.ninja	ac89927e627433ea
-10	846	7950660086959502	CMakeFiles/impl-Debug.ninja	ac89927e627433ea
-10	846	7950660086713467	D:/3_Source Code/31_QT/MediatorMVAQt/build/core/cmake_install.cmake	ac89927e627433ea
-10	846	7950660086970588	build-Debug.ninja	ac89927e627433ea
-10	846	7950660087016043	CMakeFiles/impl-RelWithDebInfo.ninja	ac89927e627433ea
-10	846	7950660087037731	build-RelWithDebInfo.ninja	ac89927e627433ea
-10	846	7950660086318528	D:/3_Source Code/31_QT/MediatorMVAQt/build/cmake_install.cmake	ac89927e627433ea
-9	1031	7950660087037731	CMakeFiles/impl-Debug.ninja	ac89927e627433ea
-9	1031	7950660087037731	build-Debug.ninja	ac89927e627433ea
-9	1031	7950660087037731	CMakeFiles/impl-Release.ninja	ac89927e627433ea
-9	1031	7950660087037731	build-Release.ninja	ac89927e627433ea
-9	1031	7950660087037731	CMakeFiles/impl-RelWithDebInfo.ninja	ac89927e627433ea
-9	1031	7950660087037731	build-RelWithDebInfo.ninja	ac89927e627433ea
-9	1031	7950660087037731	build.ninja	ac89927e627433ea
-9	1031	7950660087037731	D:/3_Source Code/31_QT/MediatorMVAQt/build/cmake_install.cmake	ac89927e627433ea
-9	1031	7950660087037731	D:/3_Source Code/31_QT/MediatorMVAQt/build/core/cmake_install.cmake	ac89927e627433ea
-17	432	7950114823444556	core/MediatorCore_autogen/timestamp	2cc2df908ce8f4bc
-17	432	7950114823444556	core/MediatorCore_autogen/mocs_compilation_Debug.cpp	2cc2df908ce8f4bc
-17	432	7950114823444556	D:/3_Source Code/31_QT/MediatorMVAQt/build/core/MediatorCore_autogen/timestamp	2cc2df908ce8f4bc
-17	432	7950114823444556	D:/3_Source Code/31_QT/MediatorMVAQt/build/core/MediatorCore_autogen/mocs_compilation_Debug.cpp	2cc2df908ce8f4bc
-447	1379	7950660101856707	MediatorMVAQt_autogen/timestamp	a2bc20830502e5ca
-447	1379	7950660101856707	MediatorMVAQt_autogen/mocs_compilation_Debug.cpp	a2bc20830502e5ca
-447	1379	7950660101856707	D:/3_Source Code/31_QT/MediatorMVAQt/build/MediatorMVAQt_autogen/timestamp	a2bc20830502e5ca
-447	1379	7950660101856707	D:/3_Source Code/31_QT/MediatorMVAQt/build/MediatorMVAQt_autogen/mocs_compilation_Debug.cpp	a2bc20830502e5ca
-1413	6260	7950660151064772	CMakeFiles/MediatorMVAQt.dir/Debug/viewmodel/SensorViewModel.cpp.obj	29da420457bbf553
-1431	6266	7950660151188241	CMakeFiles/MediatorMVAQt.dir/Debug/viewmodel/UserViewModel.cpp.obj	72e61d92e2e30b7
-1439	6335	7950660151529153	CMakeFiles/MediatorMVAQt.dir/Debug/viewmodel/LogListViewModel.cpp.obj	a7aa1dd82ed0b13
-1401	7068	7950660159077113	CMakeFiles/MediatorMVAQt.dir/Debug/view/LogListView.cpp.obj	7fd96bb2405f03d9
-10	591	7950670587985285	MediatorMVAQt_autogen/timestamp	a2bc20830502e5ca
-10	591	7950670587985285	MediatorMVAQt_autogen/mocs_compilation_Debug.cpp	a2bc20830502e5ca
-10	591	7950670587985285	D:/3_Source Code/31_QT/MediatorMVAQt/build/MediatorMVAQt_autogen/timestamp	a2bc20830502e5ca
-10	591	7950670587985285	D:/3_Source Code/31_QT/MediatorMVAQt/build/MediatorMVAQt_autogen/mocs_compilation_Debug.cpp	a2bc20830502e5ca
-615	4090	7950670623319292	CMakeFiles/MediatorMVAQt.dir/Debug/main.cpp.obj	2305e8e48a066512
-603	4102	7950670623390022	CMakeFiles/MediatorMVAQt.dir/Debug/MediatorMVAQt_autogen/mocs_compilation_Debug.cpp.obj	310f79cf5a048cf3
-592	4170	7950670623892378	CMakeFiles/MediatorMVAQt.dir/Debug/MainWindow.cpp.obj	1ad46b122bc24eb2
-4170	5330	7950670634646647	Debug/MediatorMVAQt.exe	899f57c96e2969b6
-11	236	7950673245916382	MediatorMVAQt_autogen/timestamp	a2bc20830502e5ca
-11	236	7950673245916382	MediatorMVAQt_autogen/mocs_compilation_Debug.cpp	a2bc20830502e5ca
-11	236	7950673245916382	D:/3_Source Code/31_QT/MediatorMVAQt/build/MediatorMVAQt_autogen/timestamp	a2bc20830502e5ca
-11	236	7950673245916382	D:/3_Source Code/31_QT/MediatorMVAQt/build/MediatorMVAQt_autogen/mocs_compilation_Debug.cpp	a2bc20830502e5ca
-270	3555	7950682146510169	CMakeFiles/MediatorMVAQt.dir/Debug/viewmodel/SensorViewModel.cpp.obj	29da420457bbf553
-262	3561	7950682146554044	CMakeFiles/MediatorMVAQt.dir/Debug/viewmodel/UserViewModel.cpp.obj	72e61d92e2e30b7
-282	4344	7950682154433573	CMakeFiles/MediatorMVAQt.dir/Debug/MainWindow.cpp.obj	1ad46b122bc24eb2
-4344	5318	7950682163282099	Debug/MediatorMVAQt.exe	899f57c96e2969b6
+1	40	0	CMakeFiles/clean.additional:Debug	cee7e56548ea36fa
+842	4719	7960385814589124	core/CMakeFiles/MediatorCore.dir/Debug/MediatorCore_autogen/mocs_compilation_Debug.cpp.obj	530735374f10582b
+5552	5874	7960414273161844	core/Debug/MediatorCore.lib	da2432ed2050b029
+3532	4097	7960402149108365	MediatorMVAQt_autogen/timestamp	a2bc20830502e5ca
+198	2363	7960346089059118	core/CMakeFiles/MediatorCore.dir/Debug/viewmodel/LogListViewModel.cpp.obj	a20453d3d987891a
+3532	4097	7960402149108365	D:/3_Source Code/31_QT/MediatorMVAQt/build/MediatorMVAQt_autogen/timestamp	a2bc20830502e5ca
+3532	4097	7960402149108365	D:/3_Source Code/31_QT/MediatorMVAQt/build/MediatorMVAQt_autogen/mocs_compilation_Debug.cpp	a2bc20830502e5ca
+2776	4667	7960346112016395	CMakeFiles/MediatorMVAQt.dir/Debug/app/log/Logger.cpp.obj	17d5ac8d6878fdc1
+850	5856	7960187433392052	CMakeFiles/MediatorMVAQt.dir/Debug/model/SensorModel.cpp.obj	79e1ad72080fb1cb
+826	5998	7960187435053567	CMakeFiles/MediatorMVAQt.dir/Debug/model/modbus/ModbusMasterModel.cpp.obj	c8ffca0def66937d
+867	5909	7960187434275296	CMakeFiles/MediatorMVAQt.dir/Debug/model/modbus/PidPressureModule.cpp.obj	c53384adbcb086f3
+214	3408	7960402142578406	core/CMakeFiles/MediatorCore.dir/Debug/view/LogListView.cpp.obj	b5f0a028fd6b1d52
+527	2023	7953438055275031	CMakeFiles/MediatorMVAQt.dir/Debug/viewmodel/LogListViewModel.cpp.obj	a7aa1dd82ed0b13
+835	5913	7960187434263565	CMakeFiles/MediatorMVAQt.dir/Debug/model/modbus/ModbusModuleBase.cpp.obj	88b984be91a6b082
+800	6669	7960187441945651	CMakeFiles/MediatorMVAQt.dir/Debug/view/TraceViewer.cpp.obj	74536873f18940f6
+2768	4738	7960346112757489	CMakeFiles/MediatorMVAQt.dir/Debug/model/UserModel.cpp.obj	61b7c78fef483023
+23	4627	7960392815041627	CMakeFiles/MediatorMVAQt.dir/Debug/viewmodel/SensorViewModel.cpp.obj	e1ed62187059e1c2
+4116	8589	7960402194222624	CMakeFiles/MediatorMVAQt.dir/Debug/app/Bootstrap.cpp.obj	917bd809d69c99d1
+4125	8346	7960402191915337	CMakeFiles/MediatorMVAQt.dir/Debug/app/AppContext.cpp.obj	dfeef5f07fc96fe7
+6397	11187	7960385879305575	CMakeFiles/MediatorMVAQt.dir/Debug/main.cpp.obj	eb2b1e19104f8a12
+510	2201	7953438057054766	CMakeFiles/MediatorMVAQt.dir/Debug/view/LogListView.cpp.obj	7fd96bb2405f03d9
+7	703	7961120485699618	CMakeFiles/impl-Release.ninja	ac89927e627433ea
+4097	9846	7960402206762037	CMakeFiles/MediatorMVAQt.dir/Debug/MediatorMVAQt_autogen/mocs_compilation_Debug.cpp.obj	cbdb6612f32dfdef
+7	703	7961120485489281	D:/3_Source Code/31_QT/MediatorMVAQt/build/core/cmake_install.cmake	ac89927e627433ea
+7	703	7961120485671907	CMakeFiles/impl-Debug.ninja	ac89927e627433ea
+7	703	7961120485687400	build-Debug.ninja	ac89927e627433ea
+7	703	7961120485722734	CMakeFiles/impl-RelWithDebInfo.ninja	ac89927e627433ea
+7	703	7961120485733573	build-RelWithDebInfo.ninja	ac89927e627433ea
+7	703	7961120485134222	D:/3_Source Code/31_QT/MediatorMVAQt/build/cmake_install.cmake	ac89927e627433ea
+13	169	7960447664184693	MediatorMVAQt_autogen/timestamp	a2bc20830502e5ca
+13	169	7960447664184693	MediatorMVAQt_autogen/mocs_compilation_Debug.cpp	a2bc20830502e5ca
+13	169	7960447664184693	D:/3_Source Code/31_QT/MediatorMVAQt/build/MediatorMVAQt_autogen/timestamp	a2bc20830502e5ca
+13	169	7960447664184693	D:/3_Source Code/31_QT/MediatorMVAQt/build/MediatorMVAQt_autogen/mocs_compilation_Debug.cpp	a2bc20830502e5ca
+204	2624	7961121012785149	CMakeFiles/MediatorMVAQt.dir/Debug/app/AppContext.cpp.obj	dfeef5f07fc96fe7
+196	2874	7961121015311427	CMakeFiles/MediatorMVAQt.dir/Debug/MainWindow.cpp.obj	56d140312907c18a
+2875	3268	7961121018725242	Debug/MediatorMVAQt.exe	6ac957ea5b2287a3

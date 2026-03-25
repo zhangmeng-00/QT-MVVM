@@ -6,6 +6,14 @@
 
 include CMakeFiles/impl-RelWithDebInfo.ninja
 
+build install: phony install$:RelWithDebInfo
+
+build install\local: phony install\local$:RelWithDebInfo
+
+build core\install: phony core\install$:RelWithDebInfo
+
+build core\install\local: phony core\install\local$:RelWithDebInfo
+
 build MediatorCore: phony core\RelWithDebInfo\MediatorCore.lib
 
 build MediatorCore.lib: phony core\RelWithDebInfo\MediatorCore.lib

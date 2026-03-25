@@ -5,7 +5,14 @@
 	"CMAKE_CURRENT_BINARY_DIR" : "D:/3_Source Code/31_QT/MediatorMVAQt/build/core",
 	"CMAKE_CURRENT_SOURCE_DIR" : "D:/3_Source Code/31_QT/MediatorMVAQt/core",
 	"CMAKE_EXECUTABLE" : "C:/Program Files/CMake/bin/cmake.exe",
-	"CMAKE_LIST_FILES" : [ "D:/3_Source Code/31_QT/MediatorMVAQt/core/CMakeLists.txt" ],
+	"CMAKE_LIST_FILES" : 
+	[
+		"D:/3_Source Code/31_QT/MediatorMVAQt/core/CMakeLists.txt",
+		"C:/Program Files/CMake/share/cmake-4.0/Modules/CMakePackageConfigHelpers.cmake",
+		"C:/Program Files/CMake/share/cmake-4.0/Modules/WriteBasicConfigVersionFile.cmake",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/core/MediatorCoreConfig.cmake.in",
+		"C:/Program Files/CMake/share/cmake-4.0/Modules/BasicConfigVersion-AnyNewerVersion.cmake.in"
+	],
 	"CMAKE_SOURCE_DIR" : "D:/3_Source Code/31_QT/MediatorMVAQt",
 	"CROSS_CONFIG" : false,
 	"DEP_FILE" : "D:/3_Source Code/31_QT/MediatorMVAQt/build/core/MediatorCore_autogen/deps",
@@ -25,39 +32,9 @@
 			null
 		],
 		[
-			"D:/3_Source Code/31_QT/MediatorMVAQt/core/binding/BindingEvents.h",
-			"MU",
-			"YURQU3T53E/moc_BindingEvents.cpp",
-			null
-		],
-		[
-			"D:/3_Source Code/31_QT/MediatorMVAQt/core/binding/BindingEventsHelpers.h",
-			"MU",
-			"YURQU3T53E/moc_BindingEventsHelpers.cpp",
-			null
-		],
-		[
 			"D:/3_Source Code/31_QT/MediatorMVAQt/core/binding/BindingHelper.h",
 			"MU",
 			"YURQU3T53E/moc_BindingHelper.cpp",
-			null
-		],
-		[
-			"D:/3_Source Code/31_QT/MediatorMVAQt/core/command/DispatcherCommand.h",
-			"MU",
-			"LTLVFUOEFO/moc_DispatcherCommand.cpp",
-			null
-		],
-		[
-			"D:/3_Source Code/31_QT/MediatorMVAQt/core/command/ICommand.h",
-			"MU",
-			"LTLVFUOEFO/moc_ICommand.cpp",
-			null
-		],
-		[
-			"D:/3_Source Code/31_QT/MediatorMVAQt/core/command/SimpleCommand.h",
-			"MU",
-			"LTLVFUOEFO/moc_SimpleCommand.cpp",
 			null
 		],
 		[
@@ -85,6 +62,12 @@
 			null
 		],
 		[
+			"D:/3_Source Code/31_QT/MediatorMVAQt/core/model/IModel.h",
+			"MU",
+			"NLOY5YBGEN/moc_IModel.cpp",
+			null
+		],
+		[
 			"D:/3_Source Code/31_QT/MediatorMVAQt/core/model/LogEntry.h",
 			"MU",
 			"NLOY5YBGEN/moc_LogEntry.cpp",
@@ -109,15 +92,27 @@
 			null
 		],
 		[
-			"D:/3_Source Code/31_QT/MediatorMVAQt/core/policy/StickyPolicy.h",
-			"MU",
-			"UZYPO632FN/moc_StickyPolicy.cpp",
-			null
-		],
-		[
 			"D:/3_Source Code/31_QT/MediatorMVAQt/core/policy/ValueChangedPolicy.h",
 			"MU",
 			"UZYPO632FN/moc_ValueChangedPolicy.cpp",
+			null
+		],
+		[
+			"D:/3_Source Code/31_QT/MediatorMVAQt/core/view/LogListView.h",
+			"MU",
+			"OTUN7GXZT4/moc_LogListView.cpp",
+			null
+		],
+		[
+			"D:/3_Source Code/31_QT/MediatorMVAQt/core/viewmodel/BaseViewModel.h",
+			"MU",
+			"7OCNMGYRF4/moc_BaseViewModel.cpp",
+			null
+		],
+		[
+			"D:/3_Source Code/31_QT/MediatorMVAQt/core/viewmodel/LogListViewModel.h",
+			"MU",
+			"7OCNMGYRF4/moc_LogListViewModel.cpp",
 			null
 		]
 	],
@@ -162,6 +157,14 @@
 	[
 		"D:/3_Source Code/31_QT/MediatorMVAQt/core",
 		"D:/3_Source Code/31_QT/MediatorMVAQt",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/app",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/core/actor",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/core/binding",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/core/mediator",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/core/model",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/core/policy",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/core/view",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/core/viewmodel",
 		"C:/Qt/5.15.2/msvc2019/include",
 		"C:/Qt/5.15.2/msvc2019/include/QtCore",
 		"C:/Qt/5.15.2/msvc2019/mkspecs/win32-msvc",
@@ -174,6 +177,14 @@
 	[
 		"D:/3_Source Code/31_QT/MediatorMVAQt/core",
 		"D:/3_Source Code/31_QT/MediatorMVAQt",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/app",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/core/actor",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/core/binding",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/core/mediator",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/core/model",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/core/policy",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/core/view",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/core/viewmodel",
 		"C:/Qt/5.15.2/msvc2019/include",
 		"C:/Qt/5.15.2/msvc2019/include/QtCore",
 		"C:/Qt/5.15.2/msvc2019/mkspecs/win32-msvc",
@@ -186,6 +197,14 @@
 	[
 		"D:/3_Source Code/31_QT/MediatorMVAQt/core",
 		"D:/3_Source Code/31_QT/MediatorMVAQt",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/app",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/core/actor",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/core/binding",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/core/mediator",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/core/model",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/core/policy",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/core/view",
+		"D:/3_Source Code/31_QT/MediatorMVAQt/core/viewmodel",
 		"C:/Qt/5.15.2/msvc2019/include",
 		"C:/Qt/5.15.2/msvc2019/include/QtCore",
 		"C:/Qt/5.15.2/msvc2019/mkspecs/win32-msvc",
@@ -244,6 +263,16 @@
 		],
 		[
 			"D:/3_Source Code/31_QT/MediatorMVAQt/core/model/LogModel.cpp",
+			"MU",
+			null
+		],
+		[
+			"D:/3_Source Code/31_QT/MediatorMVAQt/core/view/LogListView.cpp",
+			"MU",
+			null
+		],
+		[
+			"D:/3_Source Code/31_QT/MediatorMVAQt/core/viewmodel/LogListViewModel.cpp",
 			"MU",
 			null
 		]

@@ -70,5 +70,6 @@ D:/3_Source\ Code/31_QT/MediatorMVAQt/build/core/MediatorCore_autogen/include_De
   D:/3_Source\ Code/31_QT/MediatorMVAQt/core/actor/ActorObserve.h \
   D:/3_Source\ Code/31_QT/MediatorMVAQt/core/mediator/Observe.h \
   D:/3_Source\ Code/31_QT/MediatorMVAQt/core/model/BaseModel.h \
+  D:/3_Source\ Code/31_QT/MediatorMVAQt/core/model/IModel.h \
   D:/3_Source\ Code/31_QT/MediatorMVAQt/core/model/LogEntry.h \
   D:/3_Source\ Code/31_QT/MediatorMVAQt/core/policy/ISubscriptionPolicy.h

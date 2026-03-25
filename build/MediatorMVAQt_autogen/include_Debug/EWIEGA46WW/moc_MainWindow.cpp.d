@@ -1,8 +1,8 @@
 D:/3_Source\ Code/31_QT/MediatorMVAQt/build/MediatorMVAQt_autogen/include_Debug/EWIEGA46WW/moc_MainWindow.cpp: D:/3_Source\ Code/31_QT/MediatorMVAQt/MainWindow.h \
   C:/Qt/5.15.2/msvc2019/include/QtCore/QAbstractItemModel \
+  C:/Qt/5.15.2/msvc2019/include/QtCore/QAbstractTableModel \
   C:/Qt/5.15.2/msvc2019/include/QtCore/QDateTime \
   C:/Qt/5.15.2/msvc2019/include/QtCore/QDebug \
-  C:/Qt/5.15.2/msvc2019/include/QtCore/QHash \
   C:/Qt/5.15.2/msvc2019/include/QtCore/QList \
   C:/Qt/5.15.2/msvc2019/include/QtCore/QMetaMethod \
   C:/Qt/5.15.2/msvc2019/include/QtCore/QMetaObject \
@@ -13,7 +13,6 @@ D:/3_Source\ Code/31_QT/MediatorMVAQt/build/MediatorMVAQt_autogen/include_Debug/
   C:/Qt/5.15.2/msvc2019/include/QtCore/QString \
   C:/Qt/5.15.2/msvc2019/include/QtCore/QThread \
   C:/Qt/5.15.2/msvc2019/include/QtCore/QVariant \
-  C:/Qt/5.15.2/msvc2019/include/QtCore/QVariantList \
   C:/Qt/5.15.2/msvc2019/include/QtCore/qabstractitemmodel.h \
   C:/Qt/5.15.2/msvc2019/include/QtCore/qalgorithms.h \
   C:/Qt/5.15.2/msvc2019/include/QtCore/qarraydata.h \
@@ -85,6 +84,7 @@ D:/3_Source\ Code/31_QT/MediatorMVAQt/build/MediatorMVAQt_autogen/include_Debug/
   C:/Qt/5.15.2/msvc2019/include/QtCore/qvarlengtharray.h \
   C:/Qt/5.15.2/msvc2019/include/QtCore/qvector.h \
   C:/Qt/5.15.2/msvc2019/include/QtCore/qversiontagging.h \
+  C:/Qt/5.15.2/msvc2019/include/QtGui/QColor \
   C:/Qt/5.15.2/msvc2019/include/QtGui/qbrush.h \
   C:/Qt/5.15.2/msvc2019/include/QtGui/qcolor.h \
   C:/Qt/5.15.2/msvc2019/include/QtGui/qcursor.h \
@@ -130,20 +130,17 @@ D:/3_Source\ Code/31_QT/MediatorMVAQt/build/MediatorMVAQt_autogen/include_Debug/
   C:/Qt/5.15.2/msvc2019/include/QtWidgets/qwidget.h \
   D:/3_Source\ Code/31_QT/MediatorMVAQt/core/actor/ActorObserve.h \
   D:/3_Source\ Code/31_QT/MediatorMVAQt/core/binding/Binding.h \
-  D:/3_Source\ Code/31_QT/MediatorMVAQt/core/binding/BindingEvents.h \
-  D:/3_Source\ Code/31_QT/MediatorMVAQt/core/binding/BindingEventsHelpers.h \
   D:/3_Source\ Code/31_QT/MediatorMVAQt/core/binding/BindingHelper.h \
-  D:/3_Source\ Code/31_QT/MediatorMVAQt/core/command/DispatcherCommand.h \
-  D:/3_Source\ Code/31_QT/MediatorMVAQt/core/command/ICommand.h \
-  D:/3_Source\ Code/31_QT/MediatorMVAQt/core/command/SimpleCommand.h \
   D:/3_Source\ Code/31_QT/MediatorMVAQt/core/mediator/Observe.h \
   D:/3_Source\ Code/31_QT/MediatorMVAQt/core/model/BaseModel.h \
+  D:/3_Source\ Code/31_QT/MediatorMVAQt/core/model/IModel.h \
   D:/3_Source\ Code/31_QT/MediatorMVAQt/core/model/LogEntry.h \
   D:/3_Source\ Code/31_QT/MediatorMVAQt/core/policy/AlwaysPolicy.h \
   D:/3_Source\ Code/31_QT/MediatorMVAQt/core/policy/ISubscriptionPolicy.h \
   D:/3_Source\ Code/31_QT/MediatorMVAQt/core/policy/ValueChangedPolicy.h \
+  D:/3_Source\ Code/31_QT/MediatorMVAQt/core/viewmodel/BaseViewModel.h \
+  D:/3_Source\ Code/31_QT/MediatorMVAQt/core/viewmodel/LogListViewModel.h \
   D:/3_Source\ Code/31_QT/MediatorMVAQt/model/SensorModel.h \
   D:/3_Source\ Code/31_QT/MediatorMVAQt/model/UserModel.h \
-  D:/3_Source\ Code/31_QT/MediatorMVAQt/viewmodel/BaseViewModel.h \
   D:/3_Source\ Code/31_QT/MediatorMVAQt/viewmodel/SensorViewModel.h \
   D:/3_Source\ Code/31_QT/MediatorMVAQt/viewmodel/UserViewModel.h

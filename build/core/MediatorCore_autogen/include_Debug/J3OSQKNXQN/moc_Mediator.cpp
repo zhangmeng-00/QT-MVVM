@@ -38,16 +38,16 @@ QT_MOC_LITERAL(2, 21, 0), // ""
 QT_MOC_LITERAL(3, 22, 8), // "Observe*"
 QT_MOC_LITERAL(4, 31, 8), // "observer"
 QT_MOC_LITERAL(5, 40, 3), // "tag"
-QT_MOC_LITERAL(6, 44, 9), // "PolicyPtr"
-QT_MOC_LITERAL(7, 54, 6), // "policy"
-QT_MOC_LITERAL(8, 61, 5), // "value"
+QT_MOC_LITERAL(6, 44, 5), // "value"
+QT_MOC_LITERAL(7, 50, 9), // "PolicyPtr"
+QT_MOC_LITERAL(8, 60, 6), // "policy"
 QT_MOC_LITERAL(9, 67, 13), // "OnUnsubscribe"
 QT_MOC_LITERAL(10, 81, 3), // "obs"
 QT_MOC_LITERAL(11, 85, 9) // "OnPublish"
 
     },
     "Mediator\0OnSubscribe\0\0Observe*\0observer\0"
-    "tag\0PolicyPtr\0policy\0value\0OnUnsubscribe\0"
+    "tag\0value\0PolicyPtr\0policy\0OnUnsubscribe\0"
     "obs\0OnPublish"
 };
 #undef QT_MOC_LITERAL
@@ -58,7 +58,7 @@ static const uint qt_meta_data_Mediator[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-       4,   14, // methods
+       3,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -66,16 +66,14 @@ static const uint qt_meta_data_Mediator[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    3,   34,    2, 0x08 /* Private */,
-       1,    4,   41,    2, 0x08 /* Private */,
-       9,    2,   50,    2, 0x08 /* Private */,
-      11,    2,   55,    2, 0x08 /* Private */,
+       1,    4,   29,    2, 0x08 /* Private */,
+       9,    2,   38,    2, 0x08 /* Private */,
+      11,    2,   43,    2, 0x08 /* Private */,
 
  // slots: parameters
-    QMetaType::Void, 0x80000000 | 3, QMetaType::QString, 0x80000000 | 6,    4,    5,    7,
-    QMetaType::Void, 0x80000000 | 3, QMetaType::QString, QMetaType::QVariant, 0x80000000 | 6,    4,    5,    8,    7,
+    QMetaType::Void, 0x80000000 | 3, QMetaType::QString, QMetaType::QVariant, 0x80000000 | 7,    4,    5,    6,    8,
     QMetaType::Void, 0x80000000 | 3, QMetaType::QString,   10,    5,
-    QMetaType::Void, QMetaType::QString, QMetaType::QVariant,    5,    8,
+    QMetaType::Void, QMetaType::QString, QMetaType::QVariant,    5,    6,
 
        0        // eod
 };
@@ -86,10 +84,9 @@ void Mediator::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         auto *_t = static_cast<Mediator *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->OnSubscribe((*reinterpret_cast< Observe*(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2])),(*reinterpret_cast< PolicyPtr(*)>(_a[3]))); break;
-        case 1: _t->OnSubscribe((*reinterpret_cast< Observe*(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2])),(*reinterpret_cast< const QVariant(*)>(_a[3])),(*reinterpret_cast< PolicyPtr(*)>(_a[4]))); break;
-        case 2: _t->OnUnsubscribe((*reinterpret_cast< Observe*(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2]))); break;
-        case 3: _t->OnPublish((*reinterpret_cast< const QString(*)>(_a[1])),(*reinterpret_cast< const QVariant(*)>(_a[2]))); break;
+        case 0: _t->OnSubscribe((*reinterpret_cast< Observe*(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2])),(*reinterpret_cast< const QVariant(*)>(_a[3])),(*reinterpret_cast< PolicyPtr(*)>(_a[4]))); break;
+        case 1: _t->OnUnsubscribe((*reinterpret_cast< Observe*(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2]))); break;
+        case 2: _t->OnPublish((*reinterpret_cast< const QString(*)>(_a[1])),(*reinterpret_cast< const QVariant(*)>(_a[2]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -100,20 +97,11 @@ void Mediator::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
             default: *reinterpret_cast<int*>(_a[0]) = -1; break;
             case 0:
                 *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< Observe* >(); break;
-            case 2:
-                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< PolicyPtr >(); break;
-            }
-            break;
-        case 1:
-            switch (*reinterpret_cast<int*>(_a[1])) {
-            default: *reinterpret_cast<int*>(_a[0]) = -1; break;
-            case 0:
-                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< Observe* >(); break;
             case 3:
                 *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< PolicyPtr >(); break;
             }
             break;
-        case 2:
+        case 1:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<int*>(_a[0]) = -1; break;
             case 0:
@@ -153,13 +141,13 @@ int Mediator::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 4)
+        if (_id < 3)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 3;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 4)
+        if (_id < 3)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 3;
     }
     return _id;
 }
